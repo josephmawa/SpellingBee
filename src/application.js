@@ -13,7 +13,8 @@ export const SpellingbeeApplication = GObject.registerClass(
       super({
         application_id: pkg.name,
         flags: Gio.ApplicationFlags.DEFAULT_FLAGS,
-        resource_base_path: getResourcePath(),
+        // This will disable the automatic Keyboard shortcuts
+        // resource_base_path: getResourcePath(),
       });
 
       const quit_action = new Gio.SimpleAction({ name: "quit" });
@@ -38,8 +39,6 @@ export const SpellingbeeApplication = GObject.registerClass(
 
       this.set_accels_for_action("app.quit", ["<primary>q"]);
       this.set_accels_for_action("app.preferences", ["<primary>comma"]);
-      // This hsould be applied out of the box but it doesn't seem to work
-      this.set_accels_for_action("win.show-help-overlay", ["<primary>k"]);
     }
 
     vfunc_activate() {
