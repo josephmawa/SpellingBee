@@ -1,0 +1,31 @@
+#!@GJS@ -m
+
+import { exit, programArgs, programInvocationName } from "system";
+
+imports.package.init({
+  name: "@PACKAGE_NAME@",
+  version: "@PACKAGE_VERSION@",
+  prefix: "@prefix@",
+  libdir: "@libdir@",
+  datadir: "@datadir@",
+});
+
+globalThis.APP_NAME = "Spelling Bee";
+
+
+globalThis.getResourceURI = (resource) => {
+  if(!resource) return "resource://@resource_path@";
+  return "resource://@resource_path@/" + resource;
+};
+
+globalThis.getResourcePath = (resource) => {
+  if(!resource) "@resource_path@/";
+  return "@resource_path@/" + resource;
+};
+
+pkg.initGettext();
+pkg.initFormat();
+
+const { main } = await import("resource://@resource_path@/js/main.js");
+const exit_code = await main([programInvocationName, ...programArgs]);
+exit(exit_code);

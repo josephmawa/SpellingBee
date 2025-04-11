@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=spellingbee
+Exec=io.github.josephmawa.SpellingBee
+Icon=io.github.josephmawa.SpellingBee
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=GTK;
+StartupNotify=true
+DBusActivatable=true

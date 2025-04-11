@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/github/josephmawa/SpellingBee/js">
+    <file>main.js</file>
+    <file>about.js</file>
+    <file>window.js</file>
+    <file>hexagon.js</file>
+    <file>application.js</file>
+  </gresource>
+</gresources>

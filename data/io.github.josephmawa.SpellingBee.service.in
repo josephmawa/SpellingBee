@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=io.github.josephmawa.SpellingBee
+Exec=@bindir@/io.github.josephmawa.SpellingBee --gapplication-service
