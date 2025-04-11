@@ -13,8 +13,7 @@ export const SpellingbeeApplication = GObject.registerClass(
       super({
         application_id: pkg.name,
         flags: Gio.ApplicationFlags.DEFAULT_FLAGS,
-        // This will disable the automatic Keyboard shortcuts
-        // resource_base_path: getResourcePath(),
+        resource_base_path: getResourcePath(),
       });
 
       const quit_action = new Gio.SimpleAction({ name: "quit" });

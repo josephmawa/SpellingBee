@@ -19,7 +19,7 @@ globalThis.getResourceURI = (resource) => {
 };
 
 globalThis.getResourcePath = (resource) => {
-  if(!resource) "@resource_path@/";
+  if(!resource) return "@resource_path@";
   return "@resource_path@/" + resource;
 };
 
