@@ -5,6 +5,7 @@ import Adw from "gi://Adw?version=1";
 
 import { SpellingbeeWindow } from "./window.js";
 import { AboutDialog } from "./about.js";
+import { PreferencesDialog } from "./preferences.js";
 
 export const SpellingbeeApplication = GObject.registerClass(
   class SpellingbeeApplication extends Adw.Application {
@@ -20,14 +21,25 @@ export const SpellingbeeApplication = GObject.registerClass(
         this.quit();
       });
       this.add_action(quit_action);
-      this.set_accels_for_action("app.quit", ["<primary>q"]);
 
-      const show_about_action = new Gio.SimpleAction({ name: "about" });
-      show_about_action.connect("activate", (action) => {
+      const preferencesAction = new Gio.SimpleAction({ name: "preferences" });
+      preferencesAction.connect("activate", (action) => {
+        const preferencesDialog = new PreferencesDialog();
+        preferencesDialog.present(this.active_window);
+      });
+      this.add_action(preferencesAction);
+
+      const aboutAction = new Gio.SimpleAction({ name: "about" });
+      aboutAction.connect("activate", (action) => {
         const aboutDialog = AboutDialog();
         aboutDialog.present(this.active_window);
       });
-      this.add_action(show_about_action);
+      this.add_action(aboutAction);
+
+      this.set_accels_for_action("app.quit", ["<primary>q"]);
+      this.set_accels_for_action("app.preferences", ["<primary>comma"]);
+      // This hsould be applied out of the box but it doesn't seem to work
+      this.set_accels_for_action("win.show-help-overlay", ["<primary>k"]);
     }
 
     vfunc_activate() {

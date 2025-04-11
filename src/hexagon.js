@@ -64,7 +64,6 @@ export const Hexagon = GObject.registerClass(
 
       this.height = 125;
       this.width = this.ASPECT_RATIO * this.height;
-      console.log(`width: ${this.width}, height: ${this.height}`);
       this.side = this.calcSide();
 
       this.set_size_request(this.width, this.height);

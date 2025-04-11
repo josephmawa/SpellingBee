@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/io/github/josephmawa/SpellingBee">
-    <file preprocess="xml-stripblanks">window.ui</file>
-    <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">window.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">preferences.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
+  </gresource>
+  <gresource prefix="/io/github/josephmawa/SpellingBee">
+    <file compressed="true" alias="index.css">styles/index.css</file>
   </gresource>
 </gresources>
