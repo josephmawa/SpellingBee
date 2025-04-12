@@ -1,6 +1,8 @@
 import Adw from "gi://Adw";
 import Gtk from "gi://Gtk";
 
+const URL = "https://github.com/josephmawa/SpellingBee";
+
 const aboutParams = {
   application_name: APP_NAME,
   developer_name: "Joseph Mawa",
@@ -11,6 +13,9 @@ const aboutParams = {
   artists: ["Joseph Mawa"],
   copyright: "Copyright © 2025 Joseph Mawa",
   translator_credits: _("translator-credits"),
+  website: URL,
+  issue_url: URL + "/issues",
+  support_url: URL + "/issues",
 };
 
 export const AboutDialog = () => {
