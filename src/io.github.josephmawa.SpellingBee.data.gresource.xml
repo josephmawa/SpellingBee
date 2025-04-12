@@ -7,6 +7,7 @@
   </gresource>
   <gresource prefix="/io/github/josephmawa/SpellingBee/icons">
     <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-emblem-ok-symbolic.svg">icons/emblem-ok-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-document-edit-symbolic.svg">icons/document-edit-symbolic.svg</file>
   </gresource>
   <gresource prefix="/io/github/josephmawa/SpellingBee">
     <file compressed="true" alias="index.css">styles/index.css</file>
