@@ -5,6 +5,7 @@ import Gio from "gi://Gio";
 import GLib from "gi://GLib";
 
 import { Hexagon, Container } from "./hexagon.js";
+import { words } from "./data.js";
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -12,7 +13,7 @@ export const SpellingbeeWindow = GObject.registerClass(
   {
     GTypeName: "SpellingbeeWindow",
     Template: getResourceURI("window.ui"),
-    InternalChildren: ["container", "entry"],
+    InternalChildren: ["container", "entry", "flowbox"],
   },
   class SpellingbeeWindow extends Adw.ApplicationWindow {
     constructor(application) {
@@ -22,6 +23,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.loadStyles();
       this.bindSettings();
       this.setPreferredColorScheme();
+      this.populateFlowbox();
 
       /**
        * NOTE
@@ -39,13 +41,13 @@ export const SpellingbeeWindow = GObject.registerClass(
 
     createUI = () => {
       const objects = [
-        { label: "W", position: "TOP_LEFT" },
-        { label: "X", position: "TOP_RIGHT" },
-        { label: "A", position: "LEFT" },
-        { label: "M", position: "RIGHT" },
-        { label: "T", position: "CENTER" },
-        { label: "G", position: "BOTTOM_LEFT" },
-        { label: "K", position: "BOTTOM_RIGHT" },
+        { label: "D", position: "TOP_LEFT" },
+        { label: "E", position: "TOP_RIGHT" },
+        { label: "I", position: "LEFT" },
+        { label: "T", position: "RIGHT" },
+        { label: "R", position: "CENTER" },
+        { label: "X", position: "BOTTOM_LEFT" },
+        { label: "Y", position: "BOTTOM_RIGHT" },
       ];
 
       const container = new Container({ gap: 8 });
@@ -109,6 +111,24 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       GObject.signal_handler_unblock(editable, handlerId);
       GObject.signal_stop_emission(editable, signalId, GLib.quark_to_string(0));
+    };
+
+    // This is for creating a placeholder text.
+    // Remove it later.
+    populateFlowbox = () => {
+      for (const word of words.slice(40)) {
+        const item = new Adw.Bin({
+          child: new Gtk.Label({
+            vexpand: true,
+            hexpand: true,
+            label: word,
+            selectable: true,
+          }),
+          css_classes: ["card", "pad-box"],
+        });
+
+        this._flowbox.append(item);
+      }
     };
 
     bindSettings = () => {

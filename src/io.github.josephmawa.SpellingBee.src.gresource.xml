@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/io/github/josephmawa/SpellingBee/js">
     <file>main.js</file>
+    <file>data.js</file>
     <file>about.js</file>
     <file>window.js</file>
     <file>hexagon.js</file>
