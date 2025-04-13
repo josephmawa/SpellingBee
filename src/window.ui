@@ -41,10 +41,12 @@
                         <property name="maximum-size">180</property>
                         <property name="valign">center</property>
                         <property name="child">
-                          <object class="GtkEntry">
+                          <object class="GtkEntry" id="entry">
                             <property name="placeholder-text" translatable="yes">Enter Word</property>
-                            <property name="tooltip-text">Enter Word</property>
+                            <property name="tooltip-text" translatable="yes">Enter Word</property>
                             <property name="secondary-icon-name">edit-clear-symbolic</property>
+                            <signal name="activate" handler="submitWord" object="SpellingbeeWindow" swapped="no" />
+                            <signal name="changed" handler="wordChanged" object="SpellingbeeWindow" swapped="no" />
                           </object>
                         </property>
                       </object>
