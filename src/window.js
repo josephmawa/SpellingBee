@@ -5,7 +5,7 @@ import Gio from "gi://Gio";
 import GLib from "gi://GLib";
 
 import { Hexagon, Container } from "./hexagon.js";
-import { words } from "./data.js";
+import { data } from "./data.js";
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -23,7 +23,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.loadStyles();
       this.bindSettings();
       this.setPreferredColorScheme();
-      this.populateFlowbox();
+     // this.populateFlowbox();
 
       /**
        * NOTE
