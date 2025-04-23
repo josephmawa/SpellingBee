@@ -97,13 +97,14 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkButton" id="button_clear">
-                                <property name="icon-name">edit-clear-symbolic</property>
-                                <property name="tooltip-text" translatable="yes">Edit</property>
+                              <object class="GtkButton" id="button_delete">
+                                <property name="icon-name">user-trash-symbolic</property>
+                                <property name="tooltip-text" translatable="yes">Delete</property>
                                 <style>
                                   <class name="circular" />
                                   <class name="padding" />
                                 </style>
+                                <signal name="clicked" handler="deleteEntry" object="SpellingbeeWindow" swapped="no" />
                               </object>
                             </child>
                           </object>

@@ -7,8 +7,6 @@ import GLib from "gi://GLib";
 import { Hexagon, Container } from "./hexagon.js";
 import { data } from "./data.js";
 
-const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
 export const SpellingbeeWindow = GObject.registerClass(
   {
     GTypeName: "SpellingbeeWindow",
@@ -23,7 +21,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.loadStyles();
       this.bindSettings();
       this.setPreferredColorScheme();
-     // this.populateFlowbox();
+      // this.populateFlowbox();
 
       /**
        * NOTE
@@ -63,9 +61,19 @@ export const SpellingbeeWindow = GObject.registerClass(
 
     entryIconPressHandler = (entry, iconPos) => {
       if (Gtk.EntryIconPosition.SECONDARY === iconPos) {
-        entry.set_text("");
+        const text = entry.get_text();
+        if (!text) return;
+
+        entry.set_text(text.slice(0, -1));
       }
     };
+
+    deleteEntry() {
+      const text = this._entry.get_text();
+      if (!text) return;
+
+      this._entry.set_text("");
+    }
 
     hexClickHandler = (_hexagon, label) => {
       const labelUpperCase = label.toLocaleUpperCase("en-US");
@@ -101,7 +109,7 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       GObject.signal_handler_block(editable, handlerId);
 
-      if (alphabet.includes(textUpperCase)) {
+      if (/^[A-Z]+$/.test(textUpperCase)) {
         editable.insert_text(
           textUpperCase,
           textUpperCase.length,
