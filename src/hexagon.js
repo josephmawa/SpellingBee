@@ -102,7 +102,7 @@ export const Hexagon = GObject.registerClass(
       const angle = Math.PI / 6; // 30 deg in rad
       const deltaY = midX * Math.tan(angle);
       /**
-       * Readius of the inscribed circle of a regular
+       * Radius of the inscribed circle of a regular
        * hexagon is 0.5 * √3 * s where s is the side
        * length of the regular hexagon
        */
@@ -253,23 +253,34 @@ export const Container = GObject.registerClass(
       const deltaY = Math.tan(Math.PI / 6) * (width / 2);
       const pos = widget.position;
 
-      if (pos === "LEFT") return [0, height - deltaY + this.gap];
-      if (pos === "CENTER")
-        return [width + this.gap, height - deltaY + this.gap];
-      if (pos === "RIGHT")
-        return [2 * width + 2 * this.gap, height - deltaY + this.gap];
-      if (pos === "TOP_LEFT") return [width / 2 + this.gap / 2, 0];
-      if (pos === "TOP_RIGHT")
-        return [width + width / 2 + this.gap + this.gap / 2, 0];
-      if (pos === "BOTTOM_LEFT")
-        return [width / 2 + this.gap / 2, this.height - height];
-      if (pos === "BOTTOM_RIGHT")
-        return [
-          width + width / 2 + this.gap + this.gap / 2,
-          this.height - height,
-        ];
+      let x, y;
 
-      throw new Error(`Invalid position ${pos}`);
+      if (pos === "LEFT") {
+        x = 0;
+        y = height - deltaY + this.gap;
+      } else if (pos === "CENTER") {
+        x = width + this.gap;
+        y = height - deltaY + this.gap;
+      } else if (pos === "RIGHT") {
+        x = 2 * width + 2 * this.gap;
+        y = height - deltaY + this.gap;
+      } else if (pos === "TOP_LEFT") {
+        x = width / 2 + this.gap / 2;
+        y = 0;
+      } else if (pos === "TOP_RIGHT") {
+        x = 1.5 * width + 1.5 * this.gap;
+        y = 0;
+      } else if (pos === "BOTTOM_LEFT") {
+        x = width / 2 + this.gap / 2;
+        y = this.height - height;
+      } else if (pos === "BOTTOM_RIGHT") {
+        x = 1.5 * width + 1.5 * this.gap;
+        y = this.height - height;
+      } else {
+        throw new Error(`Invalid position ${pos}`);
+      }
+
+      return [x, y];
     };
 
     vfunc_measure() {
