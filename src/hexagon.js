@@ -67,7 +67,7 @@ export const Hexagon = GObject.registerClass(
       this.side = this.calcSide();
 
       this.set_size_request(this.width, this.height);
-      this.label = label;
+      this._label = label;
       this.position = position;
 
       this.can_focus = true;
@@ -77,6 +77,17 @@ export const Hexagon = GObject.registerClass(
       const gestureClick = new Gtk.GestureClick();
       gestureClick.connect("pressed", this.pressedHandler);
       this.add_controller(gestureClick);
+    }
+
+    set label(label) {
+      if (label === this._label) return;
+      this._label = label;
+      this.notify("label");
+      this.queue_draw();
+    }
+
+    get label() {
+      return this._label;
     }
 
     calcSide = () => {

@@ -6,6 +6,18 @@ import GLib from "gi://GLib";
 
 import { Hexagon, Container } from "./hexagon.js";
 import { data } from "./data.js";
+import { Letter } from "./letter.js";
+import { getRandInt, shuffle } from "./util.js";
+
+const outerLetterObjects = [
+  { label: "", position: "LEFT" },
+  { label: "", position: "RIGHT" },
+  { label: "", position: "TOP_LEFT" },
+  { label: "", position: "TOP_RIGHT" },
+  { label: "", position: "BOTTOM_LEFT" },
+  { label: "", position: "BOTTOM_RIGHT" },
+];
+
 
 export const SpellingbeeWindow = GObject.registerClass(
   {
@@ -38,26 +50,66 @@ export const SpellingbeeWindow = GObject.registerClass(
     }
 
     createUI = () => {
-      const objects = [
-        { label: "D", position: "TOP_LEFT" },
-        { label: "E", position: "TOP_RIGHT" },
-        { label: "I", position: "LEFT" },
-        { label: "T", position: "RIGHT" },
-        { label: "R", position: "CENTER" },
-        { label: "X", position: "BOTTOM_LEFT" },
-        { label: "Y", position: "BOTTOM_RIGHT" },
-      ];
+      const randInt = getRandInt(0, data.length - 1);
+      const { centerLetter, letters, words } = data[randInt];
+
+      this.outerLetters = Gio.ListStore.new(Letter);
+      this.centerLetter = new Letter(
+        centerLetter[0].toLocaleUpperCase("en-US"),
+        "CENTER"
+      );
+
+      const outerLetters = letters.replaceAll(centerLetter[0], "");
 
       const container = new Container({ gap: 8 });
+      const centerHexagon = new Hexagon({
+        label: this.centerLetter.letter,
+        position: this.centerLetter.position,
+      });
+      centerHexagon.connect("click", this.hexClickHandler);
+      container.appendChild(centerHexagon);
 
-      for (const object of objects) {
-        const hexagon = new Hexagon(object);
-        hexagon.connect("click", this.hexClickHandler);
-        container.appendChild(hexagon);
+      console.assert(
+        outerLetterObjects.length === outerLetters.length,
+        "Number of letters must equal number of outer letter objects"
+      );
+
+      for (let i = 0; i < outerLetters.length; i++) {
+        const object = { ...outerLetterObjects[i] };
+        object.label = outerLetters[i].toLocaleUpperCase("en-US");
+
+        const letterObject = new Letter(object.label, object.position);
+        const outerHexagon = new Hexagon(object);
+
+        letterObject.bind_property(
+          "letter",
+          outerHexagon,
+          "label",
+          GObject.BindingFlags.DEFAULT | GObject.BindingFlags.SYNC_CREATE
+        );
+        outerHexagon.connect("click", this.hexClickHandler);
+        this.outerLetters.append(letterObject);
+        container.appendChild(outerHexagon);
       }
 
       this._container.append(container);
     };
+
+    shuffleLetters() {
+      const outerLetters = [];
+
+      for (let i = 0; i < this.outerLetters.n_items; i++) {
+        const item = this.outerLetters.get_item(i);
+        outerLetters.push(item.letter);
+      }
+
+      const shuffledOuterLetters = shuffle(outerLetters);
+
+      for (let i = 0; i < this.outerLetters.n_items; i++) {
+        const item = this.outerLetters.get_item(i);
+        item.letter = shuffledOuterLetters[i];
+      }
+    }
 
     entryIconPressHandler = (entry, iconPos) => {
       if (Gtk.EntryIconPosition.SECONDARY === iconPos) {

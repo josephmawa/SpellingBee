@@ -84,6 +84,7 @@
                                   <class name="circular" />
                                   <class name="padding" />
                                 </style>
+                                <signal name="clicked" handler="shuffleLetters" object="SpellingbeeWindow" swapped="no" />
                               </object>
                             </child>
                             <child>
