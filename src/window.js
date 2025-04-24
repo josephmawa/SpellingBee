@@ -6,7 +6,7 @@ import GLib from "gi://GLib";
 
 import { Hexagon, Container } from "./hexagon.js";
 import { data } from "./data.js";
-import { Letter } from "./letter.js";
+import { Letter, CorrectWord } from "./letter.js";
 import { getRandInt, shuffle } from "./util.js";
 
 const outerLetterObjects = [
@@ -35,6 +35,8 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.setPreferredColorScheme();
       // this.populateFlowbox();
 
+      this.correctWordsModel = Gio.ListStore.new(CorrectWord);
+
       /**
        * NOTE
        * You can't connect insert-text event to Gtk.Entry directly.
@@ -47,6 +49,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         .connect("insert-text", this.insertTextHandler);
 
       this._entry.connect("icon-press", this.entryIconPressHandler);
+      this._flowbox.bind_model(this.correctWordsModel, this.createWidgetFunc);
     }
 
     createUI = () => {
@@ -115,6 +118,7 @@ export const SpellingbeeWindow = GObject.registerClass(
 
     checkEntry() {
       const word = this._entry.get_text();
+
       if (word.length < 4) {
         this.displayToast(_("Too Short"));
         return;
@@ -141,9 +145,24 @@ export const SpellingbeeWindow = GObject.registerClass(
         // of this.
         this.displayToast(_("Good +1"));
         this.wordsFound.push(word);
+        this.correctWordsModel.append(new CorrectWord(word));
         this._entry.set_text("");
       }
     }
+
+    createWidgetFunc = (item) => {
+      const word = item.correctWord
+      const bin = new Adw.Bin({
+        child: new Gtk.Label({
+          vexpand: true,
+          hexpand: true,
+          label: word,
+          selectable: true,
+        }),
+        css_classes: ["card", "pad-box"],
+      });
+      return bin;
+    };
 
     entryIconPressHandler = (entry, iconPos) => {
       if (Gtk.EntryIconPosition.SECONDARY === iconPos) {

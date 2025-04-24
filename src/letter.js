@@ -28,3 +28,24 @@ export const Letter = GObject.registerClass(
     }
   }
 );
+
+export const CorrectWord = GObject.registerClass(
+  {
+    GTypeName: "CorrectWord",
+    Properties: {
+      correctWord: GObject.ParamSpec.string(
+        "correctWord",
+        "correct_word",
+        "Correct word",
+        GObject.ParamFlags.READWRITE,
+        ""
+      ),
+    },
+  },
+  class CorrectWord extends GObject.Object {
+    constructor(correctWord) {
+      super();
+      this.correctWord = correctWord;
+    }
+  }
+);

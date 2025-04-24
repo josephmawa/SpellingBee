@@ -128,35 +128,41 @@
                           </object>
                         </child>
                         <child>
-                          <object class="AdwClamp">
-                            <property name="maximum-size">300</property>
-                            <property name="child">
+                          <object class="GtkBox">
+                            <child>
                               <object class="AdwClamp">
                                 <property name="maximum-size">300</property>
-                                <property name="orientation">vertical</property>
                                 <property name="child">
-                                  <object class="GtkScrolledWindow">
-                                    <property name="propagate-natural-height">true</property>
-                                    <property name="has-frame">true</property>
-                                    <child>
-                                      <object class="GtkFlowBox" id="flowbox">
-                                        <property name="orientation">horizontal</property>
-                                        <property name="row-spacing">6</property>
-                                        <property name="column-spacing">6</property>
-                                        <property name="homogeneous">true</property>
-                                        <property name="valign">start</property>
-                                        <property name="halign">start</property>
-                                        <property name="max-children-per-line">5</property>
-                                        <property name="min-children-per-line">4</property>
-                                        <style>
-                                          <class name="padding"/>
-                                        </style>
+                                  <object class="AdwClamp">
+                                    <property name="maximum-size">300</property>
+                                    <property name="orientation">vertical</property>
+                                    <property name="child">
+                                      <object class="GtkScrolledWindow">
+                                        <property name="propagate-natural-height">true</property>
+                                        <child>
+                                          <object class="GtkFlowBox" id="flowbox">
+                                            <property name="orientation">horizontal</property>
+                                            <property name="row-spacing">6</property>
+                                            <property name="column-spacing">6</property>
+                                            <property name="homogeneous">true</property>
+                                            <property name="valign">start</property>
+                                            <property name="halign">start</property>
+                                            <property name="max-children-per-line">5</property>
+                                            <property name="min-children-per-line">4</property>
+                                            <style>
+                                              <class name="padding" />
+                                            </style>
+                                          </object>
+                                        </child>
                                       </object>
-                                    </child>
+                                    </property>
                                   </object>
                                 </property>
                               </object>
-                            </property>
+                            </child>
+                            <style>
+                              <class name="card" />
+                            </style>
                           </object>
                         </child>
                       </object>
