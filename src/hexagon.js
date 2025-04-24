@@ -3,7 +3,6 @@ import Adw from "gi://Adw";
 import Gdk from "gi://Gdk";
 import GObject from "gi://GObject";
 import Graphene from "gi://Graphene";
-import Gsk from "gi://Gsk";
 
 export const Hexagon = GObject.registerClass(
   {

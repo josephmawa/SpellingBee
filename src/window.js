@@ -18,18 +18,18 @@ const outerLetterObjects = [
   { label: "", position: "BOTTOM_RIGHT" },
 ];
 
-
 export const SpellingbeeWindow = GObject.registerClass(
   {
     GTypeName: "SpellingbeeWindow",
     Template: getResourceURI("window.ui"),
-    InternalChildren: ["container", "entry", "flowbox"],
+    InternalChildren: ["toast_overlay", "container", "entry", "flowbox"],
   },
   class SpellingbeeWindow extends Adw.ApplicationWindow {
     constructor(application) {
       super({ application });
 
       this.createUI();
+      this.createToast();
       this.loadStyles();
       this.bindSettings();
       this.setPreferredColorScheme();
@@ -52,6 +52,8 @@ export const SpellingbeeWindow = GObject.registerClass(
     createUI = () => {
       const randInt = getRandInt(0, data.length - 1);
       const { centerLetter, letters, words } = data[randInt];
+      this.words = words.map((word) => word.toLocaleUpperCase("en-US"));
+      this.wordsFound = [];
 
       this.outerLetters = Gio.ListStore.new(Letter);
       this.centerLetter = new Letter(
@@ -108,6 +110,38 @@ export const SpellingbeeWindow = GObject.registerClass(
       for (let i = 0; i < this.outerLetters.n_items; i++) {
         const item = this.outerLetters.get_item(i);
         item.letter = shuffledOuterLetters[i];
+      }
+    }
+
+    checkEntry() {
+      const word = this._entry.get_text();
+      if (word.length < 4) {
+        this.displayToast(_("Too Short"));
+        return;
+      }
+
+      if (!word.includes(this.centerLetter.letter)) {
+        this.displayToast(_("Missing Center Letter"));
+        return;
+      }
+
+      if (this.wordsFound.includes(word)) {
+        this.displayToast(_("Already Found"));
+        return;
+      }
+
+      if (!this.words.includes(word)) {
+        this.displayToast(_("Word Not Found"));
+        return;
+      }
+
+      if (this.words.includes(word)) {
+        // Be sure to check score and display
+        // appropriate toast message instead
+        // of this.
+        this.displayToast(_("Good +1"));
+        this.wordsFound.push(word);
+        this._entry.set_text("");
       }
     }
 
@@ -248,6 +282,16 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       const styleManager = this.application.get_style_manager();
       styleManager.color_scheme = colorScheme;
+    };
+
+    createToast = (timeout = 1) => {
+      this.toast = new Adw.Toast({ timeout });
+    };
+
+    displayToast = (message) => {
+      this.toast.dismiss();
+      this.toast.title = message;
+      this._toast_overlay.add_toast(this.toast);
     };
   }
 );
