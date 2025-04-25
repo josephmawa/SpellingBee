@@ -7,7 +7,15 @@ import GLib from "gi://GLib";
 import { Hexagon, Container } from "./hexagon.js";
 import { data } from "./data.js";
 import { Letter, CorrectWord } from "./letter.js";
-import { getRandInt, shuffle } from "./util.js";
+import {
+  getRandInt,
+  shuffle,
+  toLowerCase,
+  toUpperCase,
+  toTitleCase,
+} from "./util.js";
+
+import { BeeState } from "./bee.js";
 
 const outerLetterObjects = [
   { label: "", position: "LEFT" },
@@ -21,6 +29,15 @@ const outerLetterObjects = [
 export const SpellingbeeWindow = GObject.registerClass(
   {
     GTypeName: "SpellingbeeWindow",
+    Properties: {
+      beeState: GObject.ParamSpec.object(
+        "beeState",
+        "bee_state",
+        "A property holding the state of the current Spelling Bee",
+        GObject.ParamFlags.READWRITE,
+        BeeState
+      ),
+    },
     Template: getResourceURI("window.ui"),
     InternalChildren: ["toast_overlay", "container", "entry", "flowbox"],
   },
@@ -28,12 +45,12 @@ export const SpellingbeeWindow = GObject.registerClass(
     constructor(application) {
       super({ application });
 
+      this.initState();
       this.createUI();
       this.createToast();
       this.loadStyles();
       this.bindSettings();
       this.setPreferredColorScheme();
-      // this.populateFlowbox();
 
       this.correctWordsModel = Gio.ListStore.new(CorrectWord);
 
@@ -49,51 +66,72 @@ export const SpellingbeeWindow = GObject.registerClass(
         .connect("insert-text", this.insertTextHandler);
 
       this._entry.connect("icon-press", this.entryIconPressHandler);
-      this._flowbox.bind_model(this.correctWordsModel, this.createWidgetFunc);
+      this._flowbox.bind_model(this.beeState.wordsFound, this.createWidgetFunc);
     }
 
-    createUI = () => {
+    initState = () => {
       const randInt = getRandInt(0, data.length - 1);
-      const { centerLetter, letters, words } = data[randInt];
-      this.words = words.map((word) => word.toLocaleUpperCase("en-US"));
-      this.wordsFound = [];
+      let { centerLetter, letters, words } = data[randInt];
 
-      this.outerLetters = Gio.ListStore.new(Letter);
-      this.centerLetter = new Letter(
-        centerLetter[0].toLocaleUpperCase("en-US"),
-        "CENTER"
+      centerLetter = Array.isArray(centerLetter)
+        ? centerLetter[0]
+        : centerLetter;
+
+      const spellBeeObj = {};
+      spellBeeObj.centerLetter = Gio.ListStore.new(Letter);
+      spellBeeObj.centerLetter.append(
+        new Letter(toUpperCase(centerLetter), "CENTER")
       );
 
-      const outerLetters = letters.replaceAll(centerLetter[0], "");
-
-      const container = new Container({ gap: 8 });
-      const centerHexagon = new Hexagon({
-        label: this.centerLetter.letter,
-        position: this.centerLetter.position,
-      });
-      centerHexagon.connect("click", this.hexClickHandler);
-      container.appendChild(centerHexagon);
-
-      console.assert(
-        outerLetterObjects.length === outerLetters.length,
-        "Number of letters must equal number of outer letter objects"
-      );
+      spellBeeObj.outerLetters = Gio.ListStore.new(Letter);
+      const outerLetters = letters.replaceAll(centerLetter, "");
 
       for (let i = 0; i < outerLetters.length; i++) {
         const object = { ...outerLetterObjects[i] };
-        object.label = outerLetters[i].toLocaleUpperCase("en-US");
+        object.label = toUpperCase(outerLetters[i]);
 
-        const letterObject = new Letter(object.label, object.position);
-        const outerHexagon = new Hexagon(object);
+        spellBeeObj.outerLetters.append(
+          new Letter(object.label, object.position)
+        );
+      }
 
-        letterObject.bind_property(
+      spellBeeObj.words = words.map((word) => toUpperCase(word));
+      spellBeeObj.wordsFound = Gio.ListStore.new(CorrectWord);
+      spellBeeObj.currentScore = 0;
+      spellBeeObj.totalScore = 100;
+
+      this.beeState = new BeeState(spellBeeObj);
+    };
+
+    createUI = () => {
+      const centerLetter = this.beeState.centerLetter.get_item(0);
+      const centerHexagon = new Hexagon({
+        label: centerLetter.letter,
+        position: centerLetter.position,
+      });
+      centerHexagon.connect("click", this.hexClickHandler);
+
+      const container = new Container({ gap: 8 });
+      container.appendChild(centerHexagon);
+
+      const outerLetters = this.beeState.outerLetters;
+
+      for (let i = 0; i < outerLetters.n_items; i++) {
+        const outerLetter = outerLetters.get_item(i);
+
+        const outerHexagon = new Hexagon({
+          label: outerLetter.letter,
+          position: outerLetter.position,
+        });
+
+        outerLetter.bind_property(
           "letter",
           outerHexagon,
           "label",
           GObject.BindingFlags.DEFAULT | GObject.BindingFlags.SYNC_CREATE
         );
+
         outerHexagon.connect("click", this.hexClickHandler);
-        this.outerLetters.append(letterObject);
         container.appendChild(outerHexagon);
       }
 
@@ -103,15 +141,15 @@ export const SpellingbeeWindow = GObject.registerClass(
     shuffleLetters() {
       const outerLetters = [];
 
-      for (let i = 0; i < this.outerLetters.n_items; i++) {
-        const item = this.outerLetters.get_item(i);
+      for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
+        const item = this.beeState.outerLetters.get_item(i);
         outerLetters.push(item.letter);
       }
 
       const shuffledOuterLetters = shuffle(outerLetters);
 
-      for (let i = 0; i < this.outerLetters.n_items; i++) {
-        const item = this.outerLetters.get_item(i);
+      for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
+        const item = this.beeState.outerLetters.get_item(i);
         item.letter = shuffledOuterLetters[i];
       }
     }
@@ -124,39 +162,50 @@ export const SpellingbeeWindow = GObject.registerClass(
         return;
       }
 
-      if (!word.includes(this.centerLetter.letter)) {
+      const centerLetter = this.beeState.centerLetter.get_item(0).letter;
+
+      if (!word.includes(centerLetter)) {
         this.displayToast(_("Missing Center Letter"));
         return;
       }
 
-      if (this.wordsFound.includes(word)) {
+      let wordFound = false;
+
+      for (let i = 0; i < this.beeState.wordsFound.n_items; i++) {
+        const item = this.beeState.wordsFound.get_item(i);
+        if (item.correctWord === word) {
+          wordFound = true;
+          break;
+        }
+      }
+
+      if (wordFound) {
         this.displayToast(_("Already Found"));
         return;
       }
 
-      if (!this.words.includes(word)) {
+      if (!this.beeState.words.includes(word)) {
         this.displayToast(_("Word Not Found"));
         return;
       }
 
-      if (this.words.includes(word)) {
+      if (this.beeState.words.includes(word)) {
         // Be sure to check score and display
         // appropriate toast message instead
         // of this.
         this.displayToast(_("Good +1"));
-        this.wordsFound.push(word);
-        this.correctWordsModel.append(new CorrectWord(word));
+        this.beeState.wordsFound.append(new CorrectWord(word));
         this._entry.set_text("");
       }
     }
 
     createWidgetFunc = (item) => {
-      const word = item.correctWord
+      const word = item.correctWord;
       const bin = new Adw.Bin({
         child: new Gtk.Label({
           vexpand: true,
           hexpand: true,
-          label: word,
+          label: toTitleCase(word),
           selectable: true,
         }),
         css_classes: ["card", "pad-box"],
@@ -190,7 +239,7 @@ export const SpellingbeeWindow = GObject.registerClass(
     };
 
     submitWord(entry) {
-      console.log(entry.get_text());
+      this.checkEntry();
     }
 
     wordChanged(entry) {
@@ -224,24 +273,6 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       GObject.signal_handler_unblock(editable, handlerId);
       GObject.signal_stop_emission(editable, signalId, GLib.quark_to_string(0));
-    };
-
-    // This is for creating a placeholder text.
-    // Remove it later.
-    populateFlowbox = () => {
-      for (const word of words.slice(40)) {
-        const item = new Adw.Bin({
-          child: new Gtk.Label({
-            vexpand: true,
-            hexpand: true,
-            label: word,
-            selectable: true,
-          }),
-          css_classes: ["card", "pad-box"],
-        });
-
-        this._flowbox.append(item);
-      }
     };
 
     bindSettings = () => {

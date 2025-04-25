@@ -16,3 +16,19 @@ export function shuffle(array) {
 
   return array;
 }
+
+export function toUpperCase(string) {
+  return string.toLocaleUpperCase("en-US");
+}
+
+export function toLowerCase(string) {
+  return string.toLocaleLowerCase("en-US");
+}
+
+export function toTitleCase(string) {
+  if (!string) return string;
+  return (
+    string.charAt(0).toLocaleUpperCase("en-US") +
+    string.slice(1).toLocaleLowerCase("en-US")
+  );
+}
