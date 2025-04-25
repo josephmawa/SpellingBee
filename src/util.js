@@ -32,3 +32,21 @@ export function toTitleCase(string) {
     string.slice(1).toLocaleLowerCase("en-US")
   );
 }
+
+export function getPoints(string, letters) {
+  if (string.length < 5) return 1;
+
+  const uniqueLetters = new Set(string);
+  if (uniqueLetters.isSupersetOf(new Set(letters))) {
+    return string.length + 7;
+  }
+
+  return string.length;
+}
+
+export function getToastMessage(points) {
+  if (points === 1) return _("Good +%d").format(points);
+  if (points < 6) return _("Great +%d").format(points);
+  if (points < 10) return _("Amazing +%d").format(points);
+  return _("Superb +%d").format(points)
+}

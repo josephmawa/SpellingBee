@@ -32,6 +32,12 @@ export const BeeState = GObject.registerClass(
         GObject.ParamFlags.READWRITE,
         Gio.ListStore
       ),
+      attempted: GObject.ParamSpec.jsobject(
+        "attempted",
+        "Attempted",
+        "A property holding the indices for the attempted spelling bee",
+        GObject.ParamFlags.READWRITE
+      ),
       currentScore: GObject.ParamSpec.int(
         "currentScore",
         "current_score",
@@ -58,6 +64,7 @@ export const BeeState = GObject.registerClass(
       outerLetters,
       words,
       wordsFound,
+      attempted,
       currentScore,
       totalScore,
     }) {
@@ -67,6 +74,7 @@ export const BeeState = GObject.registerClass(
       this.outerLetters = outerLetters;
       this.words = words;
       this.wordsFound = wordsFound;
+      this.attempted = attempted;
       this.currentScore = currentScore;
       this.totalScore = totalScore;
     }

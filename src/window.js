@@ -13,6 +13,8 @@ import {
   toLowerCase,
   toUpperCase,
   toTitleCase,
+  getPoints,
+  getToastMessage,
 } from "./util.js";
 
 import { BeeState } from "./bee.js";
@@ -25,6 +27,11 @@ const outerLetterObjects = [
   { label: "", position: "BOTTOM_LEFT" },
   { label: "", position: "BOTTOM_RIGHT" },
 ];
+
+function getFilePath(args) {
+  const DATA_DIR = GLib.get_user_data_dir();
+  return GLib.build_filenamev([DATA_DIR, "spelling-bee", ...args]);
+}
 
 export const SpellingbeeWindow = GObject.registerClass(
   {
@@ -70,7 +77,27 @@ export const SpellingbeeWindow = GObject.registerClass(
     }
 
     initState = () => {
-      const randInt = getRandInt(0, data.length - 1);
+      const filePath = getFilePath(["data.json"]);
+      let attemptedSpellBeeIndices = this.getSavedData(filePath);
+      const allIndices = Array.from(
+        { length: data.length },
+        (_, index) => index
+      );
+
+      const unAttemptedSpellBeeIndices = allIndices.filter(
+        (index) => !attemptedSpellBeeIndices.includes(index)
+      );
+
+      let randInt;
+
+      if (unAttemptedSpellBeeIndices.length) {
+        const index = getRandInt(0, unAttemptedSpellBeeIndices.length - 1);
+        randInt = unAttemptedSpellBeeIndices[index];
+      } else {
+        randInt = getRandInt(0, data.length - 1);
+        attemptedSpellBeeIndices = [];
+      }
+
       let { centerLetter, letters, words } = data[randInt];
 
       centerLetter = Array.isArray(centerLetter)
@@ -100,6 +127,11 @@ export const SpellingbeeWindow = GObject.registerClass(
       spellBeeObj.currentScore = 0;
       spellBeeObj.totalScore = 100;
 
+      attemptedSpellBeeIndices.push(randInt);
+      this.saveData(attemptedSpellBeeIndices, filePath);
+
+      spellBeeObj.attempted = attemptedSpellBeeIndices;
+
       this.beeState = new BeeState(spellBeeObj);
     };
 
@@ -109,6 +141,13 @@ export const SpellingbeeWindow = GObject.registerClass(
         label: centerLetter.letter,
         position: centerLetter.position,
       });
+      centerLetter.bind_property(
+        "letter",
+        centerHexagon,
+        "label",
+        GObject.BindingFlags.DEFAULT | GObject.BindingFlags.SYNC_CREATE
+      );
+
       centerHexagon.connect("click", this.hexClickHandler);
 
       const container = new Container({ gap: 8 });
@@ -190,10 +229,18 @@ export const SpellingbeeWindow = GObject.registerClass(
       }
 
       if (this.beeState.words.includes(word)) {
-        // Be sure to check score and display
-        // appropriate toast message instead
-        // of this.
-        this.displayToast(_("Good +1"));
+        let outerLetters = "";
+
+        for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
+          outerLetters += this.beeState.outerLetters.get_item(i);
+        }
+        const points = getPoints(word, centerLetter + outerLetters);
+        const message = getToastMessage(points);
+
+        this.displayToast(message);
+        this.beeState.currentScore += points;
+        console.log("Score: ", this.beeState.currentScore);
+
         this.beeState.wordsFound.append(new CorrectWord(word));
         this._entry.set_text("");
       }
@@ -342,6 +389,78 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.toast.dismiss();
       this.toast.title = message;
       this._toast_overlay.add_toast(this.toast);
+    };
+
+    getSavedData = (filePath) => {
+      const file = Gio.File.new_for_path(filePath);
+      const path = file.get_path();
+      const fileExists = GLib.file_test(path, GLib.FileTest.EXISTS);
+
+      if (!fileExists) {
+        const data = [];
+        this.saveData(data, filePath);
+        return data;
+      }
+
+      const [success, arrBuff] = GLib.file_get_contents(path);
+
+      if (success) {
+        const decoder = new TextDecoder("utf-8");
+        const savedData = JSON.parse(decoder.decode(arrBuff));
+        return savedData;
+      } else {
+        return [];
+      }
+    };
+
+    saveData = (data = [], filePath) => {
+      const file = Gio.File.new_for_path(filePath);
+      const path = file.get_parent().get_path();
+
+      // 0o777 is file permission, ugo+rwx, in numeric mode
+      const flag = GLib.mkdir_with_parents(path, 0o777);
+
+      if (flag === 0) {
+        const [success, tag] = file.replace_contents(
+          JSON.stringify(data),
+          null,
+          false,
+          Gio.FileCreateFlags.REPLACE_DESTINATION,
+          null
+        );
+
+        if (success) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      if (flag === -1) {
+        return false;
+      }
+    };
+
+    deleteSavedData = (path) => {
+      const file = Gio.File.new_for_path(path);
+      const filePath = file.get_path();
+
+      const fileExists = GLib.file_test(filePath, GLib.FileTest.EXISTS);
+      if (!fileExists) {
+        throw new Error(filePath + " doesn't exist");
+      }
+
+      const dirPath = file.get_parent()?.get_path();
+
+      const fileDeleteFlag = file.delete(null);
+      if (!fileDeleteFlag) {
+        throw new Error("Failed to delete " + filePath);
+      }
+
+      const dirDeleteFlag = GLib.rmdir(dirPath);
+      if (dirDeleteFlag !== 0) {
+        throw new Error("Failed to delete " + dirPath);
+      }
     };
   }
 );
