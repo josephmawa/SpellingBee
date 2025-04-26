@@ -151,7 +151,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.beeState = new BeeState(spellBeeObj);
       this._progress_bar.fraction = round(currentScore / totalScore, 2);
       this._progress_bar.text =
-        format.format(currentScore) + " of " + format.format(totalScore);
+        format.format(currentScore) + " out of " + format.format(totalScore);
     };
 
     createUI = () => {
@@ -274,7 +274,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         const totScore = this.beeState.totalScore;
         this._progress_bar.fraction = round(curScore / totScore, 2);
         this._progress_bar.text =
-          format.format(curScore) + " of " + format.format(totScore);
+          format.format(curScore) + " out of " + format.format(totScore);
       }
     }
 

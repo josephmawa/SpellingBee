@@ -14,6 +14,12 @@
               <object class="AdwToolbarView">
                 <child type="top">
                   <object class="AdwHeaderBar">
+                    <child type="start">
+                      <object class="AdwSplitButton">
+                        <property name="label" translatable="yes">Help</property>
+                        <property name="menu-model">help_menu</property>
+                      </object>
+                    </child>
                     <child type="end">
                       <object class="GtkMenuButton">
                         <property name="primary">True</property>
@@ -210,6 +216,30 @@
       <item>
         <attribute name="label" translatable="yes">_About Spelling Bee</attribute>
         <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="help_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">How To Play</attribute>
+        <attribute name="action">win.how-to-play</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Statistics</attribute>
+        <attribute name="action">win.statistics</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Rankings</attribute>
+        <attribute name="action">win.rankings</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New Game</attribute>
+        <attribute name="action">win.new-game</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Solve Game</attribute>
+        <attribute name="action">win.finish-game</attribute>
       </item>
     </section>
   </menu>
