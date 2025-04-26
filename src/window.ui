@@ -118,7 +118,28 @@
                         <property name="orientation">vertical</property>
                         <property name="spacing">20</property>
                         <property name="valign">center</property>
-                        <!-- Display the score here -->
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label">Your Score</property>
+                            <attributes>
+                              <attribute name="weight" value="PANGO_WEIGHT_BOLD" />
+                            </attributes>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="valign">center</property>
+                            <property name="halign">center</property>
+                            <child>
+                              <object class="GtkProgressBar" id="progress_bar">
+                                <property name="fraction">0.0</property>
+                                <property name="text">25 of 78</property>
+                                <property name="show-text">true</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                         <child>
                           <object class="GtkLabel">
                             <property name="label">Your Words</property>

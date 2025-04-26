@@ -15,6 +15,7 @@ import {
   toTitleCase,
   getPoints,
   getToastMessage,
+  round,
 } from "./util.js";
 
 import { BeeState } from "./bee.js";
@@ -33,6 +34,8 @@ function getFilePath(args) {
   return GLib.build_filenamev([DATA_DIR, "spelling-bee", ...args]);
 }
 
+const format = new Intl.NumberFormat("en-US", { style: "decimal" });
+
 export const SpellingbeeWindow = GObject.registerClass(
   {
     GTypeName: "SpellingbeeWindow",
@@ -46,7 +49,13 @@ export const SpellingbeeWindow = GObject.registerClass(
       ),
     },
     Template: getResourceURI("window.ui"),
-    InternalChildren: ["toast_overlay", "container", "entry", "flowbox"],
+    InternalChildren: [
+      "toast_overlay",
+      "container",
+      "entry",
+      "progress_bar",
+      "flowbox",
+    ],
   },
   class SpellingbeeWindow extends Adw.ApplicationWindow {
     constructor(application) {
@@ -124,8 +133,15 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       spellBeeObj.words = words.map((word) => toUpperCase(word));
       spellBeeObj.wordsFound = Gio.ListStore.new(CorrectWord);
-      spellBeeObj.currentScore = 0;
-      spellBeeObj.totalScore = 100;
+
+      let currentScore = 0,
+        totalScore = 0;
+      for (const word of words) {
+        totalScore += getPoints(toUpperCase(word), toUpperCase(letters));
+      }
+
+      spellBeeObj.currentScore = currentScore;
+      spellBeeObj.totalScore = totalScore;
 
       attemptedSpellBeeIndices.push(randInt);
       this.saveData(attemptedSpellBeeIndices, filePath);
@@ -133,6 +149,9 @@ export const SpellingbeeWindow = GObject.registerClass(
       spellBeeObj.attempted = attemptedSpellBeeIndices;
 
       this.beeState = new BeeState(spellBeeObj);
+      this._progress_bar.fraction = round(currentScore / totalScore, 2);
+      this._progress_bar.text =
+        format.format(currentScore) + " of " + format.format(totalScore);
     };
 
     createUI = () => {
@@ -202,6 +221,19 @@ export const SpellingbeeWindow = GObject.registerClass(
       }
 
       const centerLetter = this.beeState.centerLetter.get_item(0).letter;
+      let outerLetters = "";
+
+      for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
+        outerLetters += this.beeState.outerLetters.get_item(i).letter;
+      }
+
+      const wordSet = new Set(word);
+      const lettersSet = new Set(outerLetters + centerLetter);
+
+      if (!lettersSet.isSupersetOf(wordSet)) {
+        this.displayToast(_("Contains Invalid Letter"));
+        return;
+      }
 
       if (!word.includes(centerLetter)) {
         this.displayToast(_("Missing Center Letter"));
@@ -229,20 +261,20 @@ export const SpellingbeeWindow = GObject.registerClass(
       }
 
       if (this.beeState.words.includes(word)) {
-        let outerLetters = "";
-
-        for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
-          outerLetters += this.beeState.outerLetters.get_item(i);
-        }
         const points = getPoints(word, centerLetter + outerLetters);
         const message = getToastMessage(points);
 
         this.displayToast(message);
         this.beeState.currentScore += points;
-        console.log("Score: ", this.beeState.currentScore);
 
         this.beeState.wordsFound.append(new CorrectWord(word));
         this._entry.set_text("");
+
+        const curScore = this.beeState.currentScore;
+        const totScore = this.beeState.totalScore;
+        this._progress_bar.fraction = round(curScore / totScore, 2);
+        this._progress_bar.text =
+          format.format(curScore) + " of " + format.format(totScore);
       }
     }
 

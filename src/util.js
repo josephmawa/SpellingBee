@@ -50,3 +50,8 @@ export function getToastMessage(points) {
   if (points < 10) return _("Amazing +%d").format(points);
   return _("Superb +%d").format(points)
 }
+
+export function round(number, decimalPlaces = 0) {
+  const multiple = Math.pow(10, decimalPlaces);
+  return Math.round(number * multiple) / multiple;
+}
