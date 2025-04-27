@@ -18,6 +18,8 @@ import {
   round,
 } from "./util.js";
 
+import { newGameAlert, solveGameAlert } from "./alert-dialogs.js";
+
 import { BeeState } from "./bee.js";
 
 const outerLetterObjects = [
@@ -99,7 +101,49 @@ export const SpellingbeeWindow = GObject.registerClass(
         }
       });
 
+      const newGameAction = new Gio.SimpleAction({
+        name: "new-game",
+      });
+      newGameAction.connect("activate", () => {
+        const alertDialog = newGameAlert();
+
+        alertDialog.connect("response", (_alertDialog, response) => {
+          if (response === "close_dialog") return;
+          this.startNewGame();
+        });
+
+        alertDialog.present(this);
+      });
+
+      const solveGameAction = new Gio.SimpleAction({
+        name: "solve-game",
+      });
+      solveGameAction.connect("activate", () => {
+        const alertDialog = solveGameAlert();
+
+        alertDialog.connect("response", (_alertDialog, response) => {
+          if (response === "close_dialog") return;
+          this.solveGame();
+        });
+
+        alertDialog.present(this);
+      });
+
       this.add_action(recycleQuizAction);
+      this.add_action(newGameAction);
+      this.add_action(solveGameAction);
+    };
+
+    updateScore = () => {
+      const currScore = this.beeState.currentScore;
+      const totScore = this.beeState.totalScore;
+
+      const fraction = round(currScore / totScore, 2);
+      const text =
+        format.format(currScore) + " out of " + format.format(totScore);
+
+      this._progress_bar.fraction = fraction;
+      this._progress_bar.text = text;
     };
 
     initState = () => {
@@ -166,10 +210,15 @@ export const SpellingbeeWindow = GObject.registerClass(
       spellBeeObj.attempted = attemptedSpellBeeIndices;
 
       this.beeState = new BeeState(spellBeeObj);
-      this._progress_bar.fraction = round(currentScore / totalScore, 2);
-      this._progress_bar.text =
-        format.format(currentScore) + " out of " + format.format(totalScore);
-      this._words_stack.visible_child_name = "no_words_found";
+      this.updateScore();
+    };
+
+    startNewGame = () => {
+      console.log("Starting a new game");
+    };
+
+    solveGame = () => {
+      console.log("Solving game");
     };
 
     createUI = () => {
@@ -288,11 +337,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         this.beeState.wordsFound.append(new CorrectWord(word));
         this._entry.set_text("");
 
-        const curScore = this.beeState.currentScore;
-        const totScore = this.beeState.totalScore;
-        this._progress_bar.fraction = round(curScore / totScore, 2);
-        this._progress_bar.text =
-          format.format(curScore) + " out of " + format.format(totScore);
+        this.updateScore();
       }
     }
 

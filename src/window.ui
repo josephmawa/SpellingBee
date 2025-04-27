@@ -278,7 +278,7 @@
       </item>
       <item>
         <attribute name="label" translatable="yes">Solve Game</attribute>
-        <attribute name="action">win.finish-game</attribute>
+        <attribute name="action">win.solve-game</attribute>
       </item>
     </section>
   </menu>

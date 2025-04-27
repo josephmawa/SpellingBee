@@ -11,5 +11,6 @@
     <file>hexagon.js</file>
     <file>application.js</file>
     <file>preferences.js</file>
+    <file>alert-dialogs.js</file>
   </gresource>
 </gresources>
