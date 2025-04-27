@@ -4,7 +4,6 @@
   <requires lib="Adw" version="1.5" />
   <template class="PreferencesDialog" parent="AdwPreferencesDialog">
     <property name="content_width">300</property>
-    <property name="content_height">200</property>
     <property name="title" translatable="yes">Preferences</property>
     <property name="search-enabled">true</property>
     <property name="presentation-mode">floating</property>
@@ -15,7 +14,6 @@
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Color Theme</property>
-            <property name="description" translatable="yes">Set color theme</property>
             <child>
               <object class="AdwPreferencesRow">
                 <style>
@@ -71,6 +69,33 @@
                         </child>
                       </object>
                     </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Quiz Settings</property>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Recycle Quiz</property>
+                <property name="subtitle" translatable="yes">Recycle attempted quiz</property>
+                <property name="activatable-widget">recycle_saved_quiz</property>
+                <child>
+                  <object class="GtkButton" id="recycle_saved_quiz">
+                    <style>
+                      <class name="suggested-action" />
+                    </style>
+                    <property name="icon-name">view-refresh-symbolic</property>
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                    <property name="tooltip-text" translatable="yes">Recycle attempted quiz</property>
+                    <accessibility>
+                      <property name="label" translatable="yes" context="accessibility">Recycle attempted quiz</property>
+                    </accessibility>
+                    <property name="action-name">win.recycle-quiz</property>
                   </object>
                 </child>
               </object>

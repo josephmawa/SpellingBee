@@ -64,6 +64,7 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       this.initState();
       this.createUI();
+      this.createActions();
       this.createToast();
       this.loadStyles();
       this.bindSettings();
@@ -81,6 +82,25 @@ export const SpellingbeeWindow = GObject.registerClass(
         .get_delegate()
         .connect("insert-text", this.insertTextHandler);
     }
+
+    createActions = () => {
+      const recycleQuizAction = new Gio.SimpleAction({
+        name: "recycle-quiz",
+      });
+      recycleQuizAction.connect("activate", () => {
+        const filePath = getFilePath(["data.json"]);
+        const savedData = this.getSavedData(filePath);
+
+        if (savedData?.length) {
+          this.deleteSavedData(filePath);
+          this.displayToast(_("Recycled attempted quiz"));
+        } else {
+          this.displayToast(_("No attempted quiz"));
+        }
+      });
+
+      this.add_action(recycleQuizAction);
+    };
 
     initState = () => {
       const filePath = getFilePath(["data.json"]);
