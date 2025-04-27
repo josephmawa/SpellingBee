@@ -412,6 +412,10 @@ export const SpellingbeeWindow = GObject.registerClass(
       }
     };
 
+    splitButtonClickHandler(splitButton) {
+      splitButton.popup();
+    }
+
     deleteEntry() {
       const text = this._entry.get_text();
       if (!text) return;
@@ -420,7 +424,7 @@ export const SpellingbeeWindow = GObject.registerClass(
     }
 
     hexClickHandler = (_hexagon, label) => {
-      const labelUpperCase = label.toLocaleUpperCase("en-US");
+      const labelUpperCase = toUpperCase(label);
       this._entry.insert_text(
         labelUpperCase,
         labelUpperCase.length,

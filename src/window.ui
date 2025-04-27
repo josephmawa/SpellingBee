@@ -18,6 +18,7 @@
                       <object class="AdwSplitButton">
                         <property name="label" translatable="yes">Help</property>
                         <property name="menu-model">help_menu</property>
+                        <signal name="clicked" handler="splitButtonClickHandler" object="SpellingbeeWindow" swapped="no" />
                       </object>
                     </child>
                     <child type="end">
