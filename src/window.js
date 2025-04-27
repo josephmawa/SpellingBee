@@ -194,14 +194,13 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       spellBeeObj.words = words.map((word) => toUpperCase(word));
       spellBeeObj.wordsFound = Gio.ListStore.new(CorrectWord);
+      spellBeeObj.currentScore = 0;
 
-      let currentScore = 0,
-        totalScore = 0;
+      let totalScore = 0;
       for (const word of words) {
         totalScore += getPoints(toUpperCase(word), toUpperCase(letters));
       }
 
-      spellBeeObj.currentScore = currentScore;
       spellBeeObj.totalScore = totalScore;
 
       attemptedSpellBeeIndices.push(randInt);
@@ -214,7 +213,56 @@ export const SpellingbeeWindow = GObject.registerClass(
     };
 
     startNewGame = () => {
-      console.log("Starting a new game");
+      const allIndices = Array.from(
+        { length: data.length },
+        (_, index) => index
+      );
+
+      const notAttemptedIndices = allIndices.filter(
+        (index) => !this.beeState.attempted.includes(index)
+      );
+
+      let randInt;
+
+      if (notAttemptedIndices.length) {
+        const index = getRandInt(0, notAttemptedIndices.length);
+        randInt = notAttemptedIndices[index];
+      } else {
+        randInt = getRandInt(0, data.length);
+        this.beeState.attempted = [];
+      }
+
+      let { centerLetter, letters, words } = data[randInt];
+
+      centerLetter = Array.isArray(centerLetter)
+        ? centerLetter[0]
+        : centerLetter;
+
+      const centreLetterItem = this.beeState.centerLetter.get_item(0);
+      centreLetterItem.letter = toUpperCase(centerLetter);
+
+      const outerLetters = letters.replaceAll(centerLetter, "");
+
+      for (let i = 0; i < outerLetters.length; i++) {
+        const item = this.beeState.outerLetters.get_item(i);
+        item.letter = toUpperCase(outerLetters[i]);
+      }
+
+      this.beeState.words = words.map((word) => toUpperCase(word));
+      this.beeState.wordsFound.remove_all();
+      this.beeState.attempted.push(randInt);
+      this.beeState.currentScore = 0;
+
+      let totalScore = 0;
+      for (const word of words) {
+        totalScore += getPoints(toUpperCase(word), toUpperCase(letters));
+      }
+      this.beeState.totalScore = totalScore;
+
+      this.updateScore();
+
+      const filePath = getFilePath(["data.json"]);
+      this.saveData(this.beeState.attempted, filePath);
     };
 
     solveGame = () => {
