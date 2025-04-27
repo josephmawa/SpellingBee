@@ -54,6 +54,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       "container",
       "entry",
       "progress_bar",
+      "words_stack",
       "flowbox",
     ],
   },
@@ -66,9 +67,8 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.createToast();
       this.loadStyles();
       this.bindSettings();
+      this.bindProperties();
       this.setPreferredColorScheme();
-
-      this.correctWordsModel = Gio.ListStore.new(CorrectWord);
 
       /**
        * NOTE
@@ -80,9 +80,6 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.signalId = this._entry
         .get_delegate()
         .connect("insert-text", this.insertTextHandler);
-
-      this._entry.connect("icon-press", this.entryIconPressHandler);
-      this._flowbox.bind_model(this.beeState.wordsFound, this.createWidgetFunc);
     }
 
     initState = () => {
@@ -152,6 +149,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       this._progress_bar.fraction = round(currentScore / totalScore, 2);
       this._progress_bar.text =
         format.format(currentScore) + " out of " + format.format(totalScore);
+      this._words_stack.visible_child_name = "no_words_found";
     };
 
     createUI = () => {
@@ -377,6 +375,23 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.settings.connect(
         "changed::preferred-theme",
         this.setPreferredColorScheme
+      );
+    };
+
+    bindProperties = () => {
+      this._entry.connect("icon-press", this.entryIconPressHandler);
+      this._flowbox.bind_model(this.beeState.wordsFound, this.createWidgetFunc);
+      this.beeState.wordsFound.bind_property_full(
+        "n_items",
+        this._words_stack,
+        "visible_child_name",
+        GObject.BindingFlags.SYNC_CREATE |
+          GObject.BindingFlags.SYNC_CREATE.DEFAULT,
+        (binding, nItems) => {
+          if (nItems) return [true, "words_found"];
+          return [true, "no_words_found"];
+        },
+        null
       );
     };
 
