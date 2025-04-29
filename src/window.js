@@ -5,6 +5,7 @@ import Gio from "gi://Gio";
 import GLib from "gi://GLib";
 
 import { Hexagon, Container } from "./hexagon.js";
+import { Help, HelpObject } from "./help.js";
 import { data } from "./data.js";
 import { Letter, CorrectWord } from "./letter.js";
 import {
@@ -16,6 +17,7 @@ import {
   getPoints,
   getToastMessage,
   round,
+  createHelpObject,
 } from "./util.js";
 
 import { newGameAlert, solveGameAlert } from "./alert-dialogs.js";
@@ -55,6 +57,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       "toast_overlay",
       "container",
       "entry",
+      "button_help",
       "progress_bar",
       "words_stack",
       "flowbox",
@@ -416,6 +419,74 @@ export const SpellingbeeWindow = GObject.registerClass(
       splitButton.popup();
     }
 
+    showHint = () => {
+      const hintWindow = new Help();
+
+      const centerLetter = this.beeState.centerLetter.get_item(0).letter;
+      let outerLetters = "";
+
+      for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
+        outerLetters += this.beeState.outerLetters.get_item(i).letter;
+      }
+
+      outerLetters = outerLetters.split("").sort().join("");
+
+      let color = "#FACB1C"; // For light background
+      const styleManager = this.application.get_style_manager();
+      if (styleManager.dark) {
+        color = "#B98E5F"; // For dark background
+      }
+
+      const lettersLabel =
+        `<span letter_spacing="12288">` +
+        `<span size="xx-large" color="${color}" weight="ultrabold">${centerLetter}</span>` +
+        `<span size="x-large" weight="bold" >${outerLetters}</span>` +
+        `</span>`;
+
+      const totalScore = this.beeState.totalScore;
+      const wordCount = this.beeState.words.length;
+      const statisticsLabel = `<span>${wordCount} words · ${totalScore} points</span>`;
+
+      hintWindow._letters.label = lettersLabel;
+      hintWindow._statistics.label = statisticsLabel;
+
+      const letters = centerLetter + outerLetters;
+      const helpObject = createHelpObject(letters, this.beeState.words);
+      const columnTitles = helpObject[0];
+
+      const listStore = Gio.ListStore.new(HelpObject);
+      for (let i = 1; i < helpObject.length; i++) {
+        listStore.append(new HelpObject(columnTitles, helpObject[i]));
+      }
+
+      hintWindow._help_column_view.model = Gtk.NoSelection.new(listStore);
+
+      for (const title of columnTitles) {
+        const factory = Gtk.SignalListItemFactory.new();
+        factory.connect("setup", (_, listItem) => {
+          listItem.child = new Gtk.Label();
+        });
+
+        if (title) {
+          factory.connect("bind", (_, listItem) => {
+            const { child, item } = listItem;
+            child.label = item.helpObject[title];
+          });
+        } else {
+          factory.connect("bind", (_, listItem) => {
+            const { child, item } = listItem;
+            child.label = item.helpObject.firstValue;
+          });
+        }
+
+        const column = Gtk.ColumnViewColumn.new(title.toString(), factory);
+        hintWindow._help_column_view.append_column(column);
+      }
+
+      hintWindow.set_transient_for(this);
+      hintWindow.present();
+    };
+
     deleteEntry() {
       const text = this._entry.get_text();
       if (!text) return;
@@ -497,6 +568,7 @@ export const SpellingbeeWindow = GObject.registerClass(
 
     bindProperties = () => {
       this._entry.connect("icon-press", this.entryIconPressHandler);
+      this._button_help.connect("clicked", this.showHint);
       this._flowbox.bind_model(this.beeState.wordsFound, this.createWidgetFunc);
       this.beeState.wordsFound.bind_property_full(
         "n_items",

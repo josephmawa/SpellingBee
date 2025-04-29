@@ -48,10 +48,58 @@ export function getToastMessage(points) {
   if (points === 1) return _("Good +%d").format(points);
   if (points < 6) return _("Great +%d").format(points);
   if (points < 10) return _("Amazing +%d").format(points);
-  return _("Superb +%d").format(points)
+  return _("Superb +%d").format(points);
 }
 
 export function round(number, decimalPlaces = 0) {
   const multiple = Math.pow(10, decimalPlaces);
   return Math.round(number * multiple) / multiple;
+}
+
+export function createHelpObject(letters, words) {
+  const array = [];
+  const numOfLetters = new Set();
+
+  for (const word of words) {
+    numOfLetters.add(word.length);
+  }
+
+  const sortedNumOfLetters = new Set([...numOfLetters].sort((a, b) => a - b));
+
+  array.push(["", ...sortedNumOfLetters, "Σ"]);
+
+  for (const letter of letters) {
+    const wordsStartingWithLetter = words.filter((word) =>
+      word.startsWith(letter)
+    );
+
+    const wordCounts = new Map();
+    let totalWordCount = 0;
+
+    for (const numOfLetter of sortedNumOfLetters) {
+      const wordsHavingNumOfLetters = wordsStartingWithLetter.filter(
+        (word) => word.length === numOfLetter
+      );
+
+      wordCounts.set(numOfLetter, wordsHavingNumOfLetters.length);
+      totalWordCount += wordsHavingNumOfLetters.length;
+    }
+
+    array.push([letter, ...wordCounts.values(), totalWordCount]);
+  }
+
+  const lastRow = ["Σ"];
+
+  for (let col = 1; col < array[0].length; col++) {
+    let colSum = 0;
+    for (let row = 1; row < array.length; row++) {
+      colSum += array[row][col];
+    }
+
+    lastRow.push(colSum);
+  }
+
+  array.push(lastRow);
+
+  return array;
 }

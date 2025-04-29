@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="Adw" version="1.0" />
+  <template class="Help" parent="AdwWindow">
+    <property name="modal">true</property>
+    <property name="content">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">Hints</property>
+              </object>
+            </property>
+          </object>
+        </child>
+        <property name="content">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="valign">center</property>
+            <property name="halign">center</property>
+            <property name="spacing">20</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
+            <property name="margin-top">10</property>
+            <property name="margin-bottom">10</property>
+            <child>
+              <object class="GtkLabel" id="letters">
+                <property name="use-markup">true</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="statistics">
+                <property name="use-markup">true</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="propagate_natural_height">true</property>
+                <property name="propagate_natural_width">true</property>
+                <property name="child">
+                  <object class="GtkColumnView" id="help_column_view">
+                    <property name="single-click-activate">true</property>
+                    <property name="show-row-separators">true</property>
+                    <property name="show-column-separators">true</property>
+                    <property name="reorderable">false</property>
+                    <style>
+                      <class name="frame" />
+                      <class name="help-column-view" />
+                    </style>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+
+</interface>

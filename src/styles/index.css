@@ -2,17 +2,21 @@
   padding: 10px;
 }
 
-.padding-entry-box{
+.padding-entry-box {
   padding-bottom: 5px;
   padding-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
 }
-.pad-x{
+.pad-x {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.pad-box{
+.pad-box {
   padding: 5px;
+}
+
+.help-column-view {
+  border-radius: 10px;
 }
