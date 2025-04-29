@@ -100,7 +100,6 @@ export function createHelpObject(letters, words) {
   }
 
   array.push(lastRow);
-
   return array;
 }
 
