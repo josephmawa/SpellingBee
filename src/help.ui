@@ -16,30 +16,30 @@
           </object>
         </child>
         <property name="content">
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <property name="valign">center</property>
-            <property name="halign">center</property>
-            <property name="spacing">20</property>
-            <property name="margin-start">10</property>
-            <property name="margin-end">10</property>
-            <property name="margin-top">10</property>
-            <property name="margin-bottom">10</property>
-            <child>
-              <object class="GtkLabel" id="letters">
-                <property name="use-markup">true</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="statistics">
-                <property name="use-markup">true</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkScrolledWindow">
-                <property name="propagate_natural_height">true</property>
-                <property name="propagate_natural_width">true</property>
-                <property name="child">
+          <object class="GtkScrolledWindow">
+            <property name="propagate_natural_height">true</property>
+            <property name="propagate_natural_width">true</property>
+            <property name="child">
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="valign">center</property>
+                <property name="halign">center</property>
+                <property name="spacing">20</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
+                <child>
+                  <object class="GtkLabel" id="letters">
+                    <property name="use-markup">true</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="statistics">
+                    <property name="use-markup">true</property>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkColumnView" id="help_column_view">
                     <property name="single-click-activate">true</property>
                     <property name="show-row-separators">true</property>
@@ -50,13 +50,28 @@
                       <class name="help-column-view" />
                     </style>
                   </object>
-                </property>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="use-markup">true</property>
+                    <property name="label" translatable="yes">&lt;span size=&quot;x-large&quot; weight=&quot;bold&quot;&gt;Two Letter List&lt;/span&gt;</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkFlowBox" id="two_letter_list">
+                    <property name="orientation">horizontal</property>
+                    <property name="row-spacing">6</property>
+                    <property name="column-spacing">6</property>
+                    <property name="homogeneous">true</property>
+                    <property name="max-children-per-line">4</property>
+                    <property name="min-children-per-line">2</property>
+                  </object>
+                </child>
               </object>
-            </child>
+            </property>
           </object>
         </property>
       </object>
     </property>
   </template>
-
 </interface>

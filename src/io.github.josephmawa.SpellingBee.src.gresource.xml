@@ -13,5 +13,6 @@
     <file>application.js</file>
     <file>preferences.js</file>
     <file>alert-dialogs.js</file>
+    <file>how-to-play.js</file>
   </gresource>
 </gresources>

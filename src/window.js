@@ -6,6 +6,7 @@ import GLib from "gi://GLib";
 
 import { Hexagon, Container } from "./hexagon.js";
 import { Help, HelpObject } from "./help.js";
+import { HowToPlay } from "./how-to-play.js";
 import { data } from "./data.js";
 import { Letter, CorrectWord } from "./letter.js";
 import {
@@ -18,6 +19,7 @@ import {
   getToastMessage,
   round,
   createHelpObject,
+  getTwoLetterList,
 } from "./util.js";
 
 import { newGameAlert, solveGameAlert } from "./alert-dialogs.js";
@@ -132,9 +134,19 @@ export const SpellingbeeWindow = GObject.registerClass(
         alertDialog.present(this);
       });
 
+      const howToPlayAction = new Gio.SimpleAction({
+        name: "how-to-play",
+      });
+      howToPlayAction.connect("activate", () => {
+        const howToPlay = new HowToPlay();
+        howToPlay.set_transient_for(this);
+        howToPlay.present();
+      });
+
       this.add_action(recycleQuizAction);
       this.add_action(newGameAction);
       this.add_action(solveGameAction);
+      this.add_action(howToPlayAction);
     };
 
     updateScore = () => {
@@ -480,8 +492,31 @@ export const SpellingbeeWindow = GObject.registerClass(
         }
 
         const column = Gtk.ColumnViewColumn.new(title.toString(), factory);
+        column.expand = true;
         hintWindow._help_column_view.append_column(column);
       }
+
+      const twoLetterList = getTwoLetterList(this.beeState.words.toSorted());
+      const twoLetterListStore = Gio.ListStore.new(CorrectWord);
+
+      for (const wordCountPair of twoLetterList) {
+        const word = toUpperCase(wordCountPair.join("-"));
+        twoLetterListStore.append(new CorrectWord(word));
+      }
+
+      hintWindow._two_letter_list.bind_model(twoLetterListStore, (item) => {
+        const word = item.correctWord;
+        const bin = new Adw.Bin({
+          child: new Gtk.Label({
+            vexpand: true,
+            hexpand: true,
+            label: word,
+            selectable: true,
+          }),
+          css_classes: ["card", "pad-box"],
+        });
+        return bin;
+      });
 
       hintWindow.set_transient_for(this);
       hintWindow.present();

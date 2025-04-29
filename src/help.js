@@ -5,7 +5,12 @@ export const Help = GObject.registerClass(
   {
     GTypeName: "Help",
     Template: getResourceURI("help.ui"),
-    InternalChildren: ["letters", "statistics", "help_column_view"],
+    InternalChildren: [
+      "letters",
+      "statistics",
+      "help_column_view",
+      "two_letter_list",
+    ],
   },
   class extends Adw.Window {
     constructor() {

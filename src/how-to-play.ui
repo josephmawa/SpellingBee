@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="Adw" version="1.0" />
+  <template class="HowToPlay" parent="AdwWindow">
+    <property name="modal">true</property>
+    <property name="content">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">How to play</property>
+              </object>
+            </property>
+          </object>
+        </child>
+        <property name="content">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="valign">start</property>
+            <property name="halign">center</property>
+            <property name="spacing">20</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
+            <property name="margin-top">10</property>
+            <property name="margin-bottom">10</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="use-markup">true</property>
+                <property name="label" translatable="yes">How to Play Spelling Bee</property>
+                <style>
+                  <class name="title-1" />
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="use-markup">true</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">• Create words using the provided letters.</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="use-markup">true</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">• The words must contain at least 4 letters.</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="use-markup">true</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">• The words must include the center letter.</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="use-markup">true</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">• The provided letters can be used more than once.</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="use-markup">true</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">• The provided letters can be used more than once.</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="use-markup">true</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">• Each four-letter word is worth one point each.</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="use-markup">true</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">• Words longer than four words earn one point per letter.</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="use-markup">true</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">• Words containing all the provided letters earn seven additional points.</property>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+</interface>

@@ -103,3 +103,21 @@ export function createHelpObject(letters, words) {
 
   return array;
 }
+
+export function getTwoLetterList(words) {
+  const twoLetterList = new Map();
+
+  for (const word of words) {
+    const firstTwoLetters = word.slice(0, 2);
+
+    if (twoLetterList.has(firstTwoLetters)) {
+      const value = twoLetterList.get(firstTwoLetters);
+      twoLetterList.set(firstTwoLetters, value + 1);
+      continue;
+    }
+
+    twoLetterList.set(firstTwoLetters, 1);
+  }
+
+  return [...twoLetterList.entries()];
+}
