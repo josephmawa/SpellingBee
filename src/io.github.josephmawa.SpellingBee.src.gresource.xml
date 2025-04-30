@@ -10,6 +10,7 @@
     <file>letter.js</file>
     <file>window.js</file>
     <file>hexagon.js</file>
+    <file>rankings.js</file>
     <file>application.js</file>
     <file>preferences.js</file>
     <file>alert-dialogs.js</file>

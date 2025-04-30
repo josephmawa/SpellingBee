@@ -7,6 +7,7 @@ import GLib from "gi://GLib";
 import { Hexagon, Container } from "./hexagon.js";
 import { Help, HelpObject } from "./help.js";
 import { HowToPlay } from "./how-to-play.js";
+import { Rankings, RankObject } from "./rankings.js";
 import { data } from "./data.js";
 import { Letter, CorrectWord } from "./letter.js";
 import {
@@ -143,10 +144,25 @@ export const SpellingbeeWindow = GObject.registerClass(
         howToPlay.present();
       });
 
+      const rankingsAction = new Gio.SimpleAction({
+        name: "rankings",
+      });
+      rankingsAction.connect("activate", () => {
+        const rankings = new Rankings(
+          0,
+          this.beeState.totalScore,
+          this.beeState.currentScore
+        );
+
+        rankings.set_transient_for(this);
+        rankings.present();
+      });
+
       this.add_action(recycleQuizAction);
       this.add_action(newGameAction);
       this.add_action(solveGameAction);
       this.add_action(howToPlayAction);
+      this.add_action(rankingsAction);
     };
 
     updateScore = () => {

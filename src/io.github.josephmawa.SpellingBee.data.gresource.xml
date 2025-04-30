@@ -4,6 +4,7 @@
     <file compressed="true" preprocess="xml-stripblanks">window.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">preferences.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">help.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">rankings.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">how-to-play.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
   </gresource>
