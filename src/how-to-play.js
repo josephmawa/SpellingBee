@@ -21,6 +21,16 @@ const scores = [
 ];
 
 const aboutHintsHeader = _("About Hints");
+// prettier-ignore
+const aboutHints = [
+  _('The symbol, <span weight="ultrabold">Σ</span>, is short for <span weight="ultrabold">sum</span>'),
+  _('The <span weight="ultrabold">first column</span> contains the provided letters eg E, K, L, etc'),
+  _('The <span weight="ultrabold">last column</span> contains the total number of words that begin with the corresponding letter'),
+  _('The <span weight="ultrabold">first row</span> contains the word lengths e.g. 4 letters, 5 letters, etc'),
+  _('The <span weight="ultrabold">last row</span> contains the total number of 4-letter words, 5-letter words, etc'),
+  _('The <span weight="ultrabold">non-edge(inner) table cells</span> contain the number of n-letter words that begin with a particular letter'),
+  _('The <span weight="ultrabold">two-letter list</span> contains the number of words that begin with the given pair of letters e.g. DE-20 means 20 words begin with the letters DE')
+]
 
 export const HowToPlay = GObject.registerClass(
   {
@@ -39,6 +49,7 @@ export const HowToPlay = GObject.registerClass(
       this._wrapper.append(this.createUnorderedList(scores));
 
       this._wrapper.append(this.createTitle(aboutHintsHeader));
+      this._wrapper.append(this.createUnorderedList(aboutHints));
     }
 
     createUnorderedList = (list) => {
