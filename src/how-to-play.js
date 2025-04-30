@@ -3,28 +3,21 @@ import Gtk from "gi://Gtk";
 import GObject from "gi://GObject";
 
 const rulesHeader = _("The Rules");
-const rules = [
+// prettier-ignore
+const rules = [ 
   _('Create words using the <span weight="ultrabold">provided letters</span>'),
-  _(
-    'The words <span weight="ultrabold">must contain at least 4 letters</span>'
-  ),
+  _('The words <span weight="ultrabold">must contain at least 4 letters</span>'),
   _('Each word <span weight="ultrabold">must include the center letter</span>'),
-  _(
-    'Provided <span weight="ultrabold">letters can be used more than once</span>'
-  ),
+  _('Provided <span weight="ultrabold">letters can be used more than once</span>')
+    
 ];
 
 const scoresHeader = _("The Scores");
+// prettier-ignore
 const scores = [
-  _(
-    'Each <span weight="ultrabold">four-letter</span> word is worth <span  weight="ultrabold">one point</span>'
-  ),
-  _(
-    '<span weight="ultrabold">Longer words</span> earn <span weight="ultrabold">one point per letter</span>'
-  ),
-  _(
-    'Words containing <span weight="ultrabold">all the letters</span> earn <span weight="ultrabold">seven additional points</span>'
-  ),
+  _('Each <span weight="ultrabold">four-letter</span> word is worth <span  weight="ultrabold">one point</span>'),
+  _('<span weight="ultrabold">Longer words</span> earn <span weight="ultrabold">one point per letter</span>'),
+  _('Words containing <span weight="ultrabold">all the letters</span> earn <span weight="ultrabold">seven additional points</span>')
 ];
 
 const aboutHintsHeader = _("About Hints");
