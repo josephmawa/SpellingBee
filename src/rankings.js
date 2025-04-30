@@ -75,8 +75,13 @@ export const Rankings = GObject.registerClass(
       this.ranks = this.createRanks();
 
       if (!this.ranks.length) {
+        // FIXME
         // No rank to display
+        // Add a switch to display
+        // appropriate message
       } else {
+        // FIXME
+        // I don't trust this solution. Review it one more time.
         this.rankObjects = this.createRankObjects();
         this.createListView();
       }
