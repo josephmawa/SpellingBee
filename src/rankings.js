@@ -14,9 +14,6 @@ const ranks = [
   _("Genius"),
 ];
 
-const message = _("Your current rank");
-
-
 function clamp(minimum, maximum) {
   return (number) => Math.min(Math.max(number, minimum), maximum);
 }
@@ -67,7 +64,7 @@ export const Rankings = GObject.registerClass(
   {
     GTypeName: "Rankings",
     Template: getResourceURI("rankings.ui"),
-    InternalChildren: ["container", "rankings_list_view"],
+    InternalChildren: ["container", "rankings_list_view", "progress"],
   },
   class Rankings extends Adw.Window {
     constructor(minimumScore = 0, totalScore = 100, currentScore = 0) {
@@ -76,6 +73,9 @@ export const Rankings = GObject.registerClass(
       this.totalScore = totalScore;
       this.currentScore = currentScore;
       this.ranks = this.createRanks();
+      // FIXME: This is for testing. Remove it after.
+      this.currentScore = Math.round(totalScore * Math.random());
+      console.log(this.currentScore);
 
       if (!this.ranks.length) {
         // FIXME
@@ -87,8 +87,43 @@ export const Rankings = GObject.registerClass(
         // I don't trust this solution. Review it one more time.
         this.rankObjects = this.createRankObjects();
         this.createListView();
+        this.setRankMessage();
       }
     }
+
+    setRankMessage = () => {
+      const model = this._rankings_list_view.model.model;
+      let currItem;
+
+      for (let i = 0; i < model.n_items; i++) {
+        const item = model.get_item(i);
+        if (
+          this.currentScore >= item.minimumScore &&
+          this.currentScore <= item.maximumScore
+        ) {
+          currItem = item;
+          break;
+        }
+      }
+
+      const lastItem = model.get_item(model.n_items - 1);
+      let msg;
+      if (currItem.rank === lastItem.rank) {
+        msg = _(
+          "Congratulations! With %d points, you have attained the highest rank <b>%s</b>."
+        ).format(this.currentScore, currItem.rank);
+      } else {
+        const toNextRank = currItem.maximumScore - this.currentScore + 1;
+        const toLastRank = lastItem.minimumScore - this.currentScore;
+        msg = _(
+          "Your current <b>rank</b> is <b>%s</b>. You need <b>%d points</b> to reach the next rank and <b>%d to %s</b>."
+        ).format(currItem.rank, toNextRank, toLastRank, lastItem.rank);
+      }
+
+      if (msg) {
+        this._progress.label = msg;
+      }
+    };
 
     createListView = () => {
       const listStore = Gio.ListStore.new(RankObject);
@@ -177,8 +212,7 @@ export const Rankings = GObject.registerClass(
         let maxValue = clampScores((i + 1) * step);
 
         if (maxValue < this.totalScore) maxValue--;
-
-        rankObjects.push({ minValue, maxValue, label: ranks[i] });
+        rankObjects.push({ minValue, maxValue, label: this.ranks[i] });
       }
       return rankObjects;
     };

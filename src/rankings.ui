@@ -5,7 +5,7 @@
   <template class="Rankings" parent="AdwWindow">
     <property name="modal">true</property>
     <property name="default-width">400</property>
-    <property name="default-height">500</property>
+    <property name="default-height">550</property>
     <property name="content">
       <object class="AdwToolbarView">
         <child type="top">
@@ -49,7 +49,14 @@
                         <property name="use-markup">true</property>
                         <property name="xalign">0</property>
                         <property name="wrap">true</property>
-                        <property name="label" translatable="yes">Below are the minimum scores needed to reach each rank.</property>
+                        <property name="label" translatable="yes">Below are the minimum scores you need to reach each rank.</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="progress">
+                        <property name="use-markup">true</property>
+                        <property name="xalign">0</property>
+                        <property name="wrap">true</property>
                       </object>
                     </child>
                     <child>
