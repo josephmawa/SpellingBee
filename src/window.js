@@ -7,7 +7,7 @@ import GLib from "gi://GLib";
 import { Hexagon, Container } from "./hexagon.js";
 import { Help, HelpObject } from "./help.js";
 import { HowToPlay } from "./how-to-play.js";
-import { Rankings, RankObject } from "./rankings.js";
+import { Rankings } from "./rankings.js";
 import { data } from "./data.js";
 import { Letter, CorrectWord } from "./letter.js";
 import {

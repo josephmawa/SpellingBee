@@ -14,6 +14,9 @@ const ranks = [
   _("Genius"),
 ];
 
+const message = _("Your current rank");
+
+
 function clamp(minimum, maximum) {
   return (number) => Math.min(Math.max(number, minimum), maximum);
 }
@@ -103,10 +106,12 @@ export const Rankings = GObject.registerClass(
 
         const rankLabel = new Gtk.Label({
           xalign: 0,
+          use_markup: true,
           css_classes: ["pad-box"],
         });
         const minimumScoreLabel = new Gtk.Label({
           xalign: 1,
+          use_markup: true,
           css_classes: ["pad-box"],
         });
 
@@ -120,18 +125,23 @@ export const Rankings = GObject.registerClass(
         const item = listItem.item;
         const child = listItem.child;
 
+        let rank = item.rank.toString();
+        let minimumScore = item.minimumScore.toString();
+
         if (
           this.currentScore >= item.minimumScore &&
           this.currentScore <= item.maximumScore
         ) {
+          rank = `<span weight="bold" font-size="large">${rank}</span>`;
+          minimumScore = `<span weight="bold" font-size="large">${minimumScore}</span>`;
           child.add_css_class("accent");
         }
 
         const rankLabel = child.get_first_child();
         const minimumScoreLabel = child.get_last_child();
 
-        rankLabel.label = item.rank.toString();
-        minimumScoreLabel.label = item.minimumScore.toString();
+        rankLabel.label = rank;
+        minimumScoreLabel.label = minimumScore;
       });
 
       this._rankings_list_view.factory = factory;
