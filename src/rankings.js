@@ -117,7 +117,7 @@ export const Rankings = GObject.registerClass(
         const toLastRank = lastItem.minimumScore - this.currentScore;
         msg = _(
           "You need <b>%d</b> points to reach next rank, <b>%d</b> points to top rank."
-        ).format(this.currentScore, toNextRank, toLastRank);
+        ).format(toNextRank, toLastRank);
       }
 
       if (msg) {
