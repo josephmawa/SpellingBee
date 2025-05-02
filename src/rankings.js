@@ -37,7 +37,7 @@ export const RankObject = GObject.registerClass(
         "A property holding minimum score needed to attain this rank",
         GObject.ParamFlags.READWRITE,
         0,
-        10000,
+        100000,
         100
       ),
       maximumScore: GObject.ParamSpec.int(
@@ -46,7 +46,7 @@ export const RankObject = GObject.registerClass(
         "A property holding maximum score for this rank",
         GObject.ParamFlags.READWRITE,
         0,
-        10000,
+        100000,
         100
       ),
     },
@@ -66,7 +66,7 @@ export const Rankings = GObject.registerClass(
   {
     GTypeName: "Rankings",
     Template: getResourceURI("rankings.ui"),
-    InternalChildren: ["container", "rankings_list_view"],
+    InternalChildren: ["container", "current_score", "rankings_list_view"],
   },
   class Rankings extends Adw.Window {
     constructor(minimumScore = 0, totalScore = 100, currentScore = 0) {
@@ -75,7 +75,10 @@ export const Rankings = GObject.registerClass(
       this.totalScore = totalScore;
       this.currentScore = currentScore;
       this.ranks = this.createRanks();
-      
+      this._current_score.label = _(
+        "Your current score is <b>%d out of %d</b>."
+      ).format(this.currentScore, this.totalScore);
+
       if (!this.ranks.length) {
         // FIXME
         // No rank to display
