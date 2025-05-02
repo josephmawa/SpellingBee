@@ -3,6 +3,8 @@ import Gtk from "gi://Gtk";
 import GObject from "gi://GObject";
 import Gio from "gi://Gio";
 
+import { ngettext } from "gettext";
+
 const ranks = [
   _("Novice"),
   _("Apprentice"),
@@ -64,7 +66,7 @@ export const Rankings = GObject.registerClass(
   {
     GTypeName: "Rankings",
     Template: getResourceURI("rankings.ui"),
-    InternalChildren: ["container", "rankings_list_view", "progress"],
+    InternalChildren: ["container", "rankings_list_view"],
   },
   class Rankings extends Adw.Window {
     constructor(minimumScore = 0, totalScore = 100, currentScore = 0) {
@@ -73,10 +75,7 @@ export const Rankings = GObject.registerClass(
       this.totalScore = totalScore;
       this.currentScore = currentScore;
       this.ranks = this.createRanks();
-      // FIXME: This is for testing. Remove it after.
-      this.currentScore = Math.round(totalScore * Math.random());
-      console.log(this.currentScore);
-
+      
       if (!this.ranks.length) {
         // FIXME
         // No rank to display
@@ -87,13 +86,12 @@ export const Rankings = GObject.registerClass(
         // I don't trust this solution. Review it one more time.
         this.rankObjects = this.createRankObjects();
         this.createListView();
-        this.setRankMessage();
       }
     }
 
-    setRankMessage = () => {
+    getRankMessage = () => {
       const model = this._rankings_list_view.model.model;
-      let currItem;
+      let currentIndex;
 
       for (let i = 0; i < model.n_items; i++) {
         const item = model.get_item(i);
@@ -101,28 +99,44 @@ export const Rankings = GObject.registerClass(
           this.currentScore >= item.minimumScore &&
           this.currentScore <= item.maximumScore
         ) {
-          currItem = item;
+          currentIndex = i;
           break;
         }
       }
 
-      const lastItem = model.get_item(model.n_items - 1);
-      let msg;
-      if (currItem.rank === lastItem.rank) {
-        msg = _(
-          "Congratulations! With %d points, you have attained the highest rank <b>%s</b>."
-        ).format(this.currentScore, currItem.rank);
-      } else {
-        const toNextRank = currItem.maximumScore - this.currentScore + 1;
-        const toLastRank = lastItem.minimumScore - this.currentScore;
-        msg = _(
-          "You need <b>%d</b> points to reach next rank, <b>%d</b> points to top rank."
-        ).format(toNextRank, toLastRank);
+      // Last rank
+      if (currentIndex === model.n_items - 1) {
+        return _("<small>Highest rank, congratulations</small>");
       }
 
-      if (msg) {
-        this._progress.label = msg;
+      const nextItem = model.get_item(currentIndex + 1);
+      const lastItem = model.get_item(model.n_items - 1);
+      const pointsToNextRank = nextItem.minimumScore - this.currentScore;
+      // Second last rank
+      if (nextItem.rank === lastItem.rank) {
+        return _(
+          ngettext(
+            "<small><b>%d</b> point to <b>%s</b></small>",
+            "<small><b>%d</b> points to <b>%s</b></small>",
+            pointsToNextRank
+          )
+        ).format(pointsToNextRank, nextItem.rank);
       }
+
+      const pointsToLastRank = lastItem.minimumScore - this.currentScore;
+      // Other ranks
+      return _(
+        ngettext(
+          "<small><b>%d</b> point to <b>%s</b>, <b>%d</b> to <b>%s</b></small>",
+          "<small><b>%d</b> points to <b>%s</b>, <b>%d</b> to <b>%s</b></small>",
+          pointsToNextRank
+        )
+      ).format(
+        pointsToNextRank,
+        nextItem.rank,
+        pointsToLastRank,
+        lastItem.rank
+      );
     };
 
     createListView = () => {
@@ -133,32 +147,68 @@ export const Rankings = GObject.registerClass(
 
       const factory = new Gtk.SignalListItemFactory();
       factory.connect("setup", (_, listItem) => {
-        const hbox = new Gtk.Box({
+        const hBox = new Gtk.Box({
           hexpand: true,
+          css_classes: ["pad-box"],
+        });
+
+        const vBox = new Gtk.Box({
+          hexpand: true,
+          valign: Gtk.Align.CENTER,
+          orientation: Gtk.Orientation.VERTICAL,
         });
 
         const rankLabel = new Gtk.Label({
           xalign: 0,
           hexpand: true,
           use_markup: true,
-          css_classes: ["pad-box"],
         });
+        const progressLabel = new Gtk.Label({
+          xalign: 0,
+          hexpand: true,
+          use_markup: true,
+        });
+
+        vBox.append(rankLabel);
+        vBox.append(progressLabel);
+
         const minimumScoreLabel = new Gtk.Label({
           xalign: 1,
           hexpand: true,
           use_markup: true,
-          css_classes: ["pad-box"],
         });
 
-        hbox.append(rankLabel);
-        hbox.append(minimumScoreLabel);
+        hBox.append(vBox);
+        hBox.append(minimumScoreLabel);
 
-        listItem.child = hbox;
+        listItem.child = hBox;
       });
 
       factory.connect("bind", (_, listItem) => {
         const item = listItem.item;
         const child = listItem.child;
+
+        const vBox = child.get_first_child();
+        const rankLabel = vBox.get_first_child();
+        const progressLabel = vBox.get_last_child();
+        const minimumScoreLabel = child.get_last_child();
+
+        item.bind_property_full(
+          "minimumScore",
+          progressLabel,
+          "visible",
+          GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.DEFAULT,
+          () => {
+            if (
+              this.currentScore >= item.minimumScore &&
+              this.currentScore <= item.maximumScore
+            ) {
+              return [true, true];
+            }
+            return [true, false];
+          },
+          null
+        );
 
         let rank = item.rank.toString();
         let minimumScore = item.minimumScore.toString();
@@ -167,13 +217,11 @@ export const Rankings = GObject.registerClass(
           this.currentScore >= item.minimumScore &&
           this.currentScore <= item.maximumScore
         ) {
-          rank = `<span weight="bold" font-size="large">${rank}</span> <small>${this.currentScore}</small>`;
+          rank = `<span weight="bold" font-size="large">${rank}</span>`;
           minimumScore = `<span weight="bold" font-size="large">${minimumScore}</span>`;
           child.add_css_class("accent");
+          progressLabel.label = this.getRankMessage();
         }
-
-        const rankLabel = child.get_first_child();
-        const minimumScoreLabel = child.get_last_child();
 
         rankLabel.label = rank;
         minimumScoreLabel.label = minimumScore;
