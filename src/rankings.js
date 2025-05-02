@@ -116,8 +116,8 @@ export const Rankings = GObject.registerClass(
         const toNextRank = currItem.maximumScore - this.currentScore + 1;
         const toLastRank = lastItem.minimumScore - this.currentScore;
         msg = _(
-          "Your current <b>rank</b> is <b>%s</b>. You need <b>%d points</b> to reach the next rank and <b>%d to %s</b>."
-        ).format(currItem.rank, toNextRank, toLastRank, lastItem.rank);
+          "You need <b>%d</b> points to reach next rank, <b>%d</b> points to top rank."
+        ).format(this.currentScore, toNextRank, toLastRank);
       }
 
       if (msg) {
@@ -135,17 +135,17 @@ export const Rankings = GObject.registerClass(
       factory.connect("setup", (_, listItem) => {
         const hbox = new Gtk.Box({
           hexpand: true,
-          spacing: 40,
-          homogeneous: true,
         });
 
         const rankLabel = new Gtk.Label({
           xalign: 0,
+          hexpand: true,
           use_markup: true,
           css_classes: ["pad-box"],
         });
         const minimumScoreLabel = new Gtk.Label({
           xalign: 1,
+          hexpand: true,
           use_markup: true,
           css_classes: ["pad-box"],
         });
@@ -167,7 +167,7 @@ export const Rankings = GObject.registerClass(
           this.currentScore >= item.minimumScore &&
           this.currentScore <= item.maximumScore
         ) {
-          rank = `<span weight="bold" font-size="large">${rank}</span>`;
+          rank = `<span weight="bold" font-size="large">${rank}</span> <small>${this.currentScore}</small>`;
           minimumScore = `<span weight="bold" font-size="large">${minimumScore}</span>`;
           child.add_css_class("accent");
         }
