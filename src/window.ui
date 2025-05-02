@@ -274,11 +274,11 @@
         <attribute name="action">win.rankings</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">New Game</attribute>
+        <attribute name="label" translatable="yes">New Puzzle</attribute>
         <attribute name="action">win.new-game</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Solve Game</attribute>
+        <attribute name="label" translatable="yes">Solve Puzzle</attribute>
         <attribute name="action">win.solve-game</attribute>
       </item>
     </section>
