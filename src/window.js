@@ -8,6 +8,7 @@ import { Hexagon, Container } from "./hexagon.js";
 import { Help, HelpObject } from "./help.js";
 import { HowToPlay } from "./how-to-play.js";
 import { Rankings } from "./rankings.js";
+import { Statistics } from "./statistics.js";
 import { data } from "./data.js";
 import { Letter, CorrectWord } from "./letter.js";
 import {
@@ -158,11 +159,32 @@ export const SpellingbeeWindow = GObject.registerClass(
         rankings.present();
       });
 
+      const statisticsAction = new Gio.SimpleAction({
+        name: "statistics",
+      });
+      statisticsAction.connect("activate", () => {
+        const stats = Array.from({ length: 5 }, (value, index) => {
+          return [
+            index + 1, // No
+            "A", // Center Letter
+            "XYBCDE", // Outer Letters
+            34,
+            234,
+            "",
+          ];
+        });
+
+        const statistics = new Statistics(stats);
+        statistics.set_transient_for(this);
+        statistics.present();
+      });
+
       this.add_action(recycleQuizAction);
       this.add_action(newGameAction);
       this.add_action(solveGameAction);
       this.add_action(howToPlayAction);
       this.add_action(rankingsAction);
+      this.add_action(statisticsAction);
     };
 
     updateScore = () => {
