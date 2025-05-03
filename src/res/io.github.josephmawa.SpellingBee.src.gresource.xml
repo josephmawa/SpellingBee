@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/github/josephmawa/SpellingBee/js">
+    <!-- src/*.js -->
+    <file compressed="true">about.js</file>
+    <file compressed="true">alert-dialogs.js</file>
+    <file compressed="true">application.js</file>
+    <file compressed="true">bee.js</file>
+    <file compressed="true">help.js</file>
+    <file compressed="true">hexagon.js</file>
+    <file compressed="true">how-to-play.js</file>
+    <file compressed="true">letter.js</file>
+    <file compressed="true">main.js</file>
+    <file compressed="true">preferences.js</file>
+    <file compressed="true">rankings.js</file>
+    <file compressed="true">statistics.js</file>
+    <file compressed="true">window.js</file>
+    <!-- src/data/*.js -->
+    <file compressed="true" alias="data.js">data/data.js</file>
+    <!-- src/util/*.js -->
+    <file compressed="true" alias="util.js">util/util.js</file>
+  </gresource>
+</gresources>

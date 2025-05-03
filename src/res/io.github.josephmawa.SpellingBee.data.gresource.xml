@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/github/josephmawa/SpellingBee">
+    <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/help-overlay.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="help.ui">ui/help.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="how-to-play.ui">ui/how-to-play.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="preferences.ui">ui/preferences.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="rankings.ui">ui/rankings.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="statistics.ui">ui/statistics.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="window.ui">ui/window.ui</file>
+  </gresource>
+  <gresource prefix="/io/github/josephmawa/SpellingBee/icons">
+    <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-emblem-ok-symbolic.svg">icons/emblem-ok-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-document-edit-symbolic.svg">icons/document-edit-symbolic.svg</file>
+  </gresource>
+  <gresource prefix="/io/github/josephmawa/SpellingBee">
+    <file compressed="true" alias="index.css">styles/index.css</file>
+  </gresource>
+</gresources>

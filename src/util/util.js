@@ -117,6 +117,5 @@ export function getTwoLetterList(words) {
 
     twoLetterList.set(firstTwoLetters, 1);
   }
-
   return [...twoLetterList.entries()];
 }

@@ -2,14 +2,14 @@ pkgdatadir = get_option('datadir') / meson.project_name()
 gnome = import('gnome')
 
 src_res = gnome.compile_resources('io.github.josephmawa.SpellingBee.src',
-  'io.github.josephmawa.SpellingBee.src.gresource.xml',
+  'res' / 'io.github.josephmawa.SpellingBee.src.gresource.xml',
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
 )
 
 data_res = gnome.compile_resources('io.github.josephmawa.SpellingBee.data',
-  'io.github.josephmawa.SpellingBee.data.gresource.xml',
+  'res' / 'io.github.josephmawa.SpellingBee.data.gresource.xml',
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
@@ -25,7 +25,7 @@ bin_conf.set('datadir', get_option('prefix') / get_option('datadir'))
 bin_conf.set('resource_path', '/io/github/josephmawa/SpellingBee')
 
 configure_file(
-  input: 'io.github.josephmawa.SpellingBee.in',
+  input: 'bin' / 'io.github.josephmawa.SpellingBee.in',
   output: 'io.github.josephmawa.SpellingBee',
   configuration: bin_conf,
   install: true,

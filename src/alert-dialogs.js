@@ -2,18 +2,18 @@ import Adw from "gi://Adw";
 
 export function newGameAlert() {
   const alertDialog = new Adw.AlertDialog({
-    heading: _("Start New Game"),
-    body: _("Are you sure you want to start a new game?"),
-    default_response: "new_game",
+    heading: _("Start New Puzzle"),
+    body: _("Are you sure you want to start a new puzzle?"),
+    default_response: "new_puzzle",
     close_response: "close_dialog",
     presentation_mode: "floating",
   });
 
-  alertDialog.add_response("new_game", _("New Game"));
+  alertDialog.add_response("new_puzzle", _("New Puzzle"));
   alertDialog.add_response("close_dialog", _("Close Dialog"));
 
   alertDialog.set_response_appearance(
-    "new_game",
+    "new_puzzle",
     Adw.ResponseAppearance.DESTRUCTIVE
   );
   alertDialog.set_response_appearance(
@@ -26,18 +26,18 @@ export function newGameAlert() {
 
 export function solveGameAlert() {
   const alertDialog = new Adw.AlertDialog({
-    heading: _("Solve Game"),
-    body: _("Are you sure you want to solve this game?"),
-    default_response: "solve_game",
+    heading: _("Solve Puzzle"),
+    body: _("Are you sure you want to see the solution for this puzzle?"),
+    default_response: "solve_puzzle",
     close_response: "close_dialog",
     presentation_mode: "floating",
   });
 
-  alertDialog.add_response("solve_game", _("Solve Game"));
+  alertDialog.add_response("solve_puzzle", _("Solve Puzzle"));
   alertDialog.add_response("close_dialog", _("Close Dialog"));
 
   alertDialog.set_response_appearance(
-    "solve_game",
+    "solve_puzzle",
     Adw.ResponseAppearance.DESTRUCTIVE
   );
   alertDialog.set_response_appearance(

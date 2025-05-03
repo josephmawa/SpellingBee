@@ -4,7 +4,7 @@ import GObject from "gi://GObject";
 import Gio from "gi://Gio";
 
 const columnTitles = [
-  _("No"),
+  _("No."),
   _("Center Letter"),
   _("Outer Letters"),
   _("Score"),
