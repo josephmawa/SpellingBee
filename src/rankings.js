@@ -66,7 +66,7 @@ export const Rankings = GObject.registerClass(
   {
     GTypeName: "Rankings",
     Template: getResourceURI("rankings.ui"),
-    InternalChildren: ["container", "current_score", "rankings_list_view"],
+    InternalChildren: ["container", "rankings_list_view"],
   },
   class Rankings extends Adw.Window {
     constructor(minimumScore = 0, totalScore = 100, currentScore = 0) {
@@ -75,9 +75,6 @@ export const Rankings = GObject.registerClass(
       this.totalScore = totalScore;
       this.currentScore = currentScore;
       this.ranks = this.createRanks();
-      this._current_score.label = _(
-        "Your current score is <b>%d out of %d</b>."
-      ).format(this.currentScore, this.totalScore);
 
       if (!this.ranks.length) {
         // FIXME

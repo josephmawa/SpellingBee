@@ -83,6 +83,7 @@ export const Statistics = GObject.registerClass(
         });
 
         const column = Gtk.ColumnViewColumn.new(columnTitles[i], factory);
+        column.expand = true;
         this._stat_column_view.append_column(column);
       }
     };
