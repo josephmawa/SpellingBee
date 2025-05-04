@@ -66,7 +66,7 @@ export const Rankings = GObject.registerClass(
   {
     GTypeName: "Rankings",
     Template: getResourceURI("rankings.ui"),
-    InternalChildren: ["container", "rankings_list_view"],
+    InternalChildren: ["rankings_stack", "container", "rankings_list_view"],
   },
   class Rankings extends Adw.Window {
     constructor(minimumScore = 0, totalScore = 100, currentScore = 0) {
@@ -77,15 +77,13 @@ export const Rankings = GObject.registerClass(
       this.ranks = this.createRanks();
 
       if (!this.ranks.length) {
-        // FIXME
-        // No rank to display
-        // Add a switch to display
-        // appropriate message
+        this._rankings_stack.visible_child_name = "without_rankings"
       } else {
         // FIXME
         // I don't trust this solution. Review it one more time.
         this.rankObjects = this.createRankObjects();
         this.createListView();
+        this._rankings_stack.visible_child_name = "with_rankings"
       }
     }
 
