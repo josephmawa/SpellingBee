@@ -43,8 +43,12 @@ export const BeeState = GObject.registerClass(
         "current_score",
         "A property holding the current score",
         GObject.ParamFlags.READWRITE,
+        // For some reason GObject.ParamSpec.int requires
+        // minimum and maximum values. 0 and 1_000_000 are
+        // chosen as min and max values resp. 1_000_000 was
+        // chosen because it is large enough.
         0,
-        100,
+        1_000_000,
         0
       ),
       totalScore: GObject.ParamSpec.int(
@@ -53,7 +57,7 @@ export const BeeState = GObject.registerClass(
         "A property holidng total score for the current quiz",
         GObject.ParamFlags.READWRITE,
         0,
-        100,
+        1_000_000,
         100
       ),
     },
@@ -78,5 +82,16 @@ export const BeeState = GObject.registerClass(
       this.currentScore = currentScore;
       this.totalScore = totalScore;
     }
+
+    getCenterLetter = () => {
+      return this.centerLetter?.get_item(0)?.letter ?? "";
+    };
+    getOuterLetters = () => {
+      let outerLetters = "";
+      for (let i = 0; i < this.outerLetters.n_items; i++) {
+        outerLetters += this.outerLetters?.get_item(i)?.letter ?? "";
+      }
+      return outerLetters;
+    };
   }
 );

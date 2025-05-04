@@ -24,7 +24,7 @@ import {
   getTwoLetterList,
 } from "./util.js";
 
-import { newGameAlert, solveGameAlert } from "./alert-dialogs.js";
+import { newGameAlert, solveGameAlert, goBackAlert } from "./alert-dialogs.js";
 
 import { BeeState } from "./bee.js";
 
@@ -59,12 +59,16 @@ export const SpellingbeeWindow = GObject.registerClass(
     Template: getResourceURI("window.ui"),
     InternalChildren: [
       "toast_overlay",
+      "main_stack",
       "container",
       "entry",
       "button_help",
       "progress_bar",
       "words_stack",
       "flowbox",
+      "solution_view_letters",
+      "solution_view_statistics",
+      "solution_view_word_list",
     ],
   },
   class SpellingbeeWindow extends Adw.ApplicationWindow {
@@ -179,12 +183,28 @@ export const SpellingbeeWindow = GObject.registerClass(
         statistics.present();
       });
 
+      const goBackToPuzzleViewAction = new Gio.SimpleAction({
+        name: "go-back",
+      });
+      goBackToPuzzleViewAction.connect("activate", () => {
+        const alertDialog = goBackAlert();
+
+        alertDialog.connect("response", (_alertDialog, response) => {
+          if (response === "close_dialog") return;
+          // FIXME: Be sure to first create new puzzle before changing view
+          this._main_stack.visible_child_name = "puzzle_view";
+        });
+
+        alertDialog.present(this);
+      });
+
       this.add_action(recycleQuizAction);
       this.add_action(newGameAction);
       this.add_action(solveGameAction);
       this.add_action(howToPlayAction);
       this.add_action(rankingsAction);
       this.add_action(statisticsAction);
+      this.add_action(goBackToPuzzleViewAction);
     };
 
     updateScore = () => {
@@ -319,7 +339,48 @@ export const SpellingbeeWindow = GObject.registerClass(
     };
 
     solveGame = () => {
-      console.log("Solving game");
+      const centerLetter = this.beeState.getCenterLetter();
+      const outerLetters = this.beeState
+        .getOuterLetters()
+        .split("")
+        .sort()
+        .join("");
+
+      let color = "#FACB1C"; // For light background
+      const styleManager = this.application.get_style_manager();
+      if (styleManager.dark) {
+        color = "#B98E5F"; // For dark background
+      }
+
+      const lettersLabel =
+        `<span letter_spacing="12288">` +
+        `<span size="xx-large" color="${color}" weight="ultrabold">${centerLetter}</span>` +
+        `<span size="x-large" weight="bold" >${outerLetters}</span>` +
+        `</span>`;
+
+      const totalScore = this.beeState.totalScore;
+      const wordCount = this.beeState.words.length;
+      const statisticsLabel = `<span>${wordCount} words · ${totalScore} points</span>`;
+
+      const listStore = Gio.ListStore.new(CorrectWord);
+      for (const word of this.beeState.words) {
+        listStore.append(new CorrectWord(toTitleCase(word)));
+      }
+
+      this._solution_view_letters.label = lettersLabel;
+      this._solution_view_statistics.label = statisticsLabel;
+      this._solution_view_word_list.bind_model(listStore, (item) => {
+        const word = item.correctWord;
+        return new Gtk.LinkButton({
+          child: new Gtk.Label({
+            label: word,
+            xalign: 0,
+          }),
+          uri: item.getUri("https://gcide.gnu.org.ua/"),
+        });
+      });
+
+      this._main_stack.visible_child_name = "solution_view";
     };
 
     createUI = () => {
@@ -365,14 +426,8 @@ export const SpellingbeeWindow = GObject.registerClass(
     };
 
     shuffleLetters() {
-      const outerLetters = [];
-
-      for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
-        const item = this.beeState.outerLetters.get_item(i);
-        outerLetters.push(item.letter);
-      }
-
-      const shuffledOuterLetters = shuffle(outerLetters);
+      const outerLetters = this.beeState.getOuterLetters();
+      const shuffledOuterLetters = shuffle(outerLetters.split(""));
 
       for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
         const item = this.beeState.outerLetters.get_item(i);
@@ -472,14 +527,12 @@ export const SpellingbeeWindow = GObject.registerClass(
     showHint = () => {
       const hintWindow = new Help();
 
-      const centerLetter = this.beeState.centerLetter.get_item(0).letter;
-      let outerLetters = "";
-
-      for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
-        outerLetters += this.beeState.outerLetters.get_item(i).letter;
-      }
-
-      outerLetters = outerLetters.split("").sort().join("");
+      const centerLetter = this.beeState.getCenterLetter();
+      const outerLetters = this.beeState
+        .getOuterLetters()
+        .split("")
+        .sort()
+        .join("");
 
       let color = "#FACB1C"; // For light background
       const styleManager = this.application.get_style_manager();

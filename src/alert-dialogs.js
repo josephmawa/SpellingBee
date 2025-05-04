@@ -47,3 +47,26 @@ export function solveGameAlert() {
 
   return alertDialog;
 }
+export function goBackAlert() {
+  const alertDialog = new Adw.AlertDialog({
+    heading: _("Back To  Main View"),
+    body: _("Are you sure you want to go back to the main view? This will start a new game"),
+    default_response: "go_back",
+    close_response: "close_dialog",
+    presentation_mode: "floating",
+  });
+
+  alertDialog.add_response("go_back", _("Go Back"));
+  alertDialog.add_response("close_dialog", _("Close Dialog"));
+
+  alertDialog.set_response_appearance(
+    "go_back",
+    Adw.ResponseAppearance.DESTRUCTIVE
+  );
+  alertDialog.set_response_appearance(
+    "close_dialog",
+    Adw.ResponseAppearance.SUGGESTED
+  );
+
+  return alertDialog;
+}

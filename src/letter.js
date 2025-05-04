@@ -47,5 +47,9 @@ export const CorrectWord = GObject.registerClass(
       super();
       this.correctWord = correctWord;
     }
+
+    getUri = (uri) => {
+     return `${uri}?q=${this.correctWord}&define=Define`
+    }
   }
 );
