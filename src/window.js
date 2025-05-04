@@ -338,6 +338,20 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.saveData(this.beeState.attempted, filePath);
     };
 
+    getLettersLabel = (centerLetter, outerLetters) => {
+      const styleManager = this.application.get_style_manager();
+      let color = "#FACB1C";
+      if (styleManager.dark) {
+        color = "#B98E5F";
+      }
+      const lettersLabel =
+        `<span letter_spacing="12288">` +
+        `<span size="xx-large" color="${color}" weight="ultrabold">${centerLetter}</span>` +
+        `<span size="x-large" weight="bold" >${outerLetters}</span>` +
+        `</span>`;
+      return lettersLabel;
+    };
+
     solveGame = () => {
       const centerLetter = this.beeState.getCenterLetter();
       const outerLetters = this.beeState
@@ -345,22 +359,14 @@ export const SpellingbeeWindow = GObject.registerClass(
         .split("")
         .sort()
         .join("");
-
-      let color = "#FACB1C"; // For light background
-      const styleManager = this.application.get_style_manager();
-      if (styleManager.dark) {
-        color = "#B98E5F"; // For dark background
-      }
-
-      const lettersLabel =
-        `<span letter_spacing="12288">` +
-        `<span size="xx-large" color="${color}" weight="ultrabold">${centerLetter}</span>` +
-        `<span size="x-large" weight="bold" >${outerLetters}</span>` +
-        `</span>`;
+      const lettersLabel = this.getLettersLabel(centerLetter, outerLetters);
 
       const totalScore = this.beeState.totalScore;
       const wordCount = this.beeState.words.length;
-      const statisticsLabel = `<span>${wordCount} words · ${totalScore} points</span>`;
+      const statisticsLabel = _("%d words · %d points").format(
+        wordCount,
+        totalScore
+      );
 
       const listStore = Gio.ListStore.new(CorrectWord);
       for (const word of this.beeState.words) {
@@ -529,22 +535,14 @@ export const SpellingbeeWindow = GObject.registerClass(
         .split("")
         .sort()
         .join("");
-
-      let color = "#FACB1C"; // For light background
-      const styleManager = this.application.get_style_manager();
-      if (styleManager.dark) {
-        color = "#B98E5F"; // For dark background
-      }
-
-      const lettersLabel =
-        `<span letter_spacing="12288">` +
-        `<span size="xx-large" color="${color}" weight="ultrabold">${centerLetter}</span>` +
-        `<span size="x-large" weight="bold" >${outerLetters}</span>` +
-        `</span>`;
+      const lettersLabel = this.getLettersLabel(centerLetter, outerLetters);
 
       const totalScore = this.beeState.totalScore;
       const wordCount = this.beeState.words.length;
-      const statisticsLabel = `<span>${wordCount} words · ${totalScore} points</span>`;
+      const statisticsLabel = _("%d words · %d points").format(
+        wordCount,
+        totalScore
+      );
 
       hintWindow._letters.label = lettersLabel;
       hintWindow._statistics.label = statisticsLabel;
