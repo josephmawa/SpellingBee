@@ -443,12 +443,8 @@ export const SpellingbeeWindow = GObject.registerClass(
         return;
       }
 
-      const centerLetter = this.beeState.centerLetter.get_item(0).letter;
-      let outerLetters = "";
-
-      for (let i = 0; i < this.beeState.outerLetters.n_items; i++) {
-        outerLetters += this.beeState.outerLetters.get_item(i).letter;
-      }
+      const centerLetter = this.beeState.getCenterLetter();
+      const outerLetters = this.beeState.getOuterLetters();
 
       const wordSet = new Set(word);
       const lettersSet = new Set(outerLetters + centerLetter);
