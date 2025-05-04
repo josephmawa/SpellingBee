@@ -3,7 +3,9 @@ import Adw from "gi://Adw";
 export function newGameAlert() {
   const alertDialog = new Adw.AlertDialog({
     heading: _("Start New Puzzle"),
-    body: _("Are you sure you want to start a new puzzle?"),
+    body: _(
+      "Are you sure you want to start a new puzzle? Your progress will not be saved."
+    ),
     default_response: "new_puzzle",
     close_response: "close_dialog",
     presentation_mode: "floating",
@@ -27,7 +29,9 @@ export function newGameAlert() {
 export function solveGameAlert() {
   const alertDialog = new Adw.AlertDialog({
     heading: _("Solve Puzzle"),
-    body: _("Are you sure you want to see the solution for this puzzle?"),
+    body: _(
+      "Are you sure you want to view the solution for this puzzle? Your progress will not be saved."
+    ),
     default_response: "solve_puzzle",
     close_response: "close_dialog",
     presentation_mode: "floating",
@@ -50,7 +54,9 @@ export function solveGameAlert() {
 export function goBackAlert() {
   const alertDialog = new Adw.AlertDialog({
     heading: _("Go Back To  Main View"),
-    body: _("Are you sure you want to go back to the main view? This will start a new game."),
+    body: _(
+      "Are you sure you want to go back to the main view? This will start a new game."
+    ),
     default_response: "go_back",
     close_response: "close_dialog",
     presentation_mode: "floating",
