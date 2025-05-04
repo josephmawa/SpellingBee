@@ -49,8 +49,8 @@ export function solveGameAlert() {
 }
 export function goBackAlert() {
   const alertDialog = new Adw.AlertDialog({
-    heading: _("Back To  Main View"),
-    body: _("Are you sure you want to go back to the main view? This will start a new game"),
+    heading: _("Go Back To  Main View"),
+    body: _("Are you sure you want to go back to the main view? This will start a new game."),
     default_response: "go_back",
     close_response: "close_dialog",
     presentation_mode: "floating",
