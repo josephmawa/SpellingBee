@@ -3,6 +3,8 @@ import Gtk from "gi://Gtk";
 import GObject from "gi://GObject";
 import Gio from "gi://Gio";
 
+import { Words } from "./words.js";
+
 const columnTitles = [
   _("No."),
   _("Center Letter"),
@@ -80,6 +82,12 @@ export const Statistics = GObject.registerClass(
           const item = listItem.item.stat;
           if (i < columnTitles.length - 1) {
             child.label = item[i].toString();
+          } else {
+            child.connect("clicked", () => {
+              const wordsWindow = new Words(item.at(-1));
+              wordsWindow.set_transient_for(this);
+              wordsWindow.present()
+            });
           }
         });
 

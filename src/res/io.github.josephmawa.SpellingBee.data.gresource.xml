@@ -8,6 +8,7 @@
     <file compressed="true" preprocess="xml-stripblanks" alias="rankings.ui">ui/rankings.ui</file>
     <file compressed="true" preprocess="xml-stripblanks" alias="statistics.ui">ui/statistics.ui</file>
     <file compressed="true" preprocess="xml-stripblanks" alias="window.ui">ui/window.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="words.ui">ui/words.ui</file>
   </gresource>
   <gresource prefix="/io/github/josephmawa/SpellingBee/icons">
     <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-emblem-ok-symbolic.svg">icons/emblem-ok-symbolic.svg</file>

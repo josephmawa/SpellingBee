@@ -15,6 +15,7 @@
     <file compressed="true">rankings.js</file>
     <file compressed="true">statistics.js</file>
     <file compressed="true">window.js</file>
+    <file compressed="true">words.js</file>
     <!-- src/data/*.js -->
     <file compressed="true" alias="data.js">data/data.js</file>
     <!-- src/util/*.js -->

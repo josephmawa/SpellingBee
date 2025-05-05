@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="Adw" version="1.0" />
+  <template class="Words" parent="AdwWindow">
+    <property name="modal">true</property>
+    <property name="default-width">400</property>
+    <property name="default-height">500</property>
+    <property name="content">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">Words</property>
+              </object>
+            </property>
+          </object>
+        </child>
+        <property name="content">
+          <object class="GtkScrolledWindow">
+            <property name="propagate_natural_height">true</property>
+            <property name="propagate_natural_width">true</property>
+            <property name="child">
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="valign">start</property>
+                <property name="halign">center</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
+                <property name="spacing">12</property>
+                <child>
+                  <object class="GtkFlowBox" id="words_flowbox">
+                    <property name="orientation">horizontal</property>
+                    <property name="row-spacing">4</property>
+                    <property name="column-spacing">4</property>
+                    <property name="homogeneous">true</property>
+                    <property name="max-children-per-line">5</property>
+                    <property name="min-children-per-line">3</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+</interface>
