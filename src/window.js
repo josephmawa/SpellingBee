@@ -106,6 +106,7 @@ export const SpellingbeeWindow = GObject.registerClass(
 
         if (savedData?.length) {
           this.deleteSavedData(filePath);
+          this.beeState.attempted = this.beeState.attempted.slice(-1);
           this.displayToast(_("Recycled attempted quiz"));
         } else {
           this.displayToast(_("No attempted quiz"));
@@ -167,16 +168,32 @@ export const SpellingbeeWindow = GObject.registerClass(
         name: "statistics",
       });
       statisticsAction.connect("activate", () => {
-        const stats = Array.from({ length: 5 }, (value, index) => {
-          return [
-            index + 1, // No
-            "A", // Center Letter
-            "XYBCDE", // Outer Letters
-            34,
-            234,
-            "",
-          ];
-        });
+        const stats = this.beeState.attempted
+          .slice(0, -1) // Exclude the current puzzle. Consider filtering instead of this.
+          .map((object, index) => {
+            let { centerLetter, letters, words } = data[object.index];
+
+            centerLetter = toUpperCase(centerLetter.join(""));
+            letters = toUpperCase(letters);
+
+            let totalScore = 0;
+            let wordsUpperCase = [];
+
+            for (const word of words) {
+              const wordUpperCase = toUpperCase(word);
+              wordsUpperCase.push(wordUpperCase);
+              totalScore += getPoints(wordUpperCase, letters);
+            }
+
+            return [
+              index + 1,
+              centerLetter,
+              letters.replaceAll(centerLetter, ""),
+              object.score,
+              totalScore,
+              wordsUpperCase,
+            ];
+          });
 
         const statistics = new Statistics(stats);
         statistics.set_transient_for(this);
@@ -221,24 +238,26 @@ export const SpellingbeeWindow = GObject.registerClass(
 
     initState = () => {
       const filePath = getFilePath(["data.json"]);
-      let attemptedSpellBeeIndices = this.getSavedData(filePath);
+      let attemptedPuzzles = this.getSavedData(filePath);
       const allIndices = Array.from(
         { length: data.length },
         (_, index) => index
       );
 
-      const unAttemptedSpellBeeIndices = allIndices.filter(
-        (index) => !attemptedSpellBeeIndices.includes(index)
-      );
+      const unAttemptedIndices = allIndices.filter((index) => {
+        return (
+          attemptedPuzzles.findIndex((object) => object.index === index) === -1
+        );
+      });
 
       let randInt;
 
-      if (unAttemptedSpellBeeIndices.length) {
-        const index = getRandInt(0, unAttemptedSpellBeeIndices.length - 1);
-        randInt = unAttemptedSpellBeeIndices[index];
+      if (unAttemptedIndices.length) {
+        const index = getRandInt(0, unAttemptedIndices.length - 1);
+        randInt = unAttemptedIndices[index];
       } else {
         randInt = getRandInt(0, data.length - 1);
-        attemptedSpellBeeIndices = [];
+        attemptedPuzzles = [];
       }
 
       let { centerLetter, letters, words } = data[randInt];
@@ -275,14 +294,19 @@ export const SpellingbeeWindow = GObject.registerClass(
       }
 
       spellBeeObj.totalScore = totalScore;
+      spellBeeObj.attempted = attemptedPuzzles;
 
-      attemptedSpellBeeIndices.push(randInt);
-      this.saveData(attemptedSpellBeeIndices, filePath);
-
-      spellBeeObj.attempted = attemptedSpellBeeIndices;
+      spellBeeObj.attempted.push({
+        index: randInt,
+        score: spellBeeObj.currentScore,
+      });
+      // We need to keep the statistics for the last 20 games.
+      // The current puzzle makes the number of attempted puzzles equal 21
+      spellBeeObj.attempted = spellBeeObj.attempted.slice(-21);
 
       this.beeState = new BeeState(spellBeeObj);
       this.updateScore();
+      this.saveData(this.beeState.attempted, filePath);
     };
 
     startNewGame = () => {
@@ -291,9 +315,13 @@ export const SpellingbeeWindow = GObject.registerClass(
         (_, index) => index
       );
 
-      const notAttemptedIndices = allIndices.filter(
-        (index) => !this.beeState.attempted.includes(index)
-      );
+      const notAttemptedIndices = allIndices.filter((index) => {
+        const searchIndex = this.beeState.attempted.findIndex(
+          (object) => object.index === index
+        );
+
+        return searchIndex === -1;
+      });
 
       let randInt;
 
@@ -323,8 +351,15 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       this.beeState.words = words.map((word) => toUpperCase(word));
       this.beeState.wordsFound.remove_all();
-      this.beeState.attempted.push(randInt);
       this.beeState.currentScore = 0;
+
+      this.beeState.attempted.push({
+        index: randInt,
+        score: this.beeState.currentScore,
+      });
+      // We need to keep the statistics for the last 20 games.
+      // The current puzzle makes the number of attempted puzzles equal 21
+      this.beeState.attempted = this.beeState.attempted.slice(-21);
 
       let totalScore = 0;
       for (const word of words) {
@@ -496,6 +531,11 @@ export const SpellingbeeWindow = GObject.registerClass(
         this._entry.set_text("");
 
         this.updateScore();
+
+        const filePath = getFilePath(["data.json"]);
+        this.beeState.attempted.at(-1).score++;
+
+        this.saveData(this.beeState.attempted, filePath);
       }
     }
 

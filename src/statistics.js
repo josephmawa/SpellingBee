@@ -36,7 +36,7 @@ export const Statistics = GObject.registerClass(
   {
     GTypeName: "Statistics",
     Template: getResourceURI("statistics.ui"),
-    InternalChildren: ["container", "stat_column_view"],
+    InternalChildren: ["statistics_stack", "container", "stat_column_view"],
   },
   class Statistics extends Adw.Window {
     constructor(stat) {
@@ -45,8 +45,9 @@ export const Statistics = GObject.registerClass(
       if (stat?.length) {
         this.stat = stat;
         this.createView();
+        this._statistics_stack.visible_child_name = "has_statistics";
       } else {
-        console.log("No stat");
+        this._statistics_stack.visible_child_name = "no_statistics";
       }
     }
 
