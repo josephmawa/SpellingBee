@@ -208,7 +208,7 @@ export const SpellingbeeWindow = GObject.registerClass(
 
         alertDialog.connect("response", (_alertDialog, response) => {
           if (response === "close_dialog") return;
-          // FIXME: Be sure to first create new puzzle before changing view
+          this.startNewGame();
           this._main_stack.visible_child_name = "puzzle_view";
         });
 
