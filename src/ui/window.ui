@@ -63,7 +63,8 @@
                                       <object class="GtkEntry" id="entry">
                                         <property name="placeholder-text" translatable="yes">Enter Word</property>
                                         <property name="tooltip-text" translatable="yes">Enter Word</property>
-                                        <property name="secondary-icon-name">edit-clear-symbolic</property>
+                                        <property name="secondary-icon-name">spelling-bee-edit-clear-symbolic</property>
+                                        <property name="secondary-icon-tooltip-text" translatable="yes">Delete</property>
                                         <signal name="activate" handler="submitWord" object="SpellingbeeWindow" swapped="no" />
                                         <signal name="changed" handler="wordChanged" object="SpellingbeeWindow" swapped="no" />
                                       </object>
@@ -83,7 +84,7 @@
                                     <property name="halign">center</property>
                                     <child>
                                       <object class="GtkButton" id="button_help">
-                                        <property name="icon-name">dialog-information-symbolic</property>
+                                        <property name="icon-name">spelling-bee-dialog-information-symbolic</property>
                                         <property name="tooltip-text" translatable="yes">Hint</property>
                                         <style>
                                           <class name="circular" />
@@ -93,7 +94,7 @@
                                     </child>
                                     <child>
                                       <object class="GtkButton" id="button_shuffle">
-                                        <property name="icon-name">view-refresh-symbolic</property>
+                                        <property name="icon-name">spelling-bee-view-refresh-symbolic</property>
                                         <property name="tooltip-text" translatable="yes">Shuffle</property>
                                         <style>
                                           <class name="circular" />
@@ -115,7 +116,7 @@
                                     </child>
                                     <child>
                                       <object class="GtkButton" id="button_delete">
-                                        <property name="icon-name">user-trash-symbolic</property>
+                                        <property name="icon-name">spelling-bee-user-trash-symbolic</property>
                                         <property name="tooltip-text" translatable="yes">Delete</property>
                                         <style>
                                           <class name="circular" />

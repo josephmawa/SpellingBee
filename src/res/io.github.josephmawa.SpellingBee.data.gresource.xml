@@ -11,8 +11,11 @@
     <file compressed="true" preprocess="xml-stripblanks" alias="words.ui">ui/words.ui</file>
   </gresource>
   <gresource prefix="/io/github/josephmawa/SpellingBee/icons">
+    <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-dialog-information-symbolic.svg">icons/dialog-information-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-edit-clear-symbolic.svg">icons/edit-clear-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-emblem-ok-symbolic.svg">icons/emblem-ok-symbolic.svg</file>
-    <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-document-edit-symbolic.svg">icons/document-edit-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-user-trash-symbolic.svg">icons/user-trash-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true" alias="scalable/actions/spelling-bee-view-refresh-symbolic.svg">icons/view-refresh-symbolic.svg</file>
   </gresource>
   <gresource prefix="/io/github/josephmawa/SpellingBee">
     <file compressed="true" alias="index.css">styles/index.css</file>
