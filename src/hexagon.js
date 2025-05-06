@@ -3,6 +3,7 @@ import Adw from "gi://Adw";
 import Gdk from "gi://Gdk";
 import GObject from "gi://GObject";
 import Graphene from "gi://Graphene";
+import Gio from "gi://Gio";
 
 export const Hexagon = GObject.registerClass(
   {
@@ -76,6 +77,11 @@ export const Hexagon = GObject.registerClass(
       const gestureClick = new Gtk.GestureClick();
       gestureClick.connect("pressed", this.pressedHandler);
       this.add_controller(gestureClick);
+
+      this.settings = Gio.Settings.new(pkg.name);
+      this.settings.connect("changed::preferred-theme", () => {
+        this.queue_draw();
+      });
     }
 
     set label(label) {
@@ -95,10 +101,18 @@ export const Hexagon = GObject.registerClass(
       return this.height - 2 * deltaY;
     };
 
+    getTheme = () => {
+      const theme = this.settings.get_string("preferred-theme");
+      if (theme === "system") {
+        return new Adw.StyleManager().dark ? "dark" : "light";
+      }
+      return theme;
+    };
+
     vfunc_snapshot(snapshot) {
       // Figure out a way of using this to dynamically calculate
       // the width and height instead of using a fixed value. Check 👇
-      // https://gist.github.com/josephmawa/104984bbecfc6a8d290be00124d0b71b.js
+      // https://gist.github.com/josephmawa/104984bbecfc6a8d290be00124d0b71b
       let width = this.get_allocated_width();
       let height = this.get_allocated_height();
 
@@ -150,8 +164,8 @@ export const Hexagon = GObject.registerClass(
         [0, this.height - deltaY],
       ];
 
-      const styleManager = new Adw.StyleManager();
-      if (styleManager.dark) {
+      const theme = this.getTheme();
+      if (theme === "dark") {
         if (this.position === "CENTER") {
           cairo.setSourceRGBA(...this.darkBackgroundCenter);
         } else {
@@ -182,7 +196,7 @@ export const Hexagon = GObject.registerClass(
       const textX = midX - textWidth / 2;
       const textY = midY + textHeight / 2;
 
-      if (styleManager.dark) {
+      if (theme === "dark") {
         cairo.setSourceRGBA(...this.lightColor);
       } else {
         cairo.setSourceRGBA(...this.darkColor);
