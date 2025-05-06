@@ -148,6 +148,7 @@ export const Rankings = GObject.registerClass(
         const hBox = new Gtk.Box({
           hexpand: true,
           css_classes: ["pad-box"],
+          spacing: 10
         });
 
         const vBox = new Gtk.Box({
