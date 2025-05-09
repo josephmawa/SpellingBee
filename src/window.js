@@ -173,7 +173,7 @@ export const SpellingbeeWindow = GObject.registerClass(
           .map((object, index) => {
             let { centerLetter, letters, words } = data[object.index];
 
-            centerLetter = toUpperCase(centerLetter.join(""));
+            centerLetter = toUpperCase(centerLetter);
             letters = toUpperCase(letters);
 
             let totalScore = 0;
@@ -262,10 +262,6 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       let { centerLetter, letters, words } = data[randInt];
 
-      centerLetter = Array.isArray(centerLetter)
-        ? centerLetter[0]
-        : centerLetter;
-
       const spellBeeObj = {};
       spellBeeObj.centerLetter = Gio.ListStore.new(Letter);
       spellBeeObj.centerLetter.append(
@@ -334,10 +330,6 @@ export const SpellingbeeWindow = GObject.registerClass(
       }
 
       let { centerLetter, letters, words } = data[randInt];
-
-      centerLetter = Array.isArray(centerLetter)
-        ? centerLetter[0]
-        : centerLetter;
 
       const centreLetterItem = this.beeState.centerLetter.get_item(0);
       centreLetterItem.letter = toUpperCase(centerLetter);
