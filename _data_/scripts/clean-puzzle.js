@@ -17,7 +17,7 @@ const puzzlePath = path.join(
 );
 
 if (!existsSync(puzzlePath)) {
-  console.log("Provide correct puzzle path");
+  console.log("Incorrect puzzle path");
   process.exit(1);
 }
 
@@ -30,13 +30,9 @@ async function cleanPuzzle(puzzle) {
       const data = await fs.readFile(filePath, { encoding: "utf-8" });
       const dataArr = JSON.parse(data);
 
-      console.log("Removing %s words from puzzle", fileName);
-
       for (const object of puzzle) {
         object.words = object.words.filter((word) => !dataArr.includes(word));
       }
-
-      console.log("Finished removing %s words from puzzle", fileName);
     }
 
     const filePath = path.join(

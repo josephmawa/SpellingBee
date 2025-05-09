@@ -74,10 +74,8 @@ async function downloadData() {
     return url.toLowerCase().endsWith(".json");
   });
 
-  console.log("Downloading Text Data.");
   await downloadTextData(textPaths);
 
-  console.log("Downloading Capital cities.");
   const [capitalCities] = await downloadJsonData([jsonPaths[0]]);
   await saveData([
     {
@@ -86,9 +84,7 @@ async function downloadData() {
     },
   ]);
 
-  console.log("Downloading countries and nationalities.");
   const [countriesAndNationalities] = await downloadJsonData([jsonPaths[1]]);
-
   await saveData([
     {
       data: processCountriesAndNationalities(countriesAndNationalities),
@@ -96,7 +92,6 @@ async function downloadData() {
     },
   ]);
 
-  console.log("Downloading dictionary.");
   const [dict] = await downloadJsonData([jsonPaths.at(-1)]);
   await saveData([
     {
