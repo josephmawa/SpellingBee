@@ -1,1 +1,1 @@
-require("./scripts/download-data.js");
+console.log("Nothing to see here. Move along...");

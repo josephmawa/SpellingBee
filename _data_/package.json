@@ -1,0 +1,15 @@
+{
+  "name": "spell-bee",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "download:data": "node --no-network-family-autoselection scripts/download-data.js",
+    "delete:data": "node scripts/delete-data.js",
+    "clean:puzzle": "node scripts/clean-puzzle.js"
+  },
+  "keywords": [],
+  "author": "Jospeh Mawa",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "Utilities for processing spelling bee puzzles"
+}
