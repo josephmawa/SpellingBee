@@ -1,10 +1,11 @@
 [Desktop Entry]
-Name=spellingbee
+Name=Spelling Bee
 Exec=io.github.josephmawa.SpellingBee
 Icon=io.github.josephmawa.SpellingBee
 Terminal=false
 Type=Application
-Categories=Utility;
-Keywords=GTK;
+Categories=GTK;GNOME;Education;Game;Languages;Literature;
+# Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
+Keywords=Learn;English;Word:Vocabulary;Spelling;Spell;Game;Puzzle;Bee;
 StartupNotify=true
 DBusActivatable=true
