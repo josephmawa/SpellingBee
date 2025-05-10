@@ -187,19 +187,19 @@
                                                             <property name="orientation">vertical</property>
                                                             <property name="halign">center</property>
                                                             <property name="valign">center</property>
-                                                            <property name="spacing">24</property>
+                                                            <property name="spacing">18</property>
                                                             <style>
                                                               <class name="padding" />
                                                             </style>
-                                                            <!-- <child>
+                                                            <child>
                                                               <object class="GtkImage">
-                                                                <property name="icon-name">system-search-symbolic</property>
-                                                                <property name="pixel_size">32</property>
+                                                                <property name="icon-name">io.github.josephmawa.SpellingBee-symbolic</property>
+                                                                <property name="pixel_size">120</property>
                                                               </object>
-                                                            </child> -->
+                                                            </child>
                                                             <child>
                                                               <object class="GtkLabel">
-                                                                <property name="label" translatable="yes">No words found yet</property>
+                                                                <property name="label" translatable="yes">No Words Found Yet</property>
                                                                 <attributes>
                                                                   <attribute name="weight" value="PANGO_WEIGHT_BOLD" />
                                                                 </attributes>
