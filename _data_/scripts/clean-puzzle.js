@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs/promises");
 const { existsSync } = require("fs");
 const { dataSources } = require("./data-sources.js");
+const goodBadWords = require("./good-bad-words.json");
 
 const dataDir = path.join(__dirname, "..", "store", "tmp");
 if (!existsSync(dataDir)) {
@@ -28,7 +29,16 @@ async function cleanPuzzle(puzzle) {
     for (const fileName of fileNames) {
       const filePath = path.join(dataDir, fileName);
       const data = await fs.readFile(filePath, { encoding: "utf-8" });
-      const dataArr = JSON.parse(data);
+      let dataArr = JSON.parse(data);
+
+      if (fileName === "bad-words.json") {
+        // These are words that may be offensive in one context and not
+        // offensive in others. And some of them are marked as offensive
+        // erroneously. Therefore, they shouldn't be filtered out from
+        // the list of words. The good-bad-words.json file is generated
+        // from bad-words.json file using AI.
+        dataArr = dataArr.filter((word) => !goodBadWords.includes(word));
+      }
 
       for (const object of puzzle) {
         object.words = object.words.filter((word) => !dataArr.includes(word));
@@ -53,5 +63,22 @@ async function cleanPuzzle(puzzle) {
 const puzzle = require("../store/generated-puzzles.json");
 
 cleanPuzzle(puzzle)
-  .then(() => console.log("Finished cleaning data"))
+  .then(async (cleanPuzzle) => {
+    for (const puzzle of cleanPuzzle) {
+      if (puzzle.words.length < 10) {
+        console.log(puzzle.words.length, "----->", puzzle.words);
+      }
+    }
+    // let wordsSet = new Set();
+    // for (const { words } of cleanPuzzle) {
+    //   wordsSet = wordsSet.union(new Set(words));
+    // }
+
+    // const result = [...wordsSet];
+    // console.log("There are %d unique words.", result.length)
+    // const filePath = path.join(dataDir, "unique-words.json");
+    // await fs.writeFile(filePath, JSON.stringify(result, null, 2), {
+    //   encoding: "utf-8",
+    // });
+  })
   .catch((error) => console.error(error));
