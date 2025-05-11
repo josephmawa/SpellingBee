@@ -28,8 +28,8 @@
       "buildsystem": "meson",
       "sources": [
         {
-          "type": "file",
-          "url": "."
+          "type": "dir",
+          "path": "."
         }
       ]
     }

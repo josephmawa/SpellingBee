@@ -1,8 +1,34 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 data/io.github.josephmawa.SpellingBee.desktop.in
-data/io.github.josephmawa.SpellingBee.metainfo.xml.in
 data/io.github.josephmawa.SpellingBee.gschema.xml
+data/io.github.josephmawa.SpellingBee.metainfo.xml.in
+
+src/data/data.js
+
+src/ui/help-overlay.ui
+src/ui/help.ui
+src/ui/how-to-play.ui
+src/ui/preferences.ui
+src/ui/rankings.ui
+src/ui/statistics.ui
+src/ui/window.ui
+src/ui/words.ui
+
+src/util/util.js
+
+src/about.js
+src/alert-dialogs.js
+src/application.js
+src/bee.js
+src/help.js
+src/hexagon.js
+src/how-to-play.js
+src/letter.js
 src/main.js
+src/preferences.js
+src/rankings.js
+src/statistics.js
 src/window.js
-src/window.ui
+src/words.js
+
