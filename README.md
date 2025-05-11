@@ -3,7 +3,7 @@
   <img src="./data/icons/hicolor/scalable/apps/io.github.josephmawa.SpellingBee.svg" alt="Spelling Bee" width="128" height="128"/>
 </div>
 <h1 align="center">Spelling Bee</h1>
-<p align="center"><b>Learn whil having fun</b></p>
+<p align="center"><b>Enhance your English vocabulary while having fun</b></p>
 <div align="center">
   <a href="https://flathub.org/apps/io.github.josephmawa.SpellingBee">
     <img width="240" alt="Get it on Flathub" src="https://flathub.org/api/badge?locale=en"/>
@@ -23,8 +23,12 @@ Spelling Bee is a simple game that requires you to create words from the given l
 
  ## Main features
 
-- Over 300 built-in games
-- Switch to dark, light or system mode
+- Provides thousands of words
+- You can play it offline
+- It provides links to the meaning of words
+- You can view puzzle history
+- You can view your score
+- Switch to dark, light, or system mode
 
 ## Contributing
 
@@ -51,14 +55,13 @@ combination to run the project after opening it in GNOME builder. You can also
 
 ## License
 
-Compare is a [free software](https://www.gnu.org/philosophy/free-sw.html) and
+Spelling Bee is a [free software](https://www.gnu.org/philosophy/free-sw.html) and
 will always be free. It is released under the terms of the
 [GNU General Public License v3.0](./LICENSE).
 
 ## License
 
-This project is [GPL-3.0 Licensed](./COPYING) and jsdiff, the text diff package
-it uses internally, is BSD 3-Clause Licensed.
+This project is [GPL-3.0 Licensed](./COPYING).
 
 ## Copyright
 
