@@ -389,7 +389,7 @@ msgid ""
 "The symbol, <span weight=\"ultrabold\">Σ</span>, is short for <span "
 "weight=\"ultrabold\">sum</span>"
 msgstr ""
-Il simbolo <span weight=\"ultrabold\">Σ</span> è l'abbreviazione di <span "
+"Il simbolo <span weight=\"ultrabold\">Σ</span> è l'abbreviazione di <span "
 "weight=\"ultrabold\">somma</span>"
 
 #: src/how-to-play.js:27
@@ -437,7 +437,7 @@ msgid ""
 "words that begin with the given pair of letters e.g. DE-20 means 20 words "
 "begin with the letters DE"
 msgstr ""
-L'<span weight=\"ultrabold\">elenco di due lettere</span> contiene il numero di "
+"L'<span weight=\"ultrabold\">elenco di due lettere</span> contiene il numero di "
 "parole che iniziano con la coppia di lettere indicata, ad esempio DE-20 significa 20 parole "
 "che iniziano con le lettere DE"
 
