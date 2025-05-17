@@ -430,7 +430,7 @@ msgid ""
 "the number of n-letter words that begin with a particular letter"
 msgstr ""
 "Le <span weight=\"ultrabold\">celle della tabella non edge(inner)</span> contengono "
-"il numero di parole di n lettere che iniziano con una lettera specifica""
+"il numero di parole di n lettere che iniziano con una lettera specifica"
 
 #: src/how-to-play.js:32
 msgid ""
