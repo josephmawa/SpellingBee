@@ -4,6 +4,8 @@ import Gdk from "gi://Gdk";
 import GObject from "gi://GObject";
 import Graphene from "gi://Graphene";
 import Gio from "gi://Gio";
+import Pango from "gi://Pango";
+import PangoCairo from "gi://PangoCairo";
 
 export const Hexagon = GObject.registerClass(
   {
@@ -80,6 +82,11 @@ export const Hexagon = GObject.registerClass(
 
       this.settings = Gio.Settings.new(pkg.name);
       this.settings.connect("changed::preferred-theme", () => {
+        this.queue_draw();
+      });
+
+      this.gtkSettings = Gtk.Settings.get_default();
+      this.gtkSettings.connect("notify::gtk-font-name", () => {
         this.queue_draw();
       });
     }
@@ -187,22 +194,28 @@ export const Hexagon = GObject.registerClass(
       cairo.closePath();
       cairo.fill();
 
-      cairo.selectFontFace("user", 0, 1);
-      cairo.setFontSize(32);
-
-      const textExtents = cairo.textExtents(this.label);
-      const textWidth = textExtents.width;
-      const textHeight = textExtents.height;
-      const textX = midX - textWidth / 2;
-      const textY = midY + textHeight / 2;
-
       if (theme === "dark") {
         cairo.setSourceRGBA(...this.lightColor);
       } else {
         cairo.setSourceRGBA(...this.darkColor);
       }
+
+      const fontName = this.gtkSettings.gtk_font_name;
+      const fontDesc = Pango.FontDescription.from_string(fontName);
+      fontDesc.set_weight(Pango.Weight.BOLD);
+      fontDesc.set_size(24 * Pango.SCALE);
+
+      const layout = PangoCairo.create_layout(cairo);
+      layout.set_text(this.label, -1);
+      layout.set_font_description(fontDesc);
+
+      const [inkRect, logicalRect] = layout.get_pixel_extents();
+
+      const textX = midX - logicalRect.width / 2;
+      const textY = midY - logicalRect.height / 2;
+
       cairo.moveTo(textX, textY);
-      cairo.showText(this.label);
+      PangoCairo.show_layout(cairo, layout);
 
       return false;
     }
