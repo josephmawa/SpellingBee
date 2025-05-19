@@ -4,8 +4,8 @@
   <requires lib="Adw" version="1.0" />
   <template class="Words" parent="AdwWindow">
     <property name="modal">true</property>
-    <property name="default-width">400</property>
-    <property name="default-height">500</property>
+    <property name="default-width">500</property>
+    <property name="default-height">550</property>
     <property name="content">
       <object class="AdwToolbarView">
         <child type="top">

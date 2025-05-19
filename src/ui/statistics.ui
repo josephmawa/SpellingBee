@@ -4,7 +4,7 @@
   <requires lib="Adw" version="1.0" />
   <template class="Statistics" parent="AdwWindow">
     <property name="modal">true</property>
-    <property name="default-width">450</property>
+    <property name="default-width">500</property>
     <property name="default-height">550</property>
     <property name="content">
       <object class="AdwToolbarView">
