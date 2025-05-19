@@ -177,12 +177,11 @@ export const SpellingbeeWindow = GObject.registerClass(
             letters = toUpperCase(letters);
 
             let totalScore = 0;
-            let wordsUpperCase = [];
+            let wordsTitleCase = [];
 
             for (const word of words) {
-              const wordUpperCase = toUpperCase(word);
-              wordsUpperCase.push(wordUpperCase);
-              totalScore += getPoints(wordUpperCase, letters);
+              wordsTitleCase.push(toTitleCase(word));
+              totalScore += getPoints(toUpperCase(word), letters);
             }
 
             return [
@@ -191,7 +190,7 @@ export const SpellingbeeWindow = GObject.registerClass(
               letters.replaceAll(centerLetter, ""),
               object.score,
               totalScore,
-              wordsUpperCase,
+              wordsTitleCase,
             ];
           });
 
@@ -553,10 +552,6 @@ export const SpellingbeeWindow = GObject.registerClass(
         entry.set_text(text.slice(0, -1));
       }
     };
-
-    splitButtonClickHandler(splitButton) {
-      splitButton.popup();
-    }
 
     showHint = () => {
       const hintWindow = new Help();

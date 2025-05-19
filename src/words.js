@@ -18,7 +18,7 @@ export const Words = GObject.registerClass(
             label: item.string,
             xalign: 0,
           }),
-          uri: "https://gcide.gnu.org.ua/",
+          uri: `https://gcide.gnu.org.ua/?q=${item.string}&define=Define`,
         });
       });
     }

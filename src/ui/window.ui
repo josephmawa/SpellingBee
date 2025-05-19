@@ -23,16 +23,35 @@
                         <child type="top">
                           <object class="AdwHeaderBar">
                             <child type="start">
-                              <object class="AdwSplitButton">
-                                <property name="label" translatable="yes">Help</property>
+                              <object class="GtkMenuButton">
+                                <property name="tooltip-text" translatable="yes">Help</property>
                                 <property name="menu-model">help_menu</property>
-                                <signal name="clicked" handler="splitButtonClickHandler" object="SpellingbeeWindow" swapped="no" />
+                                <style>
+                                  <class name="flat" />
+                                </style>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="spacing">3</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label" translatable="yes">_Help</property>
+                                        <property name="use-underline">True</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="icon-name">spelling-bee-pan-down-symbolic</property>
+                                        <property name="accessible-role">presentation</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                             <child type="end">
                               <object class="GtkMenuButton">
                                 <property name="primary">True</property>
-                                <property name="icon-name">open-menu-symbolic</property>
+                                <property name="icon-name">spelling-bee-open-menu-symbolic</property>
                                 <property name="tooltip-text" translatable="yes">Main Menu</property>
                                 <property name="menu-model">primary_menu</property>
                               </object>
@@ -135,8 +154,8 @@
                                 <property name="spacing">20</property>
                                 <property name="valign">center</property>
                                 <child>
-                                  <object class="GtkLabel">
-                                    <property name="label">Your Score</property>
+                                  <object class="GtkLabel" id="score_label">
+                                    <property name="label" translatable="yes">Your Score</property>
                                     <attributes>
                                       <attribute name="weight" value="PANGO_WEIGHT_BOLD" />
                                     </attributes>
@@ -152,13 +171,16 @@
                                         <property name="fraction">0.0</property>
                                         <property name="text">25 of 78</property>
                                         <property name="show-text">true</property>
+                                        <accessibility>
+                                          <relation name="labelled-by">score_label</relation>
+                                        </accessibility>
                                       </object>
                                     </child>
                                   </object>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel">
-                                    <property name="label">Your Words</property>
+                                  <object class="GtkLabel" id="words_found_label">
+                                    <property name="label" translatable="yes">Your Words</property>
                                     <attributes>
                                       <attribute name="weight" value="PANGO_WEIGHT_BOLD" />
                                     </attributes>
@@ -189,6 +211,7 @@
                                                   <object class="GtkImage">
                                                     <property name="icon-name">io.github.josephmawa.SpellingBee-symbolic</property>
                                                     <property name="pixel_size">120</property>
+                                                    <property name="accessible-role">presentation</property>
                                                   </object>
                                                 </child>
                                                 <child>
@@ -218,6 +241,9 @@
                                                     <property name="homogeneous">true</property>
                                                     <property name="valign">start</property>
                                                     <property name="halign">start</property>
+                                                    <accessibility>
+                                                      <relation name="labelled-by">words_found_label</relation>
+                                                    </accessibility>
                                                     <style>
                                                       <class name="padding" />
                                                     </style>
@@ -253,7 +279,7 @@
                             <property name="centering-policy">strict</property>
                             <child type="start">
                               <object class="GtkButton">
-                                <property name="icon-name">go-next-symbolic-rtl</property>
+                                <property name="icon-name">spelling-bee-go-next-symbolic-rtl</property>
                                 <property name="tooltip-text" translatable="yes" context="Back to main screen">Back</property>
                                 <accessibility>
                                   <property name="label" translatable="yes" context="accessibility">Back</property>

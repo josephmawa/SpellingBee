@@ -71,8 +71,9 @@ export const Statistics = GObject.registerClass(
             listItem.child = new Gtk.Label();
           } else {
             listItem.child = new Gtk.Button({
-              icon_name: "view-more-symbolic",
+              icon_name: "spelling-bee-view-more-symbolic",
               css_classes: ["flat"],
+              tooltip_text: _("View words"),
             });
           }
         });
@@ -86,7 +87,7 @@ export const Statistics = GObject.registerClass(
             child.connect("clicked", () => {
               const wordsWindow = new Words(item.at(-1));
               wordsWindow.set_transient_for(this);
-              wordsWindow.present()
+              wordsWindow.present();
             });
           }
         });

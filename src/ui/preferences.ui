@@ -88,7 +88,7 @@
                     <style>
                       <class name="suggested-action" />
                     </style>
-                    <property name="icon-name">view-refresh-symbolic</property>
+                    <property name="icon-name">spelling-bee-view-refresh-symbolic</property>
                     <property name="valign">center</property>
                     <property name="halign">center</property>
                     <property name="tooltip-text" translatable="yes">Recycle attempted quiz</property>
