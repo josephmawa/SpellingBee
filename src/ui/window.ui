@@ -179,8 +179,8 @@
                                   </object>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel">
-                                    <property name="label">Your Words</property>
+                                  <object class="GtkLabel" id="words_found_label">
+                                    <property name="label" translatable="yes">Your Words</property>
                                     <attributes>
                                       <attribute name="weight" value="PANGO_WEIGHT_BOLD" />
                                     </attributes>
@@ -241,6 +241,9 @@
                                                     <property name="homogeneous">true</property>
                                                     <property name="valign">start</property>
                                                     <property name="halign">start</property>
+                                                    <accessibility>
+                                                      <relation name="labelled-by">words_found_label</relation>
+                                                    </accessibility>
                                                     <style>
                                                       <class name="padding" />
                                                     </style>
