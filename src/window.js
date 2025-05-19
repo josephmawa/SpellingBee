@@ -554,10 +554,6 @@ export const SpellingbeeWindow = GObject.registerClass(
       }
     };
 
-    splitButtonClickHandler(splitButton) {
-      splitButton.popup();
-    }
-
     showHint = () => {
       const hintWindow = new Help();
 

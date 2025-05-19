@@ -71,7 +71,7 @@ export const Statistics = GObject.registerClass(
             listItem.child = new Gtk.Label();
           } else {
             listItem.child = new Gtk.Button({
-              icon_name: "view-more-symbolic",
+              icon_name: "spelling-bee-view-more-symbolic",
               css_classes: ["flat"],
             });
           }
