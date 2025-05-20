@@ -206,7 +206,6 @@ export const SpellingbeeWindow = GObject.registerClass(
       });
       goBackToPuzzleViewAction.connect("activate", () => {
         if (this._main_stack.visible_child_name === "puzzle_view") return;
-        
         const alertDialog = goBackAlert();
 
         alertDialog.connect("response", (_alertDialog, response) => {
