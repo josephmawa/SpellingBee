@@ -205,6 +205,8 @@ export const SpellingbeeWindow = GObject.registerClass(
         name: "go-back",
       });
       goBackToPuzzleViewAction.connect("activate", () => {
+        if (this._main_stack.visible_child_name === "puzzle_view") return;
+        
         const alertDialog = goBackAlert();
 
         alertDialog.connect("response", (_alertDialog, response) => {
@@ -217,11 +219,11 @@ export const SpellingbeeWindow = GObject.registerClass(
       });
 
       const toggleHelpMenu = new Gio.SimpleAction({
-        name: "help"
+        name: "help",
       });
       toggleHelpMenu.connect("activate", () => {
-        this._help_button.active = !this._help_button.active
-      })
+        this._help_button.active = !this._help_button.active;
+      });
 
       this.add_action(recycleQuizAction);
       this.add_action(newGameAction);
@@ -230,7 +232,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.add_action(rankingsAction);
       this.add_action(statisticsAction);
       this.add_action(goBackToPuzzleViewAction);
-      this.add_action(toggleHelpMenu)
+      this.add_action(toggleHelpMenu);
     };
 
     createControlActions = () => {
