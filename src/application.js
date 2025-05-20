@@ -36,8 +36,18 @@ export const SpellingbeeApplication = GObject.registerClass(
       });
       this.add_action(aboutAction);
 
+      // Primary Menu
       this.set_accels_for_action("app.quit", ["<primary>q"]);
       this.set_accels_for_action("app.preferences", ["<primary>comma"]);
+      // Help Button
+      this.set_accels_for_action("win.help", ["F1"]);
+      // Control Buttons
+      this.set_accels_for_action("win.hint", ["<primary>h"]);
+      this.set_accels_for_action("win.shuffle", ["<primary>s"]);
+      this.set_accels_for_action("win.check", ["<primary>c"]);
+      this.set_accels_for_action("win.delete", ["<primary>d"]);
+      // Navigation
+      this.set_accels_for_action("win.go-back", ["<primary>Left"]);
     }
 
     vfunc_activate() {

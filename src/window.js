@@ -61,6 +61,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       "toast_overlay",
       "main_stack",
       "container",
+      "help_button",
       "entry",
       "button_help",
       "progress_bar",
@@ -78,6 +79,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.initState();
       this.createUI();
       this.createActions();
+      this.createControlActions();
       this.createToast();
       this.loadStyles();
       this.bindSettings();
@@ -203,6 +205,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         name: "go-back",
       });
       goBackToPuzzleViewAction.connect("activate", () => {
+        if (this._main_stack.visible_child_name === "puzzle_view") return;
         const alertDialog = goBackAlert();
 
         alertDialog.connect("response", (_alertDialog, response) => {
@@ -214,6 +217,13 @@ export const SpellingbeeWindow = GObject.registerClass(
         alertDialog.present(this);
       });
 
+      const toggleHelpMenu = new Gio.SimpleAction({
+        name: "help",
+      });
+      toggleHelpMenu.connect("activate", () => {
+        this._help_button.active = !this._help_button.active;
+      });
+
       this.add_action(recycleQuizAction);
       this.add_action(newGameAction);
       this.add_action(solveGameAction);
@@ -221,6 +231,28 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.add_action(rankingsAction);
       this.add_action(statisticsAction);
       this.add_action(goBackToPuzzleViewAction);
+      this.add_action(toggleHelpMenu);
+    };
+
+    createControlActions = () => {
+      const actions = ["hint", "shuffle", "check", "delete"];
+
+      for (const action of actions) {
+        this.add_action(Gio.SimpleAction.new(action, null));
+      }
+
+      this.lookup_action("hint")?.connect("activate", () => {
+        this.showHint();
+      });
+      this.lookup_action("shuffle")?.connect("activate", () => {
+        this.shuffleLetters();
+      });
+      this.lookup_action("check")?.connect("activate", () => {
+        this.checkEntry();
+      });
+      this.lookup_action("delete")?.connect("activate", () => {
+        this.deleteEntry();
+      });
     };
 
     updateScore = () => {
@@ -715,7 +747,6 @@ export const SpellingbeeWindow = GObject.registerClass(
 
     bindProperties = () => {
       this._entry.connect("icon-press", this.entryIconPressHandler);
-      this._button_help.connect("clicked", this.showHint);
       this._flowbox.bind_model(this.beeState.wordsFound, this.createWidgetFunc);
       this.beeState.wordsFound.bind_property_full(
         "n_items",

@@ -23,7 +23,7 @@
                         <child type="top">
                           <object class="AdwHeaderBar">
                             <child type="start">
-                              <object class="GtkMenuButton">
+                              <object class="GtkMenuButton" id="help_button">
                                 <property name="tooltip-text" translatable="yes">Help</property>
                                 <property name="menu-model">help_menu</property>
                                 <style>
@@ -109,6 +109,7 @@
                                           <class name="circular" />
                                           <class name="padding" />
                                         </style>
+                                        <property name="action-name">win.hint</property>
                                       </object>
                                     </child>
                                     <child>
@@ -119,7 +120,7 @@
                                           <class name="circular" />
                                           <class name="padding" />
                                         </style>
-                                        <signal name="clicked" handler="shuffleLetters" object="SpellingbeeWindow" swapped="no" />
+                                        <property name="action-name">win.shuffle</property>
                                       </object>
                                     </child>
                                     <child>
@@ -130,7 +131,7 @@
                                           <class name="circular" />
                                           <class name="padding" />
                                         </style>
-                                        <signal name="clicked" handler="checkEntry" object="SpellingbeeWindow" swapped="no" />
+                                        <property name="action-name">win.check</property>
                                       </object>
                                     </child>
                                     <child>
@@ -141,7 +142,7 @@
                                           <class name="circular" />
                                           <class name="padding" />
                                         </style>
-                                        <signal name="clicked" handler="deleteEntry" object="SpellingbeeWindow" swapped="no" />
+                                        <property name="action-name">win.delete</property>
                                       </object>
                                     </child>
                                   </object>
