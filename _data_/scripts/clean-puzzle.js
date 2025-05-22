@@ -64,21 +64,6 @@ const puzzle = require("../store/generated-puzzles.json");
 
 cleanPuzzle(puzzle)
   .then(async (cleanPuzzle) => {
-    for (const puzzle of cleanPuzzle) {
-      if (puzzle.words.length < 10) {
-        console.log(puzzle.words.length, "----->", puzzle.words);
-      }
-    }
-    // let wordsSet = new Set();
-    // for (const { words } of cleanPuzzle) {
-    //   wordsSet = wordsSet.union(new Set(words));
-    // }
-
-    // const result = [...wordsSet];
-    // console.log("There are %d unique words.", result.length)
-    // const filePath = path.join(dataDir, "unique-words.json");
-    // await fs.writeFile(filePath, JSON.stringify(result, null, 2), {
-    //   encoding: "utf-8",
-    // });
+    console.log("Cleaned puzzle");
   })
   .catch((error) => console.error(error));
