@@ -1,3 +1,35 @@
+const goodWordsArray = require("../store/good-words/index.js");
+const { dataSources: dataSourcesArray } = require("./data-sources.js");
+const fs = require("fs");
+const path = require("path");
+
+module.exports.extractBadWords = function () {
+  const dataSources = dataSourcesArray.filter(
+    (dataSource) =>
+      !!goodWordsArray.find((goodWord) => dataSource.id === goodWord.id)
+  );
+
+  let extractedBadWords = [];
+
+  for (const { id, fileName } of dataSources) {
+    const filePath = path.join(__dirname, "..", "store", "tmp", fileName);
+    const badWords = JSON.parse(
+      fs.readFileSync(filePath, { encoding: "utf-8" })
+    );
+    const goodWords =
+      goodWordsArray.find((goodWord) => goodWord.id === id)?.words ?? [];
+
+    const badWordsSet = new Set(badWords);
+    const goodWordsSet = new Set(goodWords);
+
+    extractedBadWords.push(...badWordsSet.difference(goodWordsSet));
+  }
+
+  extractedBadWords = extractedBadWords.filter((word) => word.length > 3);
+
+  return [...new Set(extractedBadWords)].sort();
+};
+
 module.exports.processText = function (text) {
   const textArray = text.trim().split("\n");
   return textArray.map((txt) => txt.trim().toLowerCase());
