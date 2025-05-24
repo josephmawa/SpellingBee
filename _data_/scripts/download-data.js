@@ -23,7 +23,9 @@ async function downloadTextData(urlArrays) {
     );
 
     const processedData = data.map((dataString) => {
-      return processText(dataString).filter((word) => word.length > 3);
+      return processText(dataString)
+        .filter((word) => word.length > 3)
+        .toSorted();
     });
 
     await saveData(
@@ -51,13 +53,10 @@ async function saveData(data) {
   }
 }
 
-async function downloadJsonData(urlArrays) {
+async function downloadJsonData(object) {
   try {
-    const data = await Promise.all(
-      urlArrays.map(async (object) => {
-        return fetch(object.url).then((response) => response.json());
-      })
-    );
+    const response = await fetch(object.url);
+    const data = await response.json();
 
     return data;
   } catch (error) {
@@ -69,34 +68,38 @@ async function downloadData() {
   const textPaths = dataSources.filter(({ url }) => {
     return url.toLowerCase().endsWith(".txt");
   });
-
-  const jsonPaths = dataSources.filter(({ url }) => {
-    return url.toLowerCase().endsWith(".json");
-  });
-
   await downloadTextData(textPaths);
 
-  const [capitalCities] = await downloadJsonData([jsonPaths[0]]);
+  const capitalCitiesObject = dataSources.find(({ id }) => id === 3);
+  const capitalCities = await downloadJsonData(capitalCitiesObject);
   await saveData([
     {
       data: processCapitals(capitalCities),
-      fileName: jsonPaths[0].fileName,
+      fileName: capitalCitiesObject.fileName,
     },
   ]);
 
-  const [countriesAndNationalities] = await downloadJsonData([jsonPaths[1]]);
+  const countriesAndNationalitiesObject = dataSources.find(
+    ({ id }) => id === 4
+  );
+  const countriesAndNationalities = await downloadJsonData(
+    countriesAndNationalitiesObject
+  );
   await saveData([
     {
       data: processCountriesAndNationalities(countriesAndNationalities),
-      fileName: jsonPaths[1].fileName,
+      fileName: countriesAndNationalitiesObject.fileName,
     },
   ]);
 
-  const [dict] = await downloadJsonData([jsonPaths.at(-1)]);
+   const dictionaryObject = dataSources.find(
+    ({ id }) => id === 5
+  );
+  const dictionary = await downloadJsonData(dictionaryObject);
   await saveData([
     {
-      data: processDictionary(dict),
-      fileName: jsonPaths.at(-1).fileName,
+      data: processDictionary(dictionary),
+      fileName: dictionaryObject.fileName,
     },
   ]);
 }
