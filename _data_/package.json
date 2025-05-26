@@ -6,6 +6,7 @@
     "download:data": "node --no-network-family-autoselection scripts/download-data.js",
     "clean:data": "node scripts/clean-data.js",
     "delete:data": "node scripts/delete-data.js",
+    "generate:words": "node scripts/generate-words.js",
     "clean:puzzle": "node scripts/clean-puzzle.js"
   },
   "keywords": [],
