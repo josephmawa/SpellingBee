@@ -1,7 +1,8 @@
-const goodWordsArray = require("../store/good-words/index.js");
-const { dataSources: dataSourcesArray } = require("./data-sources.js");
 const fs = require("fs");
 const path = require("path");
+
+const goodWordsArray = require("../store/good-words/index.js");
+const { dataSources: dataSourcesArray } = require("./data-sources.js");
 
 module.exports.extractBadWords = function () {
   let goodWordsSet = new Set();
