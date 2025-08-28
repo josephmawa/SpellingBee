@@ -65,4 +65,4 @@ This project is [GPL-3.0 Licensed](./COPYING).
 
 ## Copyright
 
-Copyright © 2025 [Joseph Mawa](https://github.com/josephmawa)
+© 2025 [Joseph Mawa](https://github.com/josephmawa)
