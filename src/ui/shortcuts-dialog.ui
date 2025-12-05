@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkShortcutsWindow" id="help_overlay">
-    <property name="modal">True</property>
+  <object class="AdwShortcutsDialog" id="shortcuts_dialog">
     <child>
-      <object class="GtkShortcutsSection">
-        <property name="section-name">shortcuts</property>
-        <property name="max-height">10</property>
-        <child>
-          <object class="GtkShortcutsGroup">
+          <object class="AdwShortcutsSection">
             <property name="title" translatable="yes" context="shortcut window">General</property>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Open Main Menu</property>
-                <property name="shortcut-type">accelerator</property>
                 <property name="accelerator">F10</property>
               </object>
             </child>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Show Shortcuts</property>
-                <property name="action-name">win.show-help-overlay</property>
+                <property name="action-name">app.shortcuts</property>
               </object>
             </child>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Quit</property>
                 <property name="action-name">app.quit</property>
               </object>
             </child>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Preferences</property>
                 <property name="action-name">app.preferences</property>
               </object>
@@ -37,28 +31,28 @@
           </object>
         </child>
         <child>
-          <object class="GtkShortcutsGroup">
+          <object class="AdwShortcutsSection">
             <property name="title" translatable="yes" context="shortcut window">Puzzle</property>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Display Hint</property>
                 <property name="action-name">win.hint</property>
               </object>
             </child>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Shuffle Letters</property>
                 <property name="action-name">win.shuffle</property>
               </object>
             </child>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Check Word</property>
                 <property name="action-name">win.check</property>
               </object>
             </child>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Delete Entry</property>
                 <property name="action-name">win.delete</property>
               </object>
@@ -66,10 +60,10 @@
           </object>
         </child>
         <child>
-          <object class="GtkShortcutsGroup">
+          <object class="AdwShortcutsSection">
             <property name="title" translatable="yes" context="shortcut window">Help</property>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Open Help Menu</property>
                 <property name="action-name">win.help</property>
               </object>
@@ -77,10 +71,10 @@
           </object>
         </child>
         <child>
-          <object class="GtkShortcutsGroup">
+          <object class="AdwShortcutsSection">
             <property name="title" translatable="yes" context="shortcut window">Navigation</property>
             <child>
-              <object class="GtkShortcutsShortcut">
+              <object class="AdwShortcutsItem">
                 <property name="title" translatable="yes" context="shortcut window">Back To Main View</property>
                 <property name="action-name">win.go-back</property>
               </object>
@@ -88,6 +82,4 @@
           </object>
         </child>
       </object>
-    </child>
-  </object>
 </interface>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/io/github/josephmawa/SpellingBee">
-    <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/help-overlay.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts-dialog.ui</file>
     <file compressed="true" preprocess="xml-stripblanks" alias="help.ui">ui/help.ui</file>
     <file compressed="true" preprocess="xml-stripblanks" alias="how-to-play.ui">ui/how-to-play.ui</file>
     <file compressed="true" preprocess="xml-stripblanks" alias="preferences.ui">ui/preferences.ui</file>
