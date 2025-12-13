@@ -1,0 +1,490 @@
+# VIETNAMESE TRANSLATION
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the spellingbee package.
+# Loc Huynh <huynhloc.contact@gmail.com>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: spellingbee\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-11 09:25+0300\n"
+"PO-Revision-Date: 2025-12-13 23:28+0700\n"
+"Last-Translator: Loc Huynh <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.8\n"
+
+#: data/io.github.josephmawa.SpellingBee.desktop.in:3 data/io.github.josephmawa.SpellingBee.metainfo.xml.in:7 src/ui/window.ui:6
+msgid "Spelling Bee"
+msgstr "Spelling Bee"
+
+#. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
+#: data/io.github.josephmawa.SpellingBee.desktop.in:10
+msgid "Learn;English;Word:Vocabulary;Spelling;Spell;Game;Puzzle;Bee;"
+msgstr "Learn;English;Word:Vocabulary;Spelling;Spell;Game;Puzzle;Bee;học;tiếng anh;từ;vốn từ;đánh vần;trò chơi;đố chữ;ong;"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:8
+msgid "Learn new English words"
+msgstr "Học các từ tiếng Anh mới"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:10
+msgid "Use Spelling Bee to enhance your English vocabulary while having fun."
+msgstr "Sử dụng Spelling Bee để nâng cao vốn từ tiếng Anh trong khi giải trí."
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:11
+msgid "Below are the main features:"
+msgstr "Các tính năng chính:"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:13
+msgid "Provides thousands of words"
+msgstr "Cung cấp hàng nghìn từ"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:14
+msgid "You can play it offline"
+msgstr "Có thể chơi offline"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:15
+msgid "It provides links to the meaning of words"
+msgstr "Cung cấp liên kết đến nghĩa của từ"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:16
+msgid "You can view puzzle history"
+msgstr "Có thể xem lịch sử câu đố"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:17
+msgid "You can view your score"
+msgstr "Có thể xem điểm số của bạn"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:18
+msgid "Switch to dark, light, or system mode"
+msgstr "Chuyển sang chế độ tối, sáng hoặc hệ thống"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:23
+msgid "Joseph Mawa"
+msgstr "Joseph Mawa"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:43
+msgid "Spelling Bee in dark mode"
+msgstr "Spelling Bee ở chế độ tối"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:47
+msgid "Spelling Bee in light mode"
+msgstr "Spelling Bee ở chế độ sáng"
+
+#: src/ui/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Chung"
+
+#: src/ui/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Open Menu"
+msgstr "Mở menu"
+
+#: src/ui/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Hiện phím tắt"
+
+#: src/ui/help-overlay.ui:27
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Thoát"
+
+#: src/ui/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Preferences"
+msgstr "Tùy chọn"
+
+#: src/ui/help.ui:13
+msgid "Hints"
+msgstr "Gợi ý"
+
+#: src/ui/help.ui:57
+msgid "<span size=\"x-large\" weight=\"bold\">Two Letter List</span>"
+msgstr "<span size=\"x-large\" weight=\"bold\">Danh sách hai chữ cái</span>"
+
+#: src/ui/how-to-play.ui:15
+msgid "How to play Spelling Bee"
+msgstr "Cách chơi Spelling Bee"
+
+#: src/ui/preferences.ui:7 src/ui/preferences.ui:13
+msgid "Preferences"
+msgstr "Tùy chọn"
+
+#: src/ui/preferences.ui:16
+msgid "Color Theme"
+msgstr "Chủ đề màu"
+
+#: src/ui/preferences.ui:22
+msgid "Color theme"
+msgstr "Chủ đề màu"
+
+#: src/ui/preferences.ui:38
+msgctxt "System color theme"
+msgid "System"
+msgstr "Hệ thống"
+
+#: src/ui/preferences.ui:52
+msgctxt "Light color theme"
+msgid "Light"
+msgstr "Sáng"
+
+#: src/ui/preferences.ui:66
+msgctxt "Dark color theme"
+msgid "Dark"
+msgstr "Tối"
+
+#: src/ui/preferences.ui:80
+msgid "Quiz Settings"
+msgstr "Cài đặt câu đố"
+
+#: src/ui/preferences.ui:83
+msgid "Recycle Quiz"
+msgstr "Tái sử dụng câu đố"
+
+#: src/ui/preferences.ui:84 src/ui/preferences.ui:94
+msgid "Recycle attempted quiz"
+msgstr "Tái sử dụng câu đố đã chơi"
+
+#: src/ui/preferences.ui:96
+msgctxt "accessibility"
+msgid "Recycle attempted quiz"
+msgstr "Tái sử dụng câu đố đã chơi"
+
+#: src/ui/rankings.ui:15 src/ui/window.ui:358
+msgid "Rankings"
+msgstr "Xếp hạng"
+
+#: src/ui/rankings.ui:43
+msgid "Ranks for the current puzzle"
+msgstr "Xếp hạng cho câu đố hiện tại"
+
+#: src/ui/rankings.ui:54
+msgid "Below are the minimum scores you need to reach each rank."
+msgstr "Dưới đây là điểm tối thiểu để đạt từng hạng."
+
+#: src/ui/rankings.ui:94
+msgid "No rankings for this puzzle"
+msgstr "Không có xếp hạng cho câu đố này"
+
+#: src/ui/statistics.ui:15 src/ui/window.ui:354
+msgid "Statistics"
+msgstr "Thống kê"
+
+#: src/ui/statistics.ui:44
+msgid "Your puzzle statistics"
+msgstr "Thống kê câu đố của bạn"
+
+#: src/ui/statistics.ui:73
+msgid "Only statistics for the last <b>20 games</b> are available."
+msgstr "Chỉ có thống kê cho <b>20 ván</b> gần nhất."
+
+#: src/ui/statistics.ui:98
+msgid "No statistics yet"
+msgstr "Chưa có thống kê"
+
+#: src/ui/window.ui:27
+msgid "Help"
+msgstr "Trợ giúp"
+
+#: src/ui/window.ui:36
+msgid "Main Menu"
+msgstr "Menu chính"
+
+#: src/ui/window.ui:64 src/ui/window.ui:65
+msgid "Enter Word"
+msgstr "Nhập từ"
+
+#: src/ui/window.ui:67 src/ui/window.ui:120
+msgid "Delete"
+msgstr "Xóa"
+
+#: src/ui/window.ui:88
+msgid "Hint"
+msgstr "Gợi ý"
+
+#: src/ui/window.ui:98
+msgid "Shuffle"
+msgstr "Xáo trộn"
+
+#: src/ui/window.ui:109
+msgid "Check"
+msgstr "Kiểm tra"
+
+#: src/ui/window.ui:202
+msgid "No Words Found Yet"
+msgstr "Chưa tìm thấy từ nào"
+
+#: src/ui/window.ui:264
+msgctxt "Back to main screen"
+msgid "Back"
+msgstr "Quay lại"
+
+#: src/ui/window.ui:266
+msgctxt "accessibility"
+msgid "Back"
+msgstr "Quay lại"
+
+#: src/ui/window.ui:286
+msgid "Puzzle Solution"
+msgstr "Lời giải câu đố"
+
+#: src/ui/window.ui:334
+msgid "_Preferences"
+msgstr "_Tùy chọn"
+
+#: src/ui/window.ui:338
+msgid "_Keyboard Shortcuts"
+msgstr "_Phím tắt"
+
+#: src/ui/window.ui:342
+msgid "_About Spelling Bee"
+msgstr "_Giới thiệu Spelling Bee"
+
+#: src/ui/window.ui:350
+msgid "How To Play"
+msgstr "Cách chơi"
+
+#: src/ui/window.ui:362 src/alert-dialogs.js:14
+msgid "New Puzzle"
+msgstr "Câu đố mới"
+
+#: src/ui/window.ui:366 src/alert-dialogs.js:31 src/alert-dialogs.js:40
+msgid "Solve Puzzle"
+msgstr "Giải câu đố"
+
+#: src/ui/words.ui:15 src/statistics.js:14
+msgid "Words"
+msgstr "Từ"
+
+#: src/util/util.js:48
+#, javascript-format
+msgid "Good +%d"
+msgstr "Tốt +%d"
+
+#: src/util/util.js:49
+#, javascript-format
+msgid "Great +%d"
+msgstr "Rất tốt +%d"
+
+#: src/util/util.js:50
+#, javascript-format
+msgid "Amazing +%d"
+msgstr "Tuyệt vời +%d"
+
+#: src/util/util.js:51
+#, javascript-format
+msgid "Superb +%d"
+msgstr "Xuất sắc +%d"
+
+#: src/about.js:15
+msgid "translator-credits"
+msgstr ""
+"  Vietnam Linux L10n <https://github.com/linux-l10n-vi>\n"
+"  Loc Huynh <https://github.com/hthienloc>"
+
+#: src/alert-dialogs.js:5
+msgid "Start New Puzzle"
+msgstr "Bắt đầu câu đố mới"
+
+#: src/alert-dialogs.js:7
+msgid "Are you sure you want to start a new puzzle? Your progress will not be saved."
+msgstr "Bạn có chắc muốn bắt đầu câu đố mới không? Tiến trình hiện tại sẽ không được lưu."
+
+#: src/alert-dialogs.js:15 src/alert-dialogs.js:41 src/alert-dialogs.js:66
+msgid "Close Dialog"
+msgstr "Đóng hộp thoại"
+
+#: src/alert-dialogs.js:33
+msgid "Are you sure you want to view the solution for this puzzle? Your progress will not be saved."
+msgstr "Bạn có chắc muốn xem lời giải cho câu đố này không? Tiến trình hiện tại sẽ không được lưu."
+
+#: src/alert-dialogs.js:56
+msgid "Go Back To  Main View"
+msgstr "Quay lại màn hình chính"
+
+#: src/alert-dialogs.js:58
+msgid "Are you sure you want to go back to the main view? This will start a new game."
+msgstr "Bạn có chắc muốn quay lại màn hình chính không? Thao tác này sẽ bắt đầu ván mới."
+
+#: src/alert-dialogs.js:65
+msgid "Go Back"
+msgstr "Quay lại"
+
+#: src/how-to-play.js:5
+msgid "The Rules"
+msgstr "Luật chơi"
+
+#: src/how-to-play.js:8
+msgid "Create words using the <span weight=\"ultrabold\">provided letters</span>"
+msgstr "Tạo từ bằng <span weight=\"ultrabold\">các chữ cái được cung cấp</span>"
+
+#: src/how-to-play.js:9
+msgid "The words <span weight=\"ultrabold\">must contain at least 4 letters</span>"
+msgstr "Từ <span weight=\"ultrabold\">phải có ít nhất 4 chữ cái</span>"
+
+#: src/how-to-play.js:10
+msgid "Each word <span weight=\"ultrabold\">must include the center letter</span>"
+msgstr "Mỗi từ <span weight=\"ultrabold\">phải chứa chữ cái ở giữa</span>"
+
+#: src/how-to-play.js:11
+msgid "Provided <span weight=\"ultrabold\">letters can be used more than once</span>"
+msgstr "<span weight=\"ultrabold\">Chữ cái được cung cấp có thể dùng nhiều lần</span>"
+
+#: src/how-to-play.js:15
+msgid "The Scores"
+msgstr "Cách tính điểm"
+
+#: src/how-to-play.js:18
+msgid "Each <span weight=\"ultrabold\">four-letter</span> word is worth <span  weight=\"ultrabold\">one point</span>"
+msgstr "Mỗi từ <span weight=\"ultrabold\">4 chữ cái</span> được <span weight=\"ultrabold\">1 điểm</span>"
+
+#: src/how-to-play.js:19
+msgid "<span weight=\"ultrabold\">Longer words</span> earn <span weight=\"ultrabold\">one point per letter</span>"
+msgstr "<span weight=\"ultrabold\">Từ dài hơn</span> được <span weight=\"ultrabold\">1 điểm mỗi chữ cái</span>"
+
+#: src/how-to-play.js:20
+msgid "Words containing <span weight=\"ultrabold\">all the letters</span> earn <span weight=\"ultrabold\">seven additional points</span>"
+msgstr "Từ chứa <span weight=\"ultrabold\">tất cả các chữ cái</span> được cộng <span weight=\"ultrabold\">7 điểm thưởng</span>"
+
+#: src/how-to-play.js:23
+msgid "About Hints"
+msgstr "Về gợi ý"
+
+#: src/how-to-play.js:26
+msgid "The symbol, <span weight=\"ultrabold\">Σ</span>, is short for <span weight=\"ultrabold\">sum</span>"
+msgstr "Ký hiệu <span weight=\"ultrabold\">Σ</span> là viết tắt của <span weight=\"ultrabold\">tổng</span>"
+
+#: src/how-to-play.js:27
+msgid "The <span weight=\"ultrabold\">first column</span> contains the provided letters eg E, K, L, etc"
+msgstr "<span weight=\"ultrabold\">Cột đầu tiên</span> chứa các chữ cái được cung cấp ví dụ E, K, L, v.v."
+
+#: src/how-to-play.js:28
+msgid "The <span weight=\"ultrabold\">last column</span> contains the total number of words that begin with the corresponding letter"
+msgstr "<span weight=\"ultrabold\">Cột cuối</span> chứa tổng số từ bắt đầu bằng chữ cái tương ứng"
+
+#: src/how-to-play.js:29
+msgid "The <span weight=\"ultrabold\">first row</span> contains the word lengths e.g. 4 letters, 5 letters, etc"
+msgstr "<span weight=\"ultrabold\">Hàng đầu tiên</span> chứa độ dài từ ví dụ 4 chữ cái, 5 chữ cái, v.v."
+
+#: src/how-to-play.js:30
+msgid "The <span weight=\"ultrabold\">last row</span> contains the total number of 4-letter words, 5-letter words, etc"
+msgstr "<span weight=\"ultrabold\">Hàng cuối</span> chứa tổng số từ 4 chữ cái, 5 chữ cái, v.v."
+
+#: src/how-to-play.js:31
+msgid "The <span weight=\"ultrabold\">non-edge(inner) table cells</span> contain the number of n-letter words that begin with a particular letter"
+msgstr "<span weight=\"ultrabold\">Các ô bên trong bảng</span> chứa số lượng từ n chữ cái bắt đầu bằng một chữ cái nhất định"
+
+#: src/how-to-play.js:32
+msgid ""
+"The <span weight=\"ultrabold\">two-letter list</span> contains the number of words that begin with the given pair of letters e.g. DE-20 means 20 words "
+"begin with the letters DE"
+msgstr ""
+"<span weight=\"ultrabold\">Danh sách hai chữ cái</span> chứa số lượng từ bắt đầu bằng cặp chữ cái tương ứng, ví dụ DE-20 nghĩa là có 20 từ bắt đầu bằng DE"
+
+#: src/rankings.js:9
+msgid "Novice"
+msgstr "Tân binh"
+
+#: src/rankings.js:10
+msgid "Apprentice"
+msgstr "Học việc"
+
+#: src/rankings.js:11
+msgid "Competent"
+msgstr "Thành thạo"
+
+#: src/rankings.js:12
+msgid "Skilled"
+msgstr "Giỏi"
+
+#: src/rankings.js:13
+msgid "Masterful"
+msgstr "Bậc thầy"
+
+#: src/rankings.js:14
+msgid "Exceptional"
+msgstr "Xuất chúng"
+
+#: src/rankings.js:15
+msgid "Amazing"
+msgstr "Tuyệt vời"
+
+#: src/rankings.js:16
+msgid "Genius"
+msgstr "Thiên tài"
+
+#: src/rankings.js:107
+msgid "<small>Highest rank, congratulations</small>"
+msgstr "<small>Hạng cao nhất, chúc mừng</small>"
+
+#: src/rankings.js:117
+#, javascript-format
+msgid "<small><b>%d</b> point to <b>%s</b></small>"
+msgid_plural "<small><b>%d</b> points to <b>%s</b></small>"
+msgstr[0] "<small><b>%d</b> điểm đến <b>%s</b></small>"
+
+#: src/rankings.js:128
+#, javascript-format
+msgid "<small><b>%d</b> point to <b>%s</b>, <b>%d</b> to <b>%s</b></small>"
+msgid_plural "<small><b>%d</b> points to <b>%s</b>, <b>%d</b> to <b>%s</b></small>"
+msgstr[0] "<small><b>%d</b> điểm đến <b>%s</b>, <b>%d</b> đến <b>%s</b></small>"
+
+#: src/statistics.js:9
+msgid "No."
+msgstr "STT"
+
+#: src/statistics.js:10
+msgid "Center Letter"
+msgstr "Chữ cái trung tâm"
+
+#: src/statistics.js:11
+msgid "Outer Letters"
+msgstr "Chữ cái bên ngoài"
+
+#: src/statistics.js:12
+msgid "Score"
+msgstr "Điểm"
+
+#: src/statistics.js:13
+msgid "Total Score"
+msgstr "Tổng điểm"
+
+#: src/window.js:110
+msgid "Recycled attempted quiz"
+msgstr "Đã tái sử dụng câu đố đã chơi"
+
+#: src/window.js:112
+msgid "No attempted quiz"
+msgstr "Chưa có câu đố đã chơi"
+
+#: src/window.js:393 src/window.js:574
+#, javascript-format
+msgid "%d words · %d points"
+msgstr "%d từ · %d điểm"
+
+#: src/window.js:475
+msgid "Too Short"
+msgstr "Quá ngắn"
+
+#: src/window.js:486
+msgid "Contains Invalid Letter"
+msgstr "Chứa chữ cái không hợp lệ"
+
+#: src/window.js:491
+msgid "Missing Center Letter"
+msgstr "Thiếu chữ cái trung tâm"
+
+#: src/window.js:506
+msgid "Already Found"
+msgstr "Đã tìm thấy"
+
+#: src/window.js:511
+msgid "Word Not Found"
+msgstr "Không tìm thấy từ"
