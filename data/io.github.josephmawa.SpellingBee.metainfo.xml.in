@@ -49,6 +49,15 @@
   </screenshots>
 
   <releases>
+    <release version="0.1.3" date="2025-12-31">
+      <description translate="no">
+        <ul>
+          <li>Add Vietnamese translation</li>
+          <li>Upgrade to Gnome version 49</li>
+          <li>Upgrade to AdwShortcutsDialog</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.2" date="2025-05-31">
       <description translate="no">
         <ul>
