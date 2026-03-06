@@ -11,7 +11,8 @@ const aboutParams = {
   license_type: Gtk.License.LGPL_3_0,
   developers: ["Joseph Mawa"],
   artists: ["Joseph Mawa"],
-  copyright: "Copyright © 2025 Joseph Mawa",
+  copyright: "© 2025 Joseph Mawa",
+  // Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
   translator_credits: _("translator-credits"),
   website: URL,
   issue_url: URL + "/issues",
