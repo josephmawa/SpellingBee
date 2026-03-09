@@ -1,6 +1,5 @@
-import GObject from "gi://GObject";
 import Gio from "gi://Gio";
-import Gtk from "gi://Gtk?version=4.0";
+import GObject from "gi://GObject";
 import Adw from "gi://Adw?version=1";
 
 import { SpellingbeeWindow } from "./window.js";
@@ -51,11 +50,9 @@ export const SpellingbeeApplication = GObject.registerClass(
     }
 
     vfunc_activate() {
-      let { active_window } = this;
-
-      if (!active_window) active_window = new SpellingbeeWindow(this);
-
-      active_window.present();
+      let activeWindow = this.active_window;
+      if (!activeWindow) activeWindow = new SpellingbeeWindow(this);
+      activeWindow.present();
     }
   }
 );
