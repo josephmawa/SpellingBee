@@ -16,28 +16,28 @@ export const Hexagon = GObject.registerClass(
         "Label",
         "Label for the hexagon",
         GObject.ParamFlags.READWRITE,
-        ""
+        "",
       ),
       xCoord: GObject.ParamSpec.int(
         "xCoord",
         "x_coord",
         "X co-ordinate of the widget",
         GObject.ParamFlags.READWRITE,
-        0
+        0,
       ),
       yCoord: GObject.ParamSpec.int(
         "yCoord",
         "y_coord",
         "Y co-ordinate of the widget",
         GObject.ParamFlags.READWRITE,
-        0
+        0,
       ),
       position: GObject.ParamSpec.string(
         "position",
         "Position",
         "Position of the hexagon",
         GObject.ParamFlags.READWRITE,
-        ""
+        "",
       ),
     },
     Signals: {
@@ -81,7 +81,7 @@ export const Hexagon = GObject.registerClass(
       this.add_controller(gestureClick);
 
       this.settings = Gio.Settings.new(pkg.name);
-      this.settings.connect("changed::preferred-theme", () => {
+      this.settings.connect("changed::color-scheme", () => {
         this.queue_draw();
       });
 
@@ -108,12 +108,12 @@ export const Hexagon = GObject.registerClass(
       return this.height - 2 * deltaY;
     };
 
-    getTheme = () => {
-      const theme = this.settings.get_string("preferred-theme");
-      if (theme === "system") {
+    getColorScheme = () => {
+      const colorScheme = this.settings.get_int("color-scheme");
+      if (colorScheme === Adw.ColorScheme.DEFAULT) {
         return new Adw.StyleManager().dark ? "dark" : "light";
       }
-      return theme;
+      return colorScheme === Adw.ColorScheme.FORCE_DARK ? "dark" : "light";
     };
 
     vfunc_snapshot(snapshot) {
@@ -171,8 +171,8 @@ export const Hexagon = GObject.registerClass(
         [0, this.height - deltaY],
       ];
 
-      const theme = this.getTheme();
-      if (theme === "dark") {
+      const colorScheme = this.getColorScheme();
+      if (colorScheme === "dark") {
         if (this.position === "CENTER") {
           cairo.setSourceRGBA(...this.darkBackgroundCenter);
         } else {
@@ -194,7 +194,7 @@ export const Hexagon = GObject.registerClass(
       cairo.closePath();
       cairo.fill();
 
-      if (theme === "dark") {
+      if (colorScheme === "dark") {
         cairo.setSourceRGBA(...this.lightColor);
       } else {
         cairo.setSourceRGBA(...this.darkColor);
@@ -231,7 +231,7 @@ export const Hexagon = GObject.registerClass(
         this.emit("click", this.label, x, y);
       }
     };
-  }
+  },
 );
 
 export const Container = GObject.registerClass(
@@ -248,7 +248,7 @@ export const Container = GObject.registerClass(
         // GObject.ParamSpec.int
         5,
         20,
-        5
+        5,
       ),
     },
   },
@@ -265,7 +265,7 @@ export const Container = GObject.registerClass(
         const [width, height] = this.calcDim(
           child.width,
           child.height,
-          child.side
+          child.side,
         );
 
         this.width = width;
@@ -345,5 +345,5 @@ export const Container = GObject.registerClass(
       }
       this.children = [];
     }
-  }
+  },
 );
