@@ -53,7 +53,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         "bee_state",
         "A property holding the state of the current Spelling Bee",
         GObject.ParamFlags.READWRITE,
-        BeeState
+        BeeState,
       ),
     },
     Template: getResourceURI("window.ui"),
@@ -84,7 +84,6 @@ export const SpellingbeeWindow = GObject.registerClass(
       this.loadStyles();
       this.bindSettings();
       this.bindProperties();
-      this.setPreferredColorScheme();
 
       /**
        * NOTE
@@ -159,7 +158,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         const rankings = new Rankings(
           0,
           this.beeState.totalScore,
-          this.beeState.currentScore
+          this.beeState.currentScore,
         );
 
         rankings.set_transient_for(this);
@@ -272,7 +271,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       let attemptedPuzzles = this.getSavedData(filePath);
       const allIndices = Array.from(
         { length: data.length },
-        (_, index) => index
+        (_, index) => index,
       );
 
       const unAttemptedIndices = allIndices.filter((index) => {
@@ -296,7 +295,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       const spellBeeObj = {};
       spellBeeObj.centerLetter = Gio.ListStore.new(Letter);
       spellBeeObj.centerLetter.append(
-        new Letter(toUpperCase(centerLetter), "CENTER")
+        new Letter(toUpperCase(centerLetter), "CENTER"),
       );
 
       spellBeeObj.outerLetters = Gio.ListStore.new(Letter);
@@ -307,7 +306,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         object.label = toUpperCase(outerLetters[i]);
 
         spellBeeObj.outerLetters.append(
-          new Letter(object.label, object.position)
+          new Letter(object.label, object.position),
         );
       }
 
@@ -339,12 +338,12 @@ export const SpellingbeeWindow = GObject.registerClass(
     startNewGame = () => {
       const allIndices = Array.from(
         { length: data.length },
-        (_, index) => index
+        (_, index) => index,
       );
 
       const notAttemptedIndices = allIndices.filter((index) => {
         const searchIndex = this.beeState.attempted.findIndex(
-          (object) => object.index === index
+          (object) => object.index === index,
         );
 
         return searchIndex === -1;
@@ -423,7 +422,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       const wordCount = this.beeState.words.length;
       const statisticsLabel = _("%d words · %d points").format(
         wordCount,
-        totalScore
+        totalScore,
       );
 
       const listStore = Gio.ListStore.new(CorrectWord);
@@ -457,7 +456,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         "letter",
         centerHexagon,
         "label",
-        GObject.BindingFlags.DEFAULT | GObject.BindingFlags.SYNC_CREATE
+        GObject.BindingFlags.DEFAULT | GObject.BindingFlags.SYNC_CREATE,
       );
 
       centerHexagon.connect("click", this.hexClickHandler);
@@ -479,7 +478,7 @@ export const SpellingbeeWindow = GObject.registerClass(
           "letter",
           outerHexagon,
           "label",
-          GObject.BindingFlags.DEFAULT | GObject.BindingFlags.SYNC_CREATE
+          GObject.BindingFlags.DEFAULT | GObject.BindingFlags.SYNC_CREATE,
         );
 
         outerHexagon.connect("click", this.hexClickHandler);
@@ -600,7 +599,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       const wordCount = this.beeState.words.length;
       const statisticsLabel = _("%d words · %d points").format(
         wordCount,
-        totalScore
+        totalScore,
       );
 
       hintWindow._letters.label = lettersLabel;
@@ -678,7 +677,7 @@ export const SpellingbeeWindow = GObject.registerClass(
       this._entry.insert_text(
         labelUpperCase,
         labelUpperCase.length,
-        this._entry.text.length
+        this._entry.text.length,
       );
     };
 
@@ -702,7 +701,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         GLib.quark_to_string(0),
         null,
         null,
-        null
+        null,
       );
 
       GObject.signal_handler_block(editable, handlerId);
@@ -711,7 +710,7 @@ export const SpellingbeeWindow = GObject.registerClass(
         editable.insert_text(
           textUpperCase,
           textUpperCase.length,
-          editable.text.length
+          editable.text.length,
         );
       }
 
@@ -725,24 +724,29 @@ export const SpellingbeeWindow = GObject.registerClass(
         "window-width",
         this,
         "default-width",
-        Gio.SettingsBindFlags.DEFAULT
+        Gio.SettingsBindFlags.DEFAULT,
       );
       this.settings.bind(
         "window-height",
         this,
         "default-height",
-        Gio.SettingsBindFlags.DEFAULT
+        Gio.SettingsBindFlags.DEFAULT,
       );
       this.settings.bind(
         "window-maximized",
         this,
         "maximized",
-        Gio.SettingsBindFlags.DEFAULT
+        Gio.SettingsBindFlags.DEFAULT,
       );
-      this.settings.connect(
-        "changed::preferred-theme",
-        this.setPreferredColorScheme
-      );
+
+      this.application.add_action(this.settings.create_action("color-scheme"));
+      this.settings.connect("changed::color-scheme", this.setColorScheme);
+      this.setColorScheme();
+    };
+
+    setColorScheme = () => {
+      const styleManager = Adw.StyleManager.get_default();
+      styleManager.set_color_scheme(this.settings.get_int("color-scheme"));
     };
 
     bindProperties = () => {
@@ -758,7 +762,7 @@ export const SpellingbeeWindow = GObject.registerClass(
           if (nItems) return [true, "words_found"];
           return [true, "no_words_found"];
         },
-        null
+        null,
       );
     };
 
@@ -769,30 +773,8 @@ export const SpellingbeeWindow = GObject.registerClass(
       Gtk.StyleContext.add_provider_for_display(
         this.display,
         cssProvider,
-        Gtk.STYLE_PROVIDER_PRIORITY_USER
+        Gtk.STYLE_PROVIDER_PRIORITY_USER,
       );
-    };
-
-    setPreferredColorScheme = () => {
-      const preferredColorScheme = this.settings.get_string("preferred-theme");
-
-      const { DEFAULT, FORCE_LIGHT, FORCE_DARK } = Adw.ColorScheme;
-      let colorScheme = DEFAULT;
-
-      if (preferredColorScheme === "system") {
-        colorScheme = DEFAULT;
-      }
-
-      if (preferredColorScheme === "light") {
-        colorScheme = FORCE_LIGHT;
-      }
-
-      if (preferredColorScheme === "dark") {
-        colorScheme = FORCE_DARK;
-      }
-
-      const styleManager = this.application.get_style_manager();
-      styleManager.color_scheme = colorScheme;
     };
 
     createToast = (timeout = 1) => {
@@ -840,7 +822,7 @@ export const SpellingbeeWindow = GObject.registerClass(
           null,
           false,
           Gio.FileCreateFlags.REPLACE_DESTINATION,
-          null
+          null,
         );
 
         if (success) {
@@ -876,5 +858,5 @@ export const SpellingbeeWindow = GObject.registerClass(
         throw new Error("Failed to delete " + dirPath);
       }
     };
-  }
+  },
 );
