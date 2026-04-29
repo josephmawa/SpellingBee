@@ -123,8 +123,6 @@ export const Hexagon = GObject.registerClass(
       let width = this.get_allocated_width();
       let height = this.get_allocated_height();
 
-      // console.log("width: ", this.width, "height: ", this.height);
-
       const midX = this.width / 2;
       const midY = this.height / 2;
 
