@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spellingbee\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-11 09:25+0300\n"
+"POT-Creation-Date: 2026-05-04 16:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: data/io.github.josephmawa.SpellingBee.desktop.in:3
+#: data/io.github.josephmawa.SpellingBee.desktop.in:2
 #: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:7 src/ui/window.ui:6
 msgid "Spelling Bee"
 msgstr ""
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-#: data/io.github.josephmawa.SpellingBee.desktop.in:10
+#: data/io.github.josephmawa.SpellingBee.desktop.in:9
 msgid "Learn;English;Word:Vocabulary;Spelling;Spell;Game;Puzzle;Bee;"
 msgstr ""
 
@@ -76,31 +76,6 @@ msgstr ""
 msgid "Spelling Bee in light mode"
 msgstr ""
 
-#: src/ui/help-overlay.ui:11
-msgctxt "shortcut window"
-msgid "General"
-msgstr ""
-
-#: src/ui/help-overlay.ui:14
-msgctxt "shortcut window"
-msgid "Open Menu"
-msgstr ""
-
-#: src/ui/help-overlay.ui:21
-msgctxt "shortcut window"
-msgid "Show Shortcuts"
-msgstr ""
-
-#: src/ui/help-overlay.ui:27
-msgctxt "shortcut window"
-msgid "Quit"
-msgstr ""
-
-#: src/ui/help-overlay.ui:33
-msgctxt "shortcut window"
-msgid "Preferences"
-msgstr ""
-
 #: src/ui/help.ui:13
 msgid "Hints"
 msgstr ""
@@ -113,51 +88,51 @@ msgstr ""
 msgid "How to play Spelling Bee"
 msgstr ""
 
-#: src/ui/preferences.ui:7 src/ui/preferences.ui:13
+#: src/ui/preferences.ui:6 src/ui/preferences.ui:12
 msgid "Preferences"
 msgstr ""
 
-#: src/ui/preferences.ui:16
+#: src/ui/preferences.ui:15
 msgid "Color Theme"
 msgstr ""
 
-#: src/ui/preferences.ui:22
-msgid "Color theme"
+#: src/ui/preferences.ui:16
+msgid "Set color theme"
 msgstr ""
 
-#: src/ui/preferences.ui:38
+#: src/ui/preferences.ui:20
 msgctxt "System color theme"
 msgid "System"
 msgstr ""
 
-#: src/ui/preferences.ui:52
+#: src/ui/preferences.ui:35
 msgctxt "Light color theme"
 msgid "Light"
 msgstr ""
 
-#: src/ui/preferences.ui:66
+#: src/ui/preferences.ui:50
 msgctxt "Dark color theme"
 msgid "Dark"
 msgstr ""
 
-#: src/ui/preferences.ui:80
+#: src/ui/preferences.ui:66
 msgid "Quiz Settings"
 msgstr ""
 
-#: src/ui/preferences.ui:83
+#: src/ui/preferences.ui:69
 msgid "Recycle Quiz"
 msgstr ""
 
-#: src/ui/preferences.ui:84 src/ui/preferences.ui:94
+#: src/ui/preferences.ui:70 src/ui/preferences.ui:80
 msgid "Recycle attempted quiz"
 msgstr ""
 
-#: src/ui/preferences.ui:96
+#: src/ui/preferences.ui:82
 msgctxt "accessibility"
 msgid "Recycle attempted quiz"
 msgstr ""
 
-#: src/ui/rankings.ui:15 src/ui/window.ui:358
+#: src/ui/rankings.ui:15 src/ui/window.ui:378
 msgid "Rankings"
 msgstr ""
 
@@ -173,7 +148,77 @@ msgstr ""
 msgid "No rankings for this puzzle"
 msgstr ""
 
-#: src/ui/statistics.ui:15 src/ui/window.ui:354
+#: src/ui/shortcuts-dialog.ui:6
+msgctxt "shortcut window"
+msgid "General"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:9
+msgctxt "shortcut window"
+msgid "Open Main Menu"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:15
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:21
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:27
+msgctxt "shortcut window"
+msgid "Preferences"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:35
+msgctxt "shortcut window"
+msgid "Puzzle"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:38
+msgctxt "shortcut window"
+msgid "Display Hint"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:44
+msgctxt "shortcut window"
+msgid "Shuffle Letters"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:50
+msgctxt "shortcut window"
+msgid "Check Word"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:56
+msgctxt "shortcut window"
+msgid "Delete Entry"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:64
+msgctxt "shortcut window"
+msgid "Help"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:67
+msgctxt "shortcut window"
+msgid "Open Help Menu"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:75
+msgctxt "shortcut window"
+msgid "Navigation"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:78
+msgctxt "shortcut window"
+msgid "Back To Main View"
+msgstr ""
+
+#: src/ui/statistics.ui:15 src/ui/window.ui:374
 msgid "Statistics"
 msgstr ""
 
@@ -193,69 +238,81 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: src/ui/window.ui:36
+#: src/ui/window.ui:37
+msgid "_Help"
+msgstr ""
+
+#: src/ui/window.ui:55
 msgid "Main Menu"
 msgstr ""
 
-#: src/ui/window.ui:64 src/ui/window.ui:65
+#: src/ui/window.ui:83 src/ui/window.ui:84
 msgid "Enter Word"
 msgstr ""
 
-#: src/ui/window.ui:67 src/ui/window.ui:120
+#: src/ui/window.ui:86 src/ui/window.ui:140
 msgid "Delete"
 msgstr ""
 
-#: src/ui/window.ui:88
+#: src/ui/window.ui:107
 msgid "Hint"
 msgstr ""
 
-#: src/ui/window.ui:98
+#: src/ui/window.ui:118
 msgid "Shuffle"
 msgstr ""
 
-#: src/ui/window.ui:109
+#: src/ui/window.ui:129
 msgid "Check"
 msgstr ""
 
-#: src/ui/window.ui:202
+#: src/ui/window.ui:159
+msgid "Your Score"
+msgstr ""
+
+#: src/ui/window.ui:184
+msgid "Your Words"
+msgstr ""
+
+#: src/ui/window.ui:220
 msgid "No Words Found Yet"
 msgstr ""
 
-#: src/ui/window.ui:264
+#: src/ui/window.ui:284
 msgctxt "Back to main screen"
 msgid "Back"
 msgstr ""
 
-#: src/ui/window.ui:266
+#: src/ui/window.ui:286
 msgctxt "accessibility"
 msgid "Back"
 msgstr ""
 
-#: src/ui/window.ui:286
+#: src/ui/window.ui:306
 msgid "Puzzle Solution"
 msgstr ""
 
-#: src/ui/window.ui:334
+#: src/ui/window.ui:354
 msgid "_Preferences"
 msgstr ""
 
-#: src/ui/window.ui:338
+#: src/ui/window.ui:358
 msgid "_Keyboard Shortcuts"
 msgstr ""
 
-#: src/ui/window.ui:342
+#: src/ui/window.ui:362
 msgid "_About Spelling Bee"
 msgstr ""
 
-#: src/ui/window.ui:350
+#: src/ui/window.ui:370
 msgid "How To Play"
 msgstr ""
 
-#: src/ui/window.ui:362 src/alert-dialogs.js:14
+#: src/ui/window.ui:382 src/alert-dialogs.js:14
 msgid "New Puzzle"
 msgstr ""
 
-#: src/ui/window.ui:366 src/alert-dialogs.js:31 src/alert-dialogs.js:40
+#: src/ui/window.ui:386 src/alert-dialogs.js:31 src/alert-dialogs.js:40
 msgid "Solve Puzzle"
 msgstr ""
 
@@ -283,7 +340,8 @@ msgstr ""
 msgid "Superb +%d"
 msgstr ""
 
-#: src/about.js:15
+#. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
+#: src/about.js:16
 msgid "translator-credits"
 msgstr ""
 
@@ -326,22 +384,23 @@ msgstr ""
 
 #: src/how-to-play.js:8
 msgid ""
-"Create words using the <span weight=\"ultrabold\">provided letters</span>"
+"Create words using the <span weight=\"ultrabold\">provided letters</span>."
 msgstr ""
 
 #: src/how-to-play.js:9
 msgid ""
-"The words <span weight=\"ultrabold\">must contain at least 4 letters</span>"
+"The words <span weight=\"ultrabold\">must contain at least 4 letters</span>."
 msgstr ""
 
 #: src/how-to-play.js:10
 msgid ""
-"Each word <span weight=\"ultrabold\">must include the center letter</span>"
+"Each word <span weight=\"ultrabold\">must include the center letter</span>."
 msgstr ""
 
 #: src/how-to-play.js:11
 msgid ""
-"Provided <span weight=\"ultrabold\">letters can be used more than once</span>"
+"Provided <span weight=\"ultrabold\">letters can be used more than once</"
+"span>."
 msgstr ""
 
 #: src/how-to-play.js:15
@@ -351,19 +410,19 @@ msgstr ""
 #: src/how-to-play.js:18
 msgid ""
 "Each <span weight=\"ultrabold\">four-letter</span> word is worth <span  "
-"weight=\"ultrabold\">one point</span>"
+"weight=\"ultrabold\">one point</span>."
 msgstr ""
 
 #: src/how-to-play.js:19
 msgid ""
 "<span weight=\"ultrabold\">Longer words</span> earn <span "
-"weight=\"ultrabold\">one point per letter</span>"
+"weight=\"ultrabold\">one point per letter</span>."
 msgstr ""
 
 #: src/how-to-play.js:20
 msgid ""
 "Words containing <span weight=\"ultrabold\">all the letters</span> earn "
-"<span weight=\"ultrabold\">seven additional points</span>"
+"<span weight=\"ultrabold\">seven additional points</span>."
 msgstr ""
 
 #: src/how-to-play.js:23
@@ -373,44 +432,44 @@ msgstr ""
 #: src/how-to-play.js:26
 msgid ""
 "The symbol, <span weight=\"ultrabold\">Σ</span>, is short for <span "
-"weight=\"ultrabold\">sum</span>"
+"weight=\"ultrabold\">sum</span>."
 msgstr ""
 
 #: src/how-to-play.js:27
 msgid ""
 "The <span weight=\"ultrabold\">first column</span> contains the provided "
-"letters eg E, K, L, etc"
+"letters e.g. E, K, L, etc."
 msgstr ""
 
 #: src/how-to-play.js:28
 msgid ""
 "The <span weight=\"ultrabold\">last column</span> contains the total number "
-"of words that begin with the corresponding letter"
+"of words that begin with the corresponding letter."
 msgstr ""
 
 #: src/how-to-play.js:29
 msgid ""
-"The <span weight=\"ultrabold\">first row</span> contains the word lengths e."
-"g. 4 letters, 5 letters, etc"
+"The <span weight=\"ultrabold\">first row</span> contains the word lengths "
+"e.g. 4 letters, 5 letters, etc."
 msgstr ""
 
 #: src/how-to-play.js:30
 msgid ""
 "The <span weight=\"ultrabold\">last row</span> contains the total number of "
-"4-letter words, 5-letter words, etc"
+"4-letter words, 5-letter words, etc."
 msgstr ""
 
 #: src/how-to-play.js:31
 msgid ""
 "The <span weight=\"ultrabold\">non-edge(inner) table cells</span> contain "
-"the number of n-letter words that begin with a particular letter"
+"the number of n-letter words that begin with a particular letter."
 msgstr ""
 
 #: src/how-to-play.js:32
 msgid ""
 "The <span weight=\"ultrabold\">two-letter list</span> contains the number of "
 "words that begin with the given pair of letters e.g. DE-20 means 20 words "
-"begin with the letters DE"
+"begin with the letters DE."
 msgstr ""
 
 #: src/rankings.js:9
@@ -484,35 +543,39 @@ msgstr ""
 msgid "Total Score"
 msgstr ""
 
-#: src/window.js:110
+#: src/statistics.js:76
+msgid "View words"
+msgstr ""
+
+#: src/window.js:111
 msgid "Recycled attempted quiz"
 msgstr ""
 
-#: src/window.js:112
+#: src/window.js:113
 msgid "No attempted quiz"
 msgstr ""
 
-#: src/window.js:393 src/window.js:574
+#: src/window.js:423 src/window.js:600
 #, javascript-format
 msgid "%d words · %d points"
 msgstr ""
 
-#: src/window.js:475
+#: src/window.js:505
 msgid "Too Short"
 msgstr ""
 
-#: src/window.js:486
+#: src/window.js:516
 msgid "Contains Invalid Letter"
 msgstr ""
 
-#: src/window.js:491
+#: src/window.js:521
 msgid "Missing Center Letter"
 msgstr ""
 
-#: src/window.js:506
+#: src/window.js:536
 msgid "Already Found"
 msgstr ""
 
-#: src/window.js:511
+#: src/window.js:541
 msgid "Word Not Found"
 msgstr ""
