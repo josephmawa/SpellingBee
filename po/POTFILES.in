@@ -4,13 +4,11 @@ data/io.github.josephmawa.SpellingBee.desktop.in
 data/io.github.josephmawa.SpellingBee.gschema.xml
 data/io.github.josephmawa.SpellingBee.metainfo.xml.in
 
-src/data/data.js
-
-src/ui/help-overlay.ui
 src/ui/help.ui
 src/ui/how-to-play.ui
 src/ui/preferences.ui
 src/ui/rankings.ui
+src/ui/shortcuts-dialog.ui
 src/ui/statistics.ui
 src/ui/window.ui
 src/ui/words.ui
