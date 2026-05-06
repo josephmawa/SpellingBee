@@ -1,14 +1,14 @@
 # ITALIAN TRANSLATION.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the spellingbee package.
-# ALBANO BATTISTELLA <ALBANOBATTISTELLA@GMAIL.COM>, 2025.
+# ALBANO BATTISTELLA <ALBANOBATTISTELLA@GMAIL.COM>, 2025,2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: spellingbee\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-04 16:57+0300\n"
-"PO-Revision-Date: 2025-05-14 12:00+0100\n"
+"PO-Revision-Date: 2026-05-05 18:00+0100\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -98,9 +98,8 @@ msgid "Color Theme"
 msgstr "Colore del tema"
 
 #: src/ui/preferences.ui:16
-#, fuzzy
 msgid "Set color theme"
-msgstr "Colore del tema"
+msgstr "Imposta colore del tema"
 
 #: src/ui/preferences.ui:20
 msgctxt "System color theme"
@@ -158,10 +157,9 @@ msgid "General"
 msgstr "Generale"
 
 #: src/ui/shortcuts-dialog.ui:9
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Open Main Menu"
-msgstr "Apri il Menu"
+msgstr "Apri il Menu principale"
 
 #: src/ui/shortcuts-dialog.ui:15
 msgctxt "shortcut window"
@@ -182,53 +180,47 @@ msgstr "Preferenze"
 #, fuzzy
 msgctxt "shortcut window"
 msgid "Puzzle"
-msgstr "Nuovo puzzle"
+msgstr "Puzzle"
 
 #: src/ui/shortcuts-dialog.ui:38
 msgctxt "shortcut window"
 msgid "Display Hint"
-msgstr ""
+msgstr "Suggerimento di visualizzazione"
 
 #: src/ui/shortcuts-dialog.ui:44
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Shuffle Letters"
-msgstr "Lettere esterne"
+msgstr "Mescola le lettere"
 
 #: src/ui/shortcuts-dialog.ui:50
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Check Word"
-msgstr "Controlla"
+msgstr "Controlla parola"
 
 #: src/ui/shortcuts-dialog.ui:56
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Delete Entry"
-msgstr "Elimina"
+msgstr "Elimina voce"
 
 #: src/ui/shortcuts-dialog.ui:64
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Help"
 msgstr "Aiuto"
 
 #: src/ui/shortcuts-dialog.ui:67
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Open Help Menu"
-msgstr "Apri il Menu"
+msgstr "Apri menu di aiuto"
 
 #: src/ui/shortcuts-dialog.ui:75
 msgctxt "shortcut window"
 msgid "Navigation"
-msgstr ""
+msgstr "Navigazione"
 
 #: src/ui/shortcuts-dialog.ui:78
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Back To Main View"
-msgstr "Torna alla vista principale"
+msgstr "Torna alla visualizzazione principale"
 
 #: src/ui/statistics.ui:15 src/ui/window.ui:374
 msgid "Statistics"
@@ -251,9 +243,8 @@ msgid "Help"
 msgstr "Aiuto"
 
 #: src/ui/window.ui:37
-#, fuzzy
 msgid "_Help"
-msgstr "Aiuto"
+msgstr "_Aiuto"
 
 #: src/ui/window.ui:55
 msgid "Main Menu"
@@ -280,14 +271,12 @@ msgid "Check"
 msgstr "Controlla"
 
 #: src/ui/window.ui:159
-#, fuzzy
 msgid "Your Score"
-msgstr "Punteggio totale"
+msgstr "Il tuo punteggio"
 
 #: src/ui/window.ui:184
-#, fuzzy
 msgid "Your Words"
-msgstr "Parole"
+msgstr "Le tue parole"
 
 #: src/ui/window.ui:220
 msgid "No Words Found Yet"
@@ -404,82 +393,73 @@ msgid "The Rules"
 msgstr "Le regole"
 
 #: src/how-to-play.js:8
-#, fuzzy
 msgid ""
 "Create words using the <span weight=\"ultrabold\">provided letters</span>."
 msgstr ""
-"Crea parole utilizzando le <span weight=\"ultrabold\">lettere fornite</span>"
+"Crea parole utilizzando le <span weight=\"ultrabold\">lettere fornite</span>."
 
 #: src/how-to-play.js:9
-#, fuzzy
 msgid ""
 "The words <span weight=\"ultrabold\">must contain at least 4 letters</span>."
 msgstr ""
-"Le parole <span weight=\"ultrabold\">devono contenere almeno 4 lettere</span>"
+"Le parole <span weight=\"ultrabold\">devono contenere almeno 4 lettere</span>."
 
 #: src/how-to-play.js:10
-#, fuzzy
 msgid ""
 "Each word <span weight=\"ultrabold\">must include the center letter</span>."
 msgstr ""
-"Ogni parola <span weight=\"ultrabold\">deve includere la lettera centrale</"
-"span>"
+"Ogni parola <span weight=\"ultrabold\">deve includere la lettera centrale"
+"</span>."
 
 #: src/how-to-play.js:11
-#, fuzzy
 msgid ""
 "Provided <span weight=\"ultrabold\">letters can be used more than once</"
 "span>."
 msgstr ""
-"Fornito <span weight=\"ultrabold\">di lettere possano essere utilizzate più "
-"di una volta</span>"
+"Fornito <span weight=\"ultrabold\">di lettere che possano essere utilizzate più "
+"di una volta</span>."
 
 #: src/how-to-play.js:15
 msgid "The Scores"
 msgstr "I punteggi"
 
 #: src/how-to-play.js:18
-#, fuzzy
 msgid ""
 "Each <span weight=\"ultrabold\">four-letter</span> word is worth <span  "
 "weight=\"ultrabold\">one point</span>."
 msgstr ""
 "Ogni parola di <span weight=\"ultrabold\">quattro lettere</span> vale <span "
-"weight=\"ultrabold\">un punto</span>"
+"weight=\"ultrabold\">un punto</span>."
 
 #: src/how-to-play.js:19
-#, fuzzy
 msgid ""
 "<span weight=\"ultrabold\">Longer words</span> earn <span "
 "weight=\"ultrabold\">one point per letter</span>."
 msgstr ""
 "<span weight=\"ultrabold\">Le parole più lunghe</span> guadagnano <span "
-"weight=\"ultrabold\">un punto per lettera</span>"
+"weight=\"ultrabold\">un punto per lettera</span>."
 
 #: src/how-to-play.js:20
-#, fuzzy
 msgid ""
 "Words containing <span weight=\"ultrabold\">all the letters</span> earn "
 "<span weight=\"ultrabold\">seven additional points</span>."
 msgstr ""
 "Le parole che contengono <span weight=\"ultrabold\">tutte le lettere</span> "
-"guadagnano <span weight=\"ultrabold\">sette punti aggiuntivi</span>"
+"guadagnano <span weight=\"ultrabold\">sette punti aggiuntivi</span>."
 
 #: src/how-to-play.js:23
 msgid "About Hints"
 msgstr "Informazioni sui suggerimenti"
 
 #: src/how-to-play.js:26
-#, fuzzy
 msgid ""
 "The symbol, <span weight=\"ultrabold\">Σ</span>, is short for <span "
 "weight=\"ultrabold\">sum</span>."
 msgstr ""
 "Il simbolo <span weight=\"ultrabold\">Σ</span> è l'abbreviazione di <span "
-"weight=\"ultrabold\">somma</span>"
+"weight=\"ultrabold\">somma</span>."
 
 #: src/how-to-play.js:27
-#, fuzzy
 msgid ""
 "The <span weight=\"ultrabold\">first column</span> contains the provided "
 "letters e.g. E, K, L, etc."
@@ -488,16 +468,14 @@ msgstr ""
 "fornite,ad esempio E, K, L, ecc."
 
 #: src/how-to-play.js:28
-#, fuzzy
 msgid ""
 "The <span weight=\"ultrabold\">last column</span> contains the total number "
 "of words that begin with the corresponding letter."
 msgstr ""
 "L'<span weight=\"ultrabold\">ultima colonna</span> contiene il numero totale "
-"di parole che iniziano con la lettera corrispondente"
+"di parole che iniziano con la lettera corrispondente."
 
 #: src/how-to-play.js:29
-#, fuzzy
 msgid ""
 "The <span weight=\"ultrabold\">first row</span> contains the word lengths "
 "e.g. 4 letters, 5 letters, etc."
@@ -506,7 +484,6 @@ msgstr ""
 "parole,ad esempio 4 lettere, 5 lettere, ecc."
 
 #: src/how-to-play.js:30
-#, fuzzy
 msgid ""
 "The <span weight=\"ultrabold\">last row</span> contains the total number of "
 "4-letter words, 5-letter words, etc."
@@ -515,17 +492,15 @@ msgstr ""
 "parole di 4 lettere, parole di 5 lettere, ecc."
 
 #: src/how-to-play.js:31
-#, fuzzy
 msgid ""
 "The <span weight=\"ultrabold\">non-edge(inner) table cells</span> contain "
 "the number of n-letter words that begin with a particular letter."
 msgstr ""
 "Le <span weight=\"ultrabold\">celle della tabella non edge(inner)</span> "
 "contengono il numero di parole di n lettere che iniziano con una lettera "
-"specifica"
+"specifica."
 
 #: src/how-to-play.js:32
-#, fuzzy
 msgid ""
 "The <span weight=\"ultrabold\">two-letter list</span> contains the number of "
 "words that begin with the given pair of letters e.g. DE-20 means 20 words "
@@ -533,7 +508,7 @@ msgid ""
 msgstr ""
 "L'<span weight=\"ultrabold\">elenco di due lettere</span> contiene il numero "
 "di parole che iniziano con la coppia di lettere indicata, ad esempio DE-20 "
-"significa 20 parole che iniziano con le lettere DE"
+"significa 20 parole che iniziano con le lettere DE."
 
 #: src/rankings.js:9
 msgid "Novice"
@@ -608,7 +583,7 @@ msgstr "Punteggio totale"
 
 #: src/statistics.js:76
 msgid "View words"
-msgstr ""
+msgstr "Visualizza le parole"
 
 #: src/window.js:111
 msgid "Recycled attempted quiz"
