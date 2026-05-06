@@ -408,15 +408,15 @@ msgstr ""
 msgid ""
 "Each word <span weight=\"ultrabold\">must include the center letter</span>."
 msgstr ""
-"Ogni parola <span weight=\"ultrabold\">deve includere la lettera centrale>."
-"span>"
+"Ogni parola <span weight=\"ultrabold\">deve includere la lettera centrale"
+"</span>."
 
 #: src/how-to-play.js:11
 msgid ""
 "Provided <span weight=\"ultrabold\">letters can be used more than once</"
 "span>."
 msgstr ""
-"Fornito <span weight=\"ultrabold\">di lettere che possano essere utilizzate più</"
+"Fornito <span weight=\"ultrabold\">di lettere che possano essere utilizzate più "
 "di una volta</span>."
 
 #: src/how-to-play.js:15
