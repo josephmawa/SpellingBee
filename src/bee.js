@@ -1,5 +1,6 @@
 import GObject from "gi://GObject";
 import Gio from "gi://Gio";
+import Gtk from "gi://Gtk";
 
 export const BeeState = GObject.registerClass(
   {
@@ -31,6 +32,13 @@ export const BeeState = GObject.registerClass(
         "A property holding the words user has found",
         GObject.ParamFlags.READWRITE,
         Gio.ListStore
+      ),
+      wordsFoundSorted: GObject.ParamSpec.object(
+        "wordsFoundSorted",
+        "words_found_sorted",
+        "Alphabetically sorted view over wordsFound, bound to the flowbox",
+        GObject.ParamFlags.READWRITE,
+        Gtk.SortListModel
       ),
       attempted: GObject.ParamSpec.jsobject(
         "attempted",
@@ -68,6 +76,7 @@ export const BeeState = GObject.registerClass(
       outerLetters,
       words,
       wordsFound,
+      wordsFoundSorted,
       attempted,
       currentScore,
       totalScore,
@@ -78,6 +87,7 @@ export const BeeState = GObject.registerClass(
       this.outerLetters = outerLetters;
       this.words = words;
       this.wordsFound = wordsFound;
+      this.wordsFoundSorted = wordsFoundSorted;
       this.attempted = attempted;
       this.currentScore = currentScore;
       this.totalScore = totalScore;

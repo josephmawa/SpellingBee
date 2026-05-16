@@ -28,6 +28,10 @@ import { newGameAlert, solveGameAlert, goBackAlert } from "./alert-dialogs.js";
 
 import { BeeState } from "./bee.js";
 
+// Locale-aware so accented characters sort correctly in translated locales.
+const compareFoundWords = (a, b) =>
+  a.correctWord.localeCompare(b.correctWord);
+
 const outerLetterObjects = [
   { label: "", position: "LEFT" },
   { label: "", position: "RIGHT" },
@@ -312,6 +316,10 @@ export const SpellingbeeWindow = GObject.registerClass(
 
       spellBeeObj.words = words.map((word) => toUpperCase(word));
       spellBeeObj.wordsFound = Gio.ListStore.new(CorrectWord);
+      spellBeeObj.wordsFoundSorted = Gtk.SortListModel.new(
+        spellBeeObj.wordsFound,
+        Gtk.CustomSorter.new(compareFoundWords),
+      );
       spellBeeObj.currentScore = 0;
 
       let totalScore = 0;
@@ -751,7 +759,10 @@ export const SpellingbeeWindow = GObject.registerClass(
 
     bindProperties = () => {
       this._entry.connect("icon-press", this.entryIconPressHandler);
-      this._flowbox.bind_model(this.beeState.wordsFound, this.createWidgetFunc);
+      this._flowbox.bind_model(
+        this.beeState.wordsFoundSorted,
+        this.createWidgetFunc,
+      );
       this.beeState.wordsFound.bind_property_full(
         "n_items",
         this._words_stack,
