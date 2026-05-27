@@ -228,6 +228,7 @@ export const Hexagon = GObject.registerClass(
       if (distFromCenter < this.radiusInscribedCircle) {
         this.emit("click", this.label, x, y);
       }
+      gesture.set_state(Gtk.EventSequenceState.CLAIMED);
     };
   },
 );
