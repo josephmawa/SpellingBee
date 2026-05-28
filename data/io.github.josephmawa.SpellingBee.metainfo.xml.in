@@ -49,6 +49,15 @@
   </screenshots>
 
   <releases>
+    <release version="0.1.6" date="2026-05-28">
+      <description translate="no">
+        <ul>
+          <li>Sort found words</li>
+          <li>Update Italian translation</li>
+          <li>Fix window-resizing bug on hexagon double-click</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.5" date="2026-05-05">
       <description translate="no">
         <ul>
