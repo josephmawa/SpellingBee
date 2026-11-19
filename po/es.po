@@ -1,0 +1,619 @@
+# Spanish translation for spellingbee.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the spellingbee package.
+# Pedro Flores, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: spellingbee\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 16:57+0300\n"
+"PO-Revision-Date: 2026-11-19 12:00+0100\n"
+"Last-Translator: Pedro Flores\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/io.github.josephmawa.SpellingBee.desktop.in:2
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:7 src/ui/window.ui:6
+msgid "Spelling Bee"
+msgstr "Spelling Bee"
+
+#. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
+#: data/io.github.josephmawa.SpellingBee.desktop.in:9
+msgid "Learn;English;Word:Vocabulary;Spelling;Spell;Game;Puzzle;Bee;"
+msgstr ""
+"Aprender;Inglés;English;Palabra;Vocabulario;Ortografía;Deletrear;Juego;Puzle;Rompecabezas;Abeja;"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:8
+msgid "Learn new English words"
+msgstr "Aprende nuevas palabras en inglés"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:10
+msgid "Use Spelling Bee to enhance your English vocabulary while having fun."
+msgstr ""
+"Usa Spelling Bee para ampliar tu vocabulario en inglés mientras te diviertes."
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:11
+msgid "Below are the main features:"
+msgstr "Estas son sus funciones principales:"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:13
+msgid "Provides thousands of words"
+msgstr "Ofrece miles de palabras"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:14
+msgid "You can play it offline"
+msgstr "Puedes jugar sin conexión"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:15
+msgid "It provides links to the meaning of words"
+msgstr "Incluye enlaces al significado de las palabras"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:16
+msgid "You can view puzzle history"
+msgstr "Puedes ver el historial de puzles"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:17
+msgid "You can view your score"
+msgstr "Puedes ver tu puntuación"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:18
+msgid "Switch to dark, light, or system mode"
+msgstr "Cambia entre el modo oscuro, el claro o el del sistema"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:23
+msgid "Joseph Mawa"
+msgstr "Joseph Mawa"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:43
+msgid "Spelling Bee in dark mode"
+msgstr "Spelling Bee en modo oscuro"
+
+#: data/io.github.josephmawa.SpellingBee.metainfo.xml.in:47
+msgid "Spelling Bee in light mode"
+msgstr "Spelling Bee en modo claro"
+
+#: src/ui/help.ui:13
+msgid "Hints"
+msgstr "Pistas"
+
+#: src/ui/help.ui:57
+msgid "<span size=\"x-large\" weight=\"bold\">Two Letter List</span>"
+msgstr "<span size=\"x-large\" weight=\"bold\">Lista de dos letras</span>"
+
+#: src/ui/how-to-play.ui:15
+msgid "How to play Spelling Bee"
+msgstr "Cómo jugar a Spelling Bee"
+
+#: src/ui/preferences.ui:6 src/ui/preferences.ui:12
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: src/ui/preferences.ui:15
+msgid "Color Theme"
+msgstr "Tema de color"
+
+#: src/ui/preferences.ui:16
+msgid "Set color theme"
+msgstr "Elige el tema de color"
+
+#: src/ui/preferences.ui:20
+msgctxt "System color theme"
+msgid "System"
+msgstr "Sistema"
+
+#: src/ui/preferences.ui:35
+msgctxt "Light color theme"
+msgid "Light"
+msgstr "Claro"
+
+#: src/ui/preferences.ui:50
+msgctxt "Dark color theme"
+msgid "Dark"
+msgstr "Oscuro"
+
+#: src/ui/preferences.ui:66
+msgid "Quiz Settings"
+msgstr "Ajustes de los puzles"
+
+#: src/ui/preferences.ui:69
+msgid "Recycle Quiz"
+msgstr "Reciclar puzles"
+
+#: src/ui/preferences.ui:70 src/ui/preferences.ui:80
+msgid "Recycle attempted quiz"
+msgstr "Reciclar los puzles ya jugados"
+
+#: src/ui/preferences.ui:82
+msgctxt "accessibility"
+msgid "Recycle attempted quiz"
+msgstr "Reciclar los puzles ya jugados"
+
+#: src/ui/rankings.ui:15 src/ui/window.ui:378
+msgid "Rankings"
+msgstr "Rangos"
+
+#: src/ui/rankings.ui:43
+msgid "Ranks for the current puzzle"
+msgstr "Rangos del puzle actual"
+
+#: src/ui/rankings.ui:54
+msgid "Below are the minimum scores you need to reach each rank."
+msgstr ""
+"Estas son las puntuaciones mínimas que necesitas para alcanzar cada rango."
+
+#: src/ui/rankings.ui:94
+msgid "No rankings for this puzzle"
+msgstr "No hay rangos para este puzle"
+
+#: src/ui/shortcuts-dialog.ui:6
+msgctxt "shortcut window"
+msgid "General"
+msgstr "General"
+
+#: src/ui/shortcuts-dialog.ui:9
+msgctxt "shortcut window"
+msgid "Open Main Menu"
+msgstr "Abrir el menú principal"
+
+#: src/ui/shortcuts-dialog.ui:15
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Mostrar los atajos"
+
+#: src/ui/shortcuts-dialog.ui:21
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Salir"
+
+#: src/ui/shortcuts-dialog.ui:27
+msgctxt "shortcut window"
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: src/ui/shortcuts-dialog.ui:35
+msgctxt "shortcut window"
+msgid "Puzzle"
+msgstr "Puzle"
+
+#: src/ui/shortcuts-dialog.ui:38
+msgctxt "shortcut window"
+msgid "Display Hint"
+msgstr "Mostrar una pista"
+
+#: src/ui/shortcuts-dialog.ui:44
+msgctxt "shortcut window"
+msgid "Shuffle Letters"
+msgstr "Mezclar las letras"
+
+#: src/ui/shortcuts-dialog.ui:50
+msgctxt "shortcut window"
+msgid "Check Word"
+msgstr "Comprobar la palabra"
+
+#: src/ui/shortcuts-dialog.ui:56
+msgctxt "shortcut window"
+msgid "Delete Entry"
+msgstr "Borrar la palabra"
+
+#: src/ui/shortcuts-dialog.ui:64
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Ayuda"
+
+#: src/ui/shortcuts-dialog.ui:67
+msgctxt "shortcut window"
+msgid "Open Help Menu"
+msgstr "Abrir el menú de ayuda"
+
+#: src/ui/shortcuts-dialog.ui:75
+msgctxt "shortcut window"
+msgid "Navigation"
+msgstr "Navegación"
+
+#: src/ui/shortcuts-dialog.ui:78
+msgctxt "shortcut window"
+msgid "Back To Main View"
+msgstr "Volver a la vista principal"
+
+#: src/ui/statistics.ui:15 src/ui/window.ui:374
+msgid "Statistics"
+msgstr "Estadísticas"
+
+#: src/ui/statistics.ui:44
+msgid "Your puzzle statistics"
+msgstr "Estadísticas de tus puzles"
+
+#: src/ui/statistics.ui:73
+msgid "Only statistics for the last <b>20 games</b> are available."
+msgstr ""
+"Solo están disponibles las estadísticas de las últimas <b>20 partidas</b>."
+
+#: src/ui/statistics.ui:98
+msgid "No statistics yet"
+msgstr "Aún no hay estadísticas"
+
+#: src/ui/window.ui:27
+msgid "Help"
+msgstr "Ayuda"
+
+#: src/ui/window.ui:37
+msgid "_Help"
+msgstr "_Ayuda"
+
+#: src/ui/window.ui:55
+msgid "Main Menu"
+msgstr "Menú principal"
+
+#: src/ui/window.ui:83 src/ui/window.ui:84
+msgid "Enter Word"
+msgstr "Escribe una palabra"
+
+#: src/ui/window.ui:86 src/ui/window.ui:140
+msgid "Delete"
+msgstr "Borrar"
+
+#: src/ui/window.ui:107
+msgid "Hint"
+msgstr "Pista"
+
+#: src/ui/window.ui:118
+msgid "Shuffle"
+msgstr "Mezclar"
+
+#: src/ui/window.ui:129
+msgid "Check"
+msgstr "Comprobar"
+
+#: src/ui/window.ui:159
+msgid "Your Score"
+msgstr "Tu puntuación"
+
+#: src/ui/window.ui:184
+msgid "Your Words"
+msgstr "Tus palabras"
+
+#: src/ui/window.ui:220
+msgid "No Words Found Yet"
+msgstr "Aún no has encontrado ninguna palabra"
+
+#: src/ui/window.ui:284
+msgctxt "Back to main screen"
+msgid "Back"
+msgstr "Atrás"
+
+#: src/ui/window.ui:286
+msgctxt "accessibility"
+msgid "Back"
+msgstr "Atrás"
+
+#: src/ui/window.ui:306
+msgid "Puzzle Solution"
+msgstr "Solución del puzle"
+
+#: src/ui/window.ui:354
+msgid "_Preferences"
+msgstr "_Preferencias"
+
+#: src/ui/window.ui:358
+msgid "_Keyboard Shortcuts"
+msgstr "_Atajos de teclado"
+
+#: src/ui/window.ui:362
+msgid "_About Spelling Bee"
+msgstr "A_cerca de Spelling Bee"
+
+#: src/ui/window.ui:370
+msgid "How To Play"
+msgstr "Cómo jugar"
+
+#: src/ui/window.ui:382 src/alert-dialogs.js:14
+msgid "New Puzzle"
+msgstr "Nuevo puzle"
+
+#: src/ui/window.ui:386 src/alert-dialogs.js:31 src/alert-dialogs.js:40
+msgid "Solve Puzzle"
+msgstr "Resolver el puzle"
+
+#: src/ui/words.ui:15 src/statistics.js:14
+msgid "Words"
+msgstr "Palabras"
+
+#: src/util/util.js:48
+#, javascript-format
+msgid "Good +%d"
+msgstr "Bien +%d"
+
+#: src/util/util.js:49
+#, javascript-format
+msgid "Great +%d"
+msgstr "Genial +%d"
+
+#: src/util/util.js:50
+#, javascript-format
+msgid "Amazing +%d"
+msgstr "Increíble +%d"
+
+#: src/util/util.js:51
+#, javascript-format
+msgid "Superb +%d"
+msgstr "Espectacular +%d"
+
+#. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
+#: src/about.js:16
+msgid "translator-credits"
+msgstr "Pedro Flores"
+
+#: src/alert-dialogs.js:5
+msgid "Start New Puzzle"
+msgstr "Empezar un nuevo puzle"
+
+#: src/alert-dialogs.js:7
+msgid ""
+"Are you sure you want to start a new puzzle? Your progress will not be saved."
+msgstr ""
+"¿Seguro que quieres empezar un nuevo puzle? No se guardará tu progreso."
+
+#: src/alert-dialogs.js:15 src/alert-dialogs.js:41 src/alert-dialogs.js:66
+msgid "Close Dialog"
+msgstr "Cerrar"
+
+#: src/alert-dialogs.js:33
+msgid ""
+"Are you sure you want to view the solution for this puzzle? Your progress "
+"will not be saved."
+msgstr ""
+"¿Seguro que quieres ver la solución de este puzle? No se guardará tu "
+"progreso."
+
+#: src/alert-dialogs.js:56
+msgid "Go Back To  Main View"
+msgstr "Volver a la vista principal"
+
+#: src/alert-dialogs.js:58
+msgid ""
+"Are you sure you want to go back to the main view? This will start a new "
+"game."
+msgstr ""
+"¿Seguro que quieres volver a la vista principal? Se empezará una nueva "
+"partida."
+
+#: src/alert-dialogs.js:65
+msgid "Go Back"
+msgstr "Volver"
+
+#: src/how-to-play.js:5
+msgid "The Rules"
+msgstr "Las reglas"
+
+#: src/how-to-play.js:8
+msgid ""
+"Create words using the <span weight=\"ultrabold\">provided letters</span>."
+msgstr ""
+"Forma palabras con las <span weight=\"ultrabold\">letras disponibles</span>."
+
+#: src/how-to-play.js:9
+msgid ""
+"The words <span weight=\"ultrabold\">must contain at least 4 letters</span>."
+msgstr ""
+"Las palabras <span weight=\"ultrabold\">deben tener al menos 4 letras</span>."
+
+#: src/how-to-play.js:10
+msgid ""
+"Each word <span weight=\"ultrabold\">must include the center letter</span>."
+msgstr ""
+"Cada palabra <span weight=\"ultrabold\">debe incluir la letra central</span>."
+
+#: src/how-to-play.js:11
+msgid ""
+"Provided <span weight=\"ultrabold\">letters can be used more than once</"
+"span>."
+msgstr ""
+"Las <span weight=\"ultrabold\">letras se pueden usar más de una vez</span>."
+
+#: src/how-to-play.js:15
+msgid "The Scores"
+msgstr "La puntuación"
+
+#: src/how-to-play.js:18
+msgid ""
+"Each <span weight=\"ultrabold\">four-letter</span> word is worth <span  "
+"weight=\"ultrabold\">one point</span>."
+msgstr ""
+"Cada palabra de <span weight=\"ultrabold\">cuatro letras</span> vale <span "
+"weight=\"ultrabold\">un punto</span>."
+
+#: src/how-to-play.js:19
+msgid ""
+"<span weight=\"ultrabold\">Longer words</span> earn <span "
+"weight=\"ultrabold\">one point per letter</span>."
+msgstr ""
+"Las <span weight=\"ultrabold\">palabras más largas</span> suman <span "
+"weight=\"ultrabold\">un punto por letra</span>."
+
+#: src/how-to-play.js:20
+msgid ""
+"Words containing <span weight=\"ultrabold\">all the letters</span> earn "
+"<span weight=\"ultrabold\">seven additional points</span>."
+msgstr ""
+"Las palabras que contienen <span weight=\"ultrabold\">todas las "
+"letras</span> suman <span weight=\"ultrabold\">siete puntos extra</span>."
+
+#: src/how-to-play.js:23
+msgid "About Hints"
+msgstr "Sobre las pistas"
+
+#: src/how-to-play.js:26
+msgid ""
+"The symbol, <span weight=\"ultrabold\">Σ</span>, is short for <span "
+"weight=\"ultrabold\">sum</span>."
+msgstr ""
+"El símbolo <span weight=\"ultrabold\">Σ</span> significa <span "
+"weight=\"ultrabold\">suma</span>."
+
+#: src/how-to-play.js:27
+msgid ""
+"The <span weight=\"ultrabold\">first column</span> contains the provided "
+"letters e.g. E, K, L, etc."
+msgstr ""
+"La <span weight=\"ultrabold\">primera columna</span> contiene las letras "
+"disponibles, p. ej., E, K, L, etc."
+
+#: src/how-to-play.js:28
+msgid ""
+"The <span weight=\"ultrabold\">last column</span> contains the total number "
+"of words that begin with the corresponding letter."
+msgstr ""
+"La <span weight=\"ultrabold\">última columna</span> contiene el número total "
+"de palabras que empiezan por la letra correspondiente."
+
+#: src/how-to-play.js:29
+msgid ""
+"The <span weight=\"ultrabold\">first row</span> contains the word lengths "
+"e.g. 4 letters, 5 letters, etc."
+msgstr ""
+"La <span weight=\"ultrabold\">primera fila</span> contiene las longitudes de "
+"las palabras, p. ej., 4 letras, 5 letras, etc."
+
+#: src/how-to-play.js:30
+msgid ""
+"The <span weight=\"ultrabold\">last row</span> contains the total number of "
+"4-letter words, 5-letter words, etc."
+msgstr ""
+"La <span weight=\"ultrabold\">última fila</span> contiene el número total de "
+"palabras de 4 letras, de 5 letras, etc."
+
+#: src/how-to-play.js:31
+msgid ""
+"The <span weight=\"ultrabold\">non-edge(inner) table cells</span> contain "
+"the number of n-letter words that begin with a particular letter."
+msgstr ""
+"Las <span weight=\"ultrabold\">celdas interiores de la tabla</span> "
+"contienen el número de palabras de n letras que empiezan por una letra "
+"concreta."
+
+#: src/how-to-play.js:32
+msgid ""
+"The <span weight=\"ultrabold\">two-letter list</span> contains the number of "
+"words that begin with the given pair of letters e.g. DE-20 means 20 words "
+"begin with the letters DE."
+msgstr ""
+"La <span weight=\"ultrabold\">lista de dos letras</span> contiene el número "
+"de palabras que empiezan por cada par de letras; p. ej., DE-20 significa que "
+"20 palabras empiezan por las letras DE."
+
+#: src/rankings.js:9
+msgid "Novice"
+msgstr "Principiante"
+
+#: src/rankings.js:10
+msgid "Apprentice"
+msgstr "Aprendiz"
+
+#: src/rankings.js:11
+msgid "Competent"
+msgstr "Competente"
+
+#: src/rankings.js:12
+msgid "Skilled"
+msgstr "Hábil"
+
+#: src/rankings.js:13
+msgid "Masterful"
+msgstr "Magistral"
+
+#: src/rankings.js:14
+msgid "Exceptional"
+msgstr "Excepcional"
+
+#: src/rankings.js:15
+msgid "Amazing"
+msgstr "Increíble"
+
+#: src/rankings.js:16
+msgid "Genius"
+msgstr "Genio"
+
+#: src/rankings.js:107
+msgid "<small>Highest rank, congratulations</small>"
+msgstr "<small>Rango máximo, ¡enhorabuena!</small>"
+
+#: src/rankings.js:117
+#, javascript-format
+msgid "<small><b>%d</b> point to <b>%s</b></small>"
+msgid_plural "<small><b>%d</b> points to <b>%s</b></small>"
+msgstr[0] "<small>Falta <b>%d</b> punto para <b>%s</b></small>"
+msgstr[1] "<small>Faltan <b>%d</b> puntos para <b>%s</b></small>"
+
+#: src/rankings.js:128
+#, javascript-format
+msgid "<small><b>%d</b> point to <b>%s</b>, <b>%d</b> to <b>%s</b></small>"
+msgid_plural ""
+"<small><b>%d</b> points to <b>%s</b>, <b>%d</b> to <b>%s</b></small>"
+msgstr[0] ""
+"<small>Falta <b>%d</b> punto para <b>%s</b> y <b>%d</b> para "
+"<b>%s</b></small>"
+msgstr[1] ""
+"<small>Faltan <b>%d</b> puntos para <b>%s</b> y <b>%d</b> para "
+"<b>%s</b></small>"
+
+#: src/statistics.js:9
+msgid "No."
+msgstr "N.º"
+
+#: src/statistics.js:10
+msgid "Center Letter"
+msgstr "Letra central"
+
+#: src/statistics.js:11
+msgid "Outer Letters"
+msgstr "Letras exteriores"
+
+#: src/statistics.js:12
+msgid "Score"
+msgstr "Puntuación"
+
+#: src/statistics.js:13
+msgid "Total Score"
+msgstr "Puntuación total"
+
+#: src/statistics.js:76
+msgid "View words"
+msgstr "Ver las palabras"
+
+#: src/window.js:111
+msgid "Recycled attempted quiz"
+msgstr "Se han reciclado los puzles jugados"
+
+#: src/window.js:113
+msgid "No attempted quiz"
+msgstr "No hay puzles jugados"
+
+#: src/window.js:423 src/window.js:600
+#, javascript-format
+msgid "%d words · %d points"
+msgstr "%d palabras · %d puntos"
+
+#: src/window.js:505
+msgid "Too Short"
+msgstr "Demasiado corta"
+
+#: src/window.js:516
+msgid "Contains Invalid Letter"
+msgstr "Contiene una letra no válida"
+
+#: src/window.js:521
+msgid "Missing Center Letter"
+msgstr "Falta la letra central"
+
+#: src/window.js:536
+msgid "Already Found"
+msgstr "Ya encontrada"
+
+#: src/window.js:541
+msgid "Word Not Found"
+msgstr "Palabra no encontrada"
