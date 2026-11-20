@@ -49,6 +49,13 @@
   </screenshots>
 
   <releases>
+    <release version="0.1.8" date="2026-11-20">
+      <description translate="no">
+        <ul>
+          <li>Add Spanish translation</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.7" date="2026-10-19">
       <description translate="no">
         <ul>
